@@ -35,10 +35,10 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class NewUserFragment extends Fragment {
-    private EditText editFname, editLname, editPhone, editEmail, editPassword, editConfirm;
+    private EditText editFname, editLname, editPhone, editEmail, editUsername, editPassword, editConfirm;
     private Spinner spnRole;
     private Button btnAddUser, btnCancelUser;
-    private String fname, lname, phone, email, password, confirm, role;
+    private String fname, lname, phone, email, username, password, confirm, role;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +46,7 @@ public class NewUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_user, container, false);
     //        Initiate widgets
+            editUsername = view.findViewById(R.id.edit_user_username);
             editFname = view.findViewById(R.id.edit_user_fname);
             editLname = view.findViewById(R.id.edit_user_lname);
             editPhone = view.findViewById(R.id.edit_user_phone);
@@ -63,6 +64,7 @@ public class NewUserFragment extends Fragment {
                     lname = editLname.getText().toString();
                     phone = editPhone.getText().toString();
                     email = editEmail.getText().toString();
+                    username = editUsername.getText().toString();
                     password = editPassword.getText().toString();
                     confirm = editConfirm.getText().toString();
 
@@ -75,19 +77,22 @@ public class NewUserFragment extends Fragment {
                     if (phone.isEmpty()) {
                         editPhone.setError("Phone required.");
                     }
+                    if (username.isEmpty()) {
+                        editUsername.setError("Username required.");
+                    }
                     if (password.isEmpty()) {
                         editPassword.setError("Password required.");
                     }
                     if (confirm.isEmpty()) {
                         editConfirm.setError("Password confirmation required.");
                     }
-                    if (!fname.isEmpty() && !lname.isEmpty() && !phone.isEmpty() && !password.isEmpty() && !confirm.isEmpty()) {
+                    if (!fname.isEmpty() && !lname.isEmpty() && !phone.isEmpty() && !username.isEmpty() && !password.isEmpty() && !confirm.isEmpty()) {
                         if (!password.equals(confirm)) {
                             Toast.makeText(getContext(), "Sorry, password does not match, try again!", Toast.LENGTH_LONG).show();
                             editPassword.getText().clear();
                             editConfirm.getText().clear();
                         } else {
-                            onRegisterUser(fname, lname, phone, email, password);
+                            onRegisterUser(fname, lname, phone, email, username, password);
                         }
 
                     }
@@ -115,7 +120,7 @@ public class NewUserFragment extends Fragment {
         return view;
     }
 // Send User-data to server
-    private void onRegisterUser(final String fname, final String lname, final String phone, final String email, final String password) {
+    private void onRegisterUser(final String fname, final String lname, final String phone, final String email, final String username,final String password) {
         StringRequest request = new StringRequest(Request.Method.POST, Routes.setUrl("registerUser"), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -147,11 +152,12 @@ public class NewUserFragment extends Fragment {
                 Map<String , String> map = new HashMap<>();
                 map.put("compId", String.valueOf(Users.getCompanyId()));
                 map.put("userId", String.valueOf(Users.getUserId()));
-                map.put("uName", fname);
+                map.put("uFname", fname);
                 map.put("uLastname", lname);
                 map.put("uPhone", phone);
                 map.put("uEmail", email);
                 map.put("uRole", role);
+                map.put("uName", username);
                 map.put("uPassword", password);
                 return map;
             }

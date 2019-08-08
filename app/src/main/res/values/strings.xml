@@ -91,6 +91,7 @@
     <string name="edit_user_phone">Phone</string>
     <string name="edit_user_email">Email (optional)</string>
     <string name="edit_user_psd">Password</string>
+    <string name="edit_user_uname">User Name</string>
     <string name="edit_user_pass_confirm">Retype Password</string>
     <string name="btn_add_user">Add User</string>
     <string name="txt_role_header">Set User Role</string>

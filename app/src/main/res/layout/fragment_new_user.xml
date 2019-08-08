@@ -56,6 +56,15 @@
         android:nextFocusDown="@id/edit_user_password"
         android:entries="@array/user_roles"/>
     <EditText
+        android:id="@+id/edit_user_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:focusable="true"
+        android:nextFocusDown="@id/edit_user_password"
+        android:inputType="text"
+        android:hint="@string/edit_user_uname"/>
+    <EditText
         android:id="@+id/edit_user_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
