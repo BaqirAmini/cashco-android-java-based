@@ -3,7 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
+        android:orderInCategory="90"
+        android:icon="@drawable/ic_settings"
+        android:title=""
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_profile"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_user_profile"
+        android:title=""
+        app:showAsAction="ifRoom" />
+    <item
+        android:orderInCategory="110"
+        android:title="Others"
+        app:showAsAction="never"/>
 </menu>

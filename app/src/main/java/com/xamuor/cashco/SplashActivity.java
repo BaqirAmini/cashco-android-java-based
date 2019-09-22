@@ -12,7 +12,6 @@ import com.xamuor.cashco.cashco.R;
 import java.util.Objects;
 
 public class SplashActivity extends AppCompatActivity {
-    private ImageView splashLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
 //        Initialize imageview spashLogo
-        splashLogo = findViewById(R.id.img_logo);
+        ImageView splashLogo = findViewById(R.id.img_logo);
 
 //        Initiate animation
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.transition);

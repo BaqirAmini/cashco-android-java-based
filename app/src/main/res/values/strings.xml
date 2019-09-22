@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CashCo</string>
-    <string name="title_activity_inventory">CashCo Inventory</string>
+    <string name="title_activity_inventory">Xamuor</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -91,6 +91,7 @@
     <string name="edit_user_phone">Phone</string>
     <string name="edit_user_email">Email (optional)</string>
     <string name="edit_user_psd">Password</string>
+    <string name="edit_user_uname">User Name</string>
     <string name="edit_user_pass_confirm">Retype Password</string>
     <string name="btn_add_user">Add User</string>
     <string name="txt_role_header">Set User Role</string>
@@ -115,4 +116,8 @@
     <string name="hint_password">Password</string>
     <string name="hint_user_name">User Name</string>
     <string name="content_description_logo">CashCo Logo</string>
+    <string name="lbl_sign_out">Sign Out</string>
+    <string name="btn_retry">Retry</string>
+    <string name="validation_msg1">UPS...Couldn\'t Sign In</string>
+    <string name="validation_msg2">Your username and password don\'t match.\nPlease try again.</string>
 </resources>

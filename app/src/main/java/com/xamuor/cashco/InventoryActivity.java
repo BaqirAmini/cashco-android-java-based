@@ -55,11 +55,11 @@ public class InventoryActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
 //        Access menu-options in navigation-drawer
-        menuCustomer = menu.findItem(R.id.nav_customer);
+      /*  menuCustomer = menu.findItem(R.id.nav_customer);
         menuInventory = menu.findItem(R.id.nav_inventory);
         menuCategory = menu.findItem(R.id.nav_category);
         menuReport = menu.findItem(R.id.nav_report);
-        menuSettings = menu.findItem(R.id.nav_setting);
+        menuSettings = menu.findItem(R.id.nav_setting);*/
 //        Set permission for three roles
         if (Users.getRole().equalsIgnoreCase("stock manager")) {
             menuCustomer.setVisible(false);
@@ -73,13 +73,13 @@ public class InventoryActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 //        Initiate widgets
-        View headerView = navigationView.getHeaderView(0);
+        /*View headerView = navigationView.getHeaderView(0);
         imgNav = headerView.findViewById(R.id.img_nav_uphoto);
         txtNavName = headerView.findViewById(R.id.txt_nav_uname);
         txtNavRole = headerView.findViewById(R.id.txt_nav_urole);
         txtNavName.setText(Users.getFname().concat(" ").concat(Users.getLname()).replace("null", ""));
         txtNavRole.setText(Users.getRole());
-        Glide.with(context).load(Routes.onLoadImage("user_photos/").concat(Users.getPhoto())).into(imgNav);
+        Glide.with(context).load(Routes.onLoadImage("user_photos/").concat(Users.getPhoto())).into(imgNav);*/
     }
 
     @Override
@@ -120,7 +120,7 @@ public class InventoryActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_customer) {
+   /*     if (id == R.id.nav_customer) {
             testIntent = new Intent(this, DrawerMenuActivity.class);
             MenuID.setMenuId(1);
             startActivity(testIntent);
@@ -139,7 +139,7 @@ public class InventoryActivity extends AppCompatActivity
             testIntent = new Intent(this, ReportActivity.class);
             startActivity(testIntent);
 
-        } else if ( id == R.id.nav_log_out) {
+        } else */if ( id == R.id.nav_log_out) {
             AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
             logoutDialog.setTitle("Confirm Sign Out");
             logoutDialog.setMessage("Are you sure you want exit from the app?");
@@ -153,12 +153,12 @@ public class InventoryActivity extends AppCompatActivity
             });
             logoutDialog.setNegativeButton("Cancel", null);
             logoutDialog.show();
-        } else if (id == R.id.nav_setting) {
+        } /*else if (id == R.id.nav_setting) {
             testIntent = new Intent(this, SettingsActivity.class);
             startActivity(testIntent);
 
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

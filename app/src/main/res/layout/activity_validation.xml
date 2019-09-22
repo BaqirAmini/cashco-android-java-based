@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:src="@drawable/cashco_logo"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/logo" />
+
+    <TextView
+        android:id="@+id/txt_validation_msg1"
+        android:layout_width="wrap_content"
+        android:text="@string/validation_msg1"
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_validation_msg2"
+        android:layout_width="wrap_content"
+        android:text="@string/validation_msg2"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"
+        android:layout_margin="20dp"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/btn_retry"/>
+
+</LinearLayout>

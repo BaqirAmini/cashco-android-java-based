@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -46,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
 
 //        Hide actionbar for this activity
         Objects.requireNonNull(getSupportActionBar()).hide();
-
         editUserName = findViewById(R.id.edit_username);
         editPassword = findViewById(R.id.edit_password);
         btnLogin = findViewById(R.id.btn_login);
@@ -76,9 +77,13 @@ public class LoginActivity extends AppCompatActivity {
                    if (password.isEmpty()) {
                        editPassword.setError("Password required!");
                    } else  {
-                       editUserName.getText().clear();
+                      /* editUserName.getText().clear();
                        editPassword.getText().clear();
-                       editUserName.setError("Username or password wrong!");
+                       editUserName.setError("Username or password wrong!");*/
+
+//                      Go to next activity for validation
+                     loginIntent = new Intent(context, ValidationActivity.class);
+                     startActivity(loginIntent);
                    }
                }
                else {

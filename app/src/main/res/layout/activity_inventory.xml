@@ -15,11 +15,14 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/nav_drawer_with"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/nav_drawer_margin_top"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_inventory"
-        app:menu="@menu/activity_inventory_drawer" />
+        app:menu="@menu/activity_inventory_drawer"/>
+
+    <!--header of navigation drawer-->
+    <!--app:headerLayout="@layout/nav_header_inventory"-->/>
 
 </android.support.v4.widget.DrawerLayout>
