@@ -4,6 +4,7 @@ package com.xamuor.cashco.Views;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class CategoriesFragment extends Fragment {
         categoryRV = view.findViewById(R.id.category_rv);
         ctgList = new ArrayList<>();
         categoryRV.setHasFixedSize(true);
-        categoryRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        categoryRV.setLayoutManager(new GridLayoutManager(getContext(), 5));
 //        Call method to load categories
         loadCategories();
         return view;

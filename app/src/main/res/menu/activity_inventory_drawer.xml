@@ -8,18 +8,18 @@
             android:id="@+id/nav_sale"
             android:icon="@drawable/ic_sale"
             app:showAsAction="always|withText"
-            android:title="Sell" />
+            android:title="@string/menu_sell" />
 
         <item
             android:id="@+id/nav_customers"
             android:icon="@drawable/ic_supervisor_account_black_24dp"
             app:showAsAction="always|withText"
-            android:title="" />
+            android:title="@string/customer" />
         <item
             android:id="@+id/nav_reports"
             android:icon="@drawable/ic_assessment_black_24dp"
             app:showAsAction="ifRoom|withText"
-            android:title="" />
+            android:title="@string/menu_report" />
         <!--<item
             android:id="@+id/nav_customer"
             android:icon="@drawable/ic_customers"

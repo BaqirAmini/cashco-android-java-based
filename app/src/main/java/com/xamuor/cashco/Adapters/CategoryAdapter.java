@@ -33,7 +33,7 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
     public void onBindViewHolder(ViewHolder holder, int position) {
         final CategoryDataModal modal = ctgList.get(position);
         holder.txtCtgName.setText(modal.getCtgName());
-        holder.txtCtgDesc.setText(modal.getCtgDesc());
+//        holder.txtCtgDesc.setText(modal.getCtgDesc());
 //        card is clickable
         holder.cardCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +51,12 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtCtgName;
-        private TextView txtCtgDesc;
+//        private TextView txtCtgDesc;
         private CardView cardCategory;
         public ViewHolder(View itemView) {
             super(itemView);
             txtCtgName = itemView.findViewById(R.id.txt_ctg_name);
-            txtCtgDesc = itemView.findViewById(R.id.txt_ctg_desc);
+//            txtCtgDesc = itemView.findViewById(R.id.txt_ctg_desc);
             cardCategory = itemView.findViewById(R.id.card_category);
         }
     }

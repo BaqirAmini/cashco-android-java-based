@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.xamuor.cashco.cashco.R;
 
+import java.util.Objects;
+
 public class ValidationActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,9 @@ public class ValidationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validation);
 
+//        Hide Navbar
+        Objects.requireNonNull(getSupportActionBar()).hide();
+//        btn retry to navigation to login-page
         Button btnRetry = findViewById(R.id.btn_retry);
         btnRetry.setOnClickListener(new View.OnClickListener() {
             @Override

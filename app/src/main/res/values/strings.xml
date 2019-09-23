@@ -120,4 +120,12 @@
     <string name="btn_retry">Retry</string>
     <string name="validation_msg1">UPS...Couldn\'t Sign In</string>
     <string name="validation_msg2">Your username and password don\'t match.\nPlease try again.</string>
+    <string name="menu_sell">Sell</string>
+    <string name="txt_park">Park</string>
+    <string name="txt_void">Void</string>
+    <string name="txt_products">Products</string>
+    <string name="txt_categories">Categories</string>
+    <string name="txt_keyboard">Keyboard</string>
+    <string name="content_desription_product_image">Product Image</string>
+    <string name="content_description_category_image">Category Image</string>
 </resources>

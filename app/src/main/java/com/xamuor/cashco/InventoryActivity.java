@@ -3,6 +3,7 @@ package com.xamuor.cashco;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -16,9 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xamuor.cashco.Utilities.Routes;
+import com.xamuor.cashco.Views.CategoriesFragment;
 import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Views.ProductFragment;
 import com.xamuor.cashco.cashco.R;
@@ -29,7 +32,7 @@ public class InventoryActivity extends AppCompatActivity
     Context context = InventoryActivity.this;
     private DrawerLayout drawer;
     private ImageView imgNav;
-    private TextView txtNavName, txtNavRole;
+    private TextView txtNavName, txtNavRole, txtParkTab, txtVoidTab, txtProductsTab, txtCategoriesTab, txtKeyboardTab;
     private MenuItem menuCustomer, menuInventory, menuCategory, menuReport, menuSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,69 @@ public class InventoryActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        Initiate TextViews
+        txtParkTab = findViewById(R.id.txt_park);
+        txtVoidTab = findViewById(R.id.txt_void);
+        txtProductsTab = findViewById(R.id.txt_products);
+        txtCategoriesTab = findViewById(R.id.txt_categories);
+        txtKeyboardTab = findViewById(R.id.txt_keyboard);
+//       Handle tabs (below navbar)
+//        Tab Park
+        txtParkTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Park Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        TAB Products
+        txtProductsTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(context, "Products Clicked", Toast.LENGTH_SHORT).show();
+                ProductFragment pf = new ProductFragment();
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frg_product, pf, "Product").commit();
+                txtProductsTab.setTextColor(Color.parseColor("#6200EE"));
+                txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
+                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+            }
+        });
+
+//        TAB Categories
+        txtCategoriesTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(context, "Products Clicked", Toast.LENGTH_SHORT).show();
+                CategoriesFragment cf = new CategoriesFragment();
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.frg_product, cf, "Category").commit();
+                txtCategoriesTab.setTextColor(Color.parseColor("#6200EE"));
+                txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
+                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+            }
+        });
+
+//        TAB Keyboard
+        txtKeyboardTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtKeyboardTab.setTextColor(Color.parseColor("#6200EE"));
+                txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+
+                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
+                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+            }
+        });
+        
 //        Add the two fragments
         ProductFragment pf = new ProductFragment();
         InvoiceFragment inf = new InvoiceFragment();
