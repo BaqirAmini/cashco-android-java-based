@@ -120,6 +120,7 @@ public class InventoryActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
+        navigationView.setItemIconTintList(null);
 //        Access menu-options in navigation-drawer
       /*  menuCustomer = menu.findItem(R.id.nav_customer);
         menuInventory = menu.findItem(R.id.nav_inventory);

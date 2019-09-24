@@ -17,7 +17,7 @@
             android:title="@string/customer" />
         <item
             android:id="@+id/nav_reports"
-            android:icon="@drawable/ic_assessment_black_24dp"
+            android:icon="@drawable/ic_report"
             app:showAsAction="ifRoom|withText"
             android:title="@string/menu_report" />
         <!--<item
