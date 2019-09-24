@@ -51,6 +51,8 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     public void onBindViewHolder(final InventoryAdapter.ViewHolder holder, final int position) {
         final InventoryDataModal modal = productList.get(position);
         holder.txtProduct.setText(modal.getProductName());
+
+//        Now these are now shown is CARD in products
         holder.txtPrice.setText("$" + modal.getProductPrice());
         holder.txtQty.setText(String.valueOf(modal.getProductQty()));
         Glide.with(context).load(Routes.onLoadImage("product_images/".concat(modal.getProductImage()))).into(holder.productImage);
@@ -141,6 +143,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 //                by default is hidden, when an item clicked it gets visible
             InvoiceFragment invoiceFragment = new InvoiceFragment();
             productImage = itemView.findViewById(R.id.img_product);
+//            Rectify txt_product & txt_price in strings.xml because it is DUPLICATE.
             txtProduct = itemView.findViewById(R.id.txt_product);
             txtPrice = itemView.findViewById(R.id.txt_price);
             txtQty = itemView.findViewById(R.id.txt_qty);
