@@ -10,8 +10,6 @@
     android:id="@+id/cv_product"
     android:layout_width="140dp"
     app:cardElevation="3dp"
-    android:padding="@dimen/card_padding"
-    android:background=""
     android:layout_height="140dp"
     app:cardCornerRadius="3dp">
     <LinearLayout
@@ -25,8 +23,8 @@
     <ImageView
         android:id="@+id/img_product"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:src="@drawable/baqir"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_cart3"
         tools:ignore="ContentDescription" />
     <TextView
         android:id="@+id/txt_product"
@@ -34,6 +32,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:textColor="@color/white_color"
         android:textStyle="bold"
         android:textSize="@dimen/card_txt_size"
         android:layout_height="wrap_content"

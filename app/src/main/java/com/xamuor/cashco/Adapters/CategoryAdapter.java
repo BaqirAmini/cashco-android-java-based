@@ -1,6 +1,7 @@
 package com.xamuor.cashco.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +34,13 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
+        if (position % 2 == 0) {
+            holder.cardCategory.setCardBackgroundColor(Color.parseColor("#689ACA"));
+        } else {
+            holder.cardCategory.setCardBackgroundColor(Color.parseColor("#FD9926"));
+        }
+
         final CategoryDataModal modal = ctgList.get(position);
         holder.txtCtgName.setText(modal.getCtgName());
 //        holder.txtCtgDesc.setText(modal.getCtgDesc());

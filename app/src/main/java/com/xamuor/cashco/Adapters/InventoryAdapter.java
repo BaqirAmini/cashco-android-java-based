@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,10 +50,17 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final InventoryAdapter.ViewHolder holder, final int position) {
+
+        if (position % 2 == 0) {
+            holder.cardItem.setCardBackgroundColor(Color.parseColor("#689ACA"));
+        } else {
+            holder.cardItem.setCardBackgroundColor(Color.parseColor("#FD9926"));
+        }
+
+
+
         final InventoryDataModal modal = productList.get(position);
         holder.txtProduct.setText(modal.getProductName());
-
-//        Now these are now shown is CARD in products
         holder.txtPrice.setText("$" + modal.getProductPrice());
         holder.txtQty.setText(String.valueOf(modal.getProductQty()));
         Glide.with(context).load(Routes.onLoadImage("product_images/".concat(modal.getProductImage()))).into(holder.productImage);
@@ -136,6 +144,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView productImage;
         TextView txtProduct, txtPrice, txtQty;
+        CardView cardItem;
 
 
         public ViewHolder(View itemView) {
@@ -147,6 +156,8 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             txtProduct = itemView.findViewById(R.id.txt_product);
             txtPrice = itemView.findViewById(R.id.txt_price);
             txtQty = itemView.findViewById(R.id.txt_qty);
+            cardItem = itemView.findViewById(R.id.cv_product);
+
 //            Set permission for cashier
             if (Users.getRole().equalsIgnoreCase("cashier")) {
                 itemView.setEnabled(false);

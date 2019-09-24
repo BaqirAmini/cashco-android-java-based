@@ -53,10 +53,16 @@ public class InventoryActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 txtVoidTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
-                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtParkTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackgroundResource(R.color.bg_tabs);
+                txtKeyboardTab.setBackgroundResource(R.color.bg_tabs);
+                txtCategoriesTab.setBackgroundResource(R.color.bg_tabs);
+                txtParkTab.setBackgroundResource(R.color.bg_tabs);
+
+                txtVoidTab.setTextColor(Color.parseColor("#6200EE"));
+                txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtParkTab.setTextColor(getResources().getColor(R.color.text_color));
             }
         });
 
@@ -66,10 +72,16 @@ public class InventoryActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 txtParkTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
-                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtVoidTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackgroundResource(R.color.bg_tabs);
+                txtKeyboardTab.setBackgroundResource(R.color.bg_tabs);
+                txtVoidTab.setBackgroundResource(R.color.bg_tabs);
+                txtCategoriesTab.setBackgroundResource(R.color.bg_tabs);
+// Text Color
+                txtParkTab.setTextColor(Color.parseColor("#6200EE"));
+                txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtVoidTab.setTextColor(getResources().getColor(R.color.text_color));
             }
         });
 
@@ -84,9 +96,13 @@ public class InventoryActivity extends AppCompatActivity
                 txtProductsTab.setTextColor(Color.parseColor("#6200EE"));
                 txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtVoidTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtParkTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtProductsTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
-                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtCategoriesTab.setBackgroundResource(R.color.bg_tabs);
+                txtKeyboardTab.setBackgroundResource(R.color.bg_tabs);
+                txtVoidTab.setBackgroundResource(R.color.bg_tabs);
+                txtParkTab.setBackgroundResource(R.color.bg_tabs);
             }
         });
 
@@ -101,9 +117,14 @@ public class InventoryActivity extends AppCompatActivity
                 txtCategoriesTab.setTextColor(Color.parseColor("#6200EE"));
                 txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtKeyboardTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtVoidTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtParkTab.setTextColor(getResources().getColor(R.color.text_color));
+
                 txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
-                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackgroundResource(R.color.bg_tabs);
+                txtKeyboardTab.setBackgroundResource(R.color.bg_tabs);
+                txtVoidTab.setBackgroundResource(R.color.bg_tabs);
+                txtParkTab.setBackgroundResource(R.color.bg_tabs);
             }
         });
 
@@ -114,10 +135,14 @@ public class InventoryActivity extends AppCompatActivity
                 txtKeyboardTab.setTextColor(Color.parseColor("#6200EE"));
                 txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtVoidTab.setTextColor(getResources().getColor(R.color.text_color));
+                txtParkTab.setTextColor(getResources().getColor(R.color.text_color));
 
                 txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
-                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
-                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackgroundResource(R.color.bg_tabs);
+                txtCategoriesTab.setBackgroundResource(R.color.bg_tabs);
+                txtVoidTab.setBackgroundResource(R.color.bg_tabs);
+                txtParkTab.setBackgroundResource(R.color.bg_tabs);
             }
         });
         
