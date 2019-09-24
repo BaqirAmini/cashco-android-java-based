@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.SearchView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.CategoryAdapter;
 import com.xamuor.cashco.Model.CategoryDataModal;
+import com.xamuor.cashco.Model.InventoryDataModal;
 import com.xamuor.cashco.cashco.R;
 import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.Users;
@@ -35,7 +37,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoriesFragment extends Fragment {
+public class CategoriesFragment extends Fragment implements SearchView.OnQueryTextListener {
     private RecyclerView categoryRV;
     private List<CategoryDataModal> ctgList;
     private CategoryAdapter adapter;
@@ -49,6 +51,13 @@ public class CategoriesFragment extends Fragment {
         categoryRV.setHasFixedSize(true);
         categoryRV.setLayoutManager(new GridLayoutManager(getContext(), 5));
 //        Call method to load categories
+
+        //        Searchview
+        android.support.v7.widget.SearchView searchCategory = view.findViewById(R.id.search_category);
+        searchCategory.setOnQueryTextListener(this);
+        searchCategory.setIconified(false);
+        searchCategory.setQueryHint(getString(R.string.search_category));
+
         loadCategories();
         return view;
     }
@@ -90,5 +99,24 @@ public class CategoriesFragment extends Fragment {
             }
         };
         Volley.newRequestQueue(getActivity()).add(request);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String ctg) {
+        String userInput = ctg.toLowerCase();
+
+        List<CategoryDataModal> newList = new ArrayList<>();
+        for (CategoryDataModal cdm : ctgList) {
+            if ((cdm.getCtgName().toLowerCase().contains(userInput))) {
+                newList.add(cdm);
+            }
+        }
+        adapter.onUpdateList(newList);
+        return true;
     }
 }

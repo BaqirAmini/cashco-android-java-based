@@ -2,20 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/nav_header_vertical_spacing"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_color"
     tools:context="com.xamuor.cashco.Views.ProductFragment">
-    <SearchView
+    <android.support.v7.widget.SearchView
         android:id="@+id/search_category"
         android:layout_width="1000dp"
         android:layout_alignStart="@+id/category_rv"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.SearchView.ActionBar"
+        android:focusable="false"
+        android:background="@drawable/searchview_design" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/category_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_category"
-        android:layout_margin="@dimen/small_margin"
         android:padding="5dp"
         android:background="@color/white_color"/>
 

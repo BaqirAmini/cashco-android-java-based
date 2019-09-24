@@ -48,11 +48,28 @@ public class InventoryActivity extends AppCompatActivity
         txtCategoriesTab = findViewById(R.id.txt_categories);
         txtKeyboardTab = findViewById(R.id.txt_keyboard);
 //       Handle tabs (below navbar)
+//        Tab Void
+        txtVoidTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtVoidTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
+                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtParkTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+            }
+        });
+
+
 //        Tab Park
         txtParkTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Park Clicked", Toast.LENGTH_SHORT).show();
+                txtParkTab.setBackground(getResources().getDrawable(R.drawable.tab_design));
+                txtCategoriesTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtKeyboardTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtVoidTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
+                txtProductsTab.setBackground(getResources().getDrawable(R.drawable.default_bottom_border));
             }
         });
 

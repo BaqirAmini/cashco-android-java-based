@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xamuor.cashco.Model.CategoryDataModal;
+import com.xamuor.cashco.Model.InventoryDataModal;
 import com.xamuor.cashco.Views.CategoryRelatedFragment;
 import com.xamuor.cashco.cashco.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewHolder> {
@@ -47,6 +49,13 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
     @Override
     public int getItemCount() {
         return ctgList.size();
+    }
+
+//    To change array-list based on query input
+    public void onUpdateList(List<CategoryDataModal> newList) {
+        ctgList = new ArrayList<>();
+        ctgList.addAll(newList);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

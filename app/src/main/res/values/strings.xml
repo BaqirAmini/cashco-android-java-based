@@ -128,4 +128,6 @@
     <string name="txt_keyboard">Keyboard</string>
     <string name="content_desription_product_image">Product Image</string>
     <string name="content_description_category_image">Category Image</string>
+    <string name="search_product">Search for products</string>
+    <string name="search_category">Search for categories</string>
 </resources>

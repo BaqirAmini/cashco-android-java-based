@@ -2,6 +2,7 @@ package com.xamuor.cashco.Views;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+import android.support.v7.widget.SearchView;
+
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -62,10 +64,10 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
         posDatabase = Room.databaseBuilder(getContext(), PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
         productList = new ArrayList<>();
 //        Searchview
-        SearchView searchCategory = view.findViewById(R.id.search_category);
-        searchCategory.setQueryHint("Search...");
-        searchCategory.setOnQueryTextListener(this);
-
+        android.support.v7.widget.SearchView searchProduct = view.findViewById(R.id.search_item);
+        searchProduct.setOnQueryTextListener(this);
+        searchProduct.setIconified(false);
+        searchProduct.setQueryHint(getString(R.string.search_product));
         // call the method to load data
         loadInventoryData();
         return view;
@@ -160,9 +162,9 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
         String userInput = name.toLowerCase();
 
         List<InventoryDataModal> newList = new ArrayList<>();
-        for (InventoryDataModal category : productList) {
-            if ((category.getProductName().toLowerCase().contains(userInput))) {
-                newList.add(category);
+        for (InventoryDataModal idm : productList) {
+            if ((idm.getProductName().toLowerCase().contains(userInput))) {
+                newList.add(idm);
             }
         }
         adapter.onUpdateList(newList);
