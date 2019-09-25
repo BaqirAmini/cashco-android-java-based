@@ -109,7 +109,6 @@ public class CategoriesFragment extends Fragment implements SearchView.OnQueryTe
     @Override
     public boolean onQueryTextChange(String ctg) {
         String userInput = ctg.toLowerCase();
-
         List<CategoryDataModal> newList = new ArrayList<>();
         for (CategoryDataModal cdm : ctgList) {
             if ((cdm.getCtgName().toLowerCase().contains(userInput))) {

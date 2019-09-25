@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ccd3cc05a5e59daa9b4eb0dd068f5cd0",
+    "identityHash": "0d2e0da96419dafa769da2a3871109bf",
     "entities": [
       {
         "tableName": "invoices",
@@ -56,13 +56,25 @@
       },
       {
         "tableName": "customers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`customerId` INTEGER NOT NULL, `companyId` INTEGER NOT NULL, `customerName` TEXT, `pCustId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`customerId` INTEGER NOT NULL, `sellerPermitNumber` TEXT, `businessName` TEXT, `companyId` INTEGER NOT NULL, `customerName` TEXT, `customerLastName` TEXT, `customerPhone` TEXT, `customerPhoto` TEXT, `pCustId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "customerId",
             "columnName": "customerId",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "sellerPermitNumber",
+            "columnName": "sellerPermitNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "businessName",
+            "columnName": "businessName",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "companyId",
@@ -73,6 +85,24 @@
           {
             "fieldPath": "customerName",
             "columnName": "customerName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "customerLastName",
+            "columnName": "customerLastName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "customerPhone",
+            "columnName": "customerPhone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "customerPhoto",
+            "columnName": "customerPhoto",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -169,7 +199,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ccd3cc05a5e59daa9b4eb0dd068f5cd0\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0d2e0da96419dafa769da2a3871109bf\")"
     ]
   }
 }

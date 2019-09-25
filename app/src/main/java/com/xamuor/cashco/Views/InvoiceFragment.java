@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,29 +76,20 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     private Button btnCancel;
     private TextView txtTotal;
     private String paymentValue = "";
-
-    public InvoiceFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_invoice, container, false);
-/* ------------------------------ SearchView for CUSTOMERS ----------------------------------- */
-//     Searchview
-        android.support.v7.widget.SearchView searchCustomer = view.findViewById(R.id.search_customer);
-        searchCustomer.setOnQueryTextListener(this);
-        searchCustomer.setIconified(false);
-        searchCustomer.setQueryHint(getString(R.string.search_customer));
-/* ------------------------------ /. SearchView for CUSTOMERS ----------------------------------- */
+
+/* --------------------------------- Call SearchCustomerFragment ---------------------------*/
+        onRefreshSearchCustomerFragment();
+/* ---------------------------------/. Call SearchCustomerFragment ---------------------------*/
 
 
 //        Initiate textView of total-price
 //        txtTotal = view.findViewById(R.id.txt_total_price);
-        //        Initiate widgets
+//        Initiate widgets
         spnPaymentType = view.findViewById(R.id.spn_payment_type);
         layoutForPayment = view.findViewById(R.id.layout_for_payment);
 //        chkAllAmount = view.findViewById(R.id.chk_paid_all);
@@ -519,4 +512,14 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             btnCancel.setBackgroundColor(getResources().getColor(R.color.disable_color));
         }
     }*/
+
+
+//    Refresh onRefreshSearchCustomerFragment
+    private void onRefreshSearchCustomerFragment() {
+        FragmentManager fragmentManager =  (getActivity()).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SearchCustomerFragment myfragment = new SearchCustomerFragment();  //your fragment
+        fragmentTransaction.replace(R.id.frg_search_customer, myfragment);
+        fragmentTransaction.commit();
+    }
 }

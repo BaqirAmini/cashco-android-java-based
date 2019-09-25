@@ -13,13 +13,6 @@
             android:layout_width="220dp"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content" />-->
-    <android.support.v7.widget.SearchView
-        android:id="@+id/search_customer"
-        android:layout_width="560dp"
-        app:theme="@style/AppSearchView"
-        android:focusable="false"
-        android:background="@drawable/searchview_design"
-        android:layout_height="40dp" />
 
         <!--<ImageView
             android:id="@+id/img_new_customer"
@@ -31,11 +24,16 @@
             android:layout_alignBottom="@+id/search_customer"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" />-->
-        <ListView
-            android:id="@+id/list_invoice_content"
-            android:layout_width="560dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_customer"/>
+    <FrameLayout
+        android:id="@+id/frg_search_customer"
+        android:layout_width="560dp"
+        android:name="com.xamuor.cashco.Views.SearchCustomerFragment"
+        android:layout_height="wrap_content"/>
+
+    <ListView
+        android:id="@+id/list_invoice_content"
+        android:layout_width="560dp"
+        android:layout_height="wrap_content" />
         <!-- Total Price-->
         <!--<TextView
             android:id="@+id/txt_total_price"

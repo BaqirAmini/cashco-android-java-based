@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.xamuor.cashco.Views.SearchCustomerFragment">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_customer"
+        android:layout_width="560dp"
+        app:theme="@style/AppSearchView"
+        android:focusable="false"
+        android:background="@drawable/searchview_design"
+        android:layout_height="40dp" />
+
+    <!--    ListView for customers while searching -->
+    <ListView
+        android:id="@+id/lv_customer_search_result"
+        android:layout_width="560dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
