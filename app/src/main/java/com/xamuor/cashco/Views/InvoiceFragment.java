@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InvoiceFragment extends Fragment {
+public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextListener {
     private String custName;
     public static PosDatabase posDatabase;
 
@@ -82,37 +83,45 @@ public class InvoiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_invoice, container, false);
+/* ------------------------------ SearchView for CUSTOMERS ----------------------------------- */
+//     Searchview
+        android.support.v7.widget.SearchView searchCustomer = view.findViewById(R.id.search_customer);
+        searchCustomer.setOnQueryTextListener(this);
+        searchCustomer.setIconified(false);
+        searchCustomer.setQueryHint(getString(R.string.search_customer));
+/* ------------------------------ /. SearchView for CUSTOMERS ----------------------------------- */
+
+
 //        Initiate textView of total-price
-        txtTotal = view.findViewById(R.id.txt_total_price);
+//        txtTotal = view.findViewById(R.id.txt_total_price);
         //        Initiate widgets
         spnPaymentType = view.findViewById(R.id.spn_payment_type);
         layoutForPayment = view.findViewById(R.id.layout_for_payment);
-        chkAllAmount = view.findViewById(R.id.chk_paid_all);
+//        chkAllAmount = view.findViewById(R.id.chk_paid_all);
         editTransCode = view.findViewById(R.id.edit_trans_code);
         editRecievable = view.findViewById(R.id.edit_rcvable_amount);
         editRecieved = view.findViewById(R.id.edit_rcv_amount);
-        ImageView imgNewCustomer = view.findViewById(R.id.img_new_customer);
+        /*ImageView imgNewCustomer = view.findViewById(R.id.img_new_customer);*/
         posDatabase = Room.databaseBuilder(getContext(), PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
-        imgNewCustomer.setOnClickListener(new View.OnClickListener() {
+       /* imgNewCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intent = new Intent(getContext(), NewCustomerActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 //        Call onPayAmount()
-        onPayAmount();
+//        onPayAmount();
         //        Initiate button PRINT & CANCEL
-        btnPrint = view.findViewById(R.id.btn_print);
-        btnCancel = view.findViewById(R.id.btn_cancel);
+       /* btnPrint = view.findViewById(R.id.btn_print);
+        btnCancel = view.findViewById(R.id.btn_cancel);*/
 //        Call to enable/disable btnCancel
-        onCheckCart();
+//        onCheckCart();
 
-        btnPrint.setOnClickListener(new View.OnClickListener() {
+      /*  btnPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onCreateSale();
@@ -127,9 +136,9 @@ public class InvoiceFragment extends Fragment {
                 onRefresh();
 
             }
-        });
+        });*/
 //        Select customers -- dropdown list
-        spnCustomers = view.findViewById(R.id.spn_select_customer);
+        /*spnCustomers = view.findViewById(R.id.spn_select_customer);
         spnCustomers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -157,24 +166,24 @@ public class InvoiceFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
         invoiceListView = view.findViewById(R.id.list_invoice_content);
-        onInvoice();
+//        onInvoice();
         // call method to load customers
-        listCustomers();
+//        listCustomers();
 
-        //        set permission for cashier
-        if (Users.getRole().equalsIgnoreCase("cashier")) {
+//        set permission for cashier
+        /*if (Users.getRole().equalsIgnoreCase("cashier")) {
             imgNewCustomer.setEnabled(false);
             imgNewCustomer.setColorFilter(getActivity().getResources().getColor(R.color.disable_color));
             spnCustomers.setEnabled(false);
-        }
+        }*/
         return view;
     }
 
     // Populate spinner with customers
-    private void listCustomers() {
+    /*private void listCustomers() {
 //     InvoiceFragment.posDatabase.myDao().deleteCustomer();
         StringRequest selectCustomerRequest = new StringRequest(Request.Method.POST, Routes.setUrl("listCustomer"), new Response.Listener<String>() {
             @Override
@@ -239,9 +248,9 @@ public class InvoiceFragment extends Fragment {
             }
         };
         Volley.newRequestQueue(getContext()).add(selectCustomerRequest);
-    }
+    }*/
 
-    @SuppressLint("SetTextI18n")
+/*    @SuppressLint("SetTextI18n")
     private void onInvoice() {
 
         InvoiceDataModal modal = null;
@@ -267,10 +276,10 @@ public class InvoiceFragment extends Fragment {
         InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
         invoiceListView.setAdapter(adapter);
         invoiceListView.deferNotifyDataSetChanged();
-    }
+    }*/
 
     // see if all amount paid
-    @SuppressLint("SetTextI18n")
+  /*  @SuppressLint("SetTextI18n")
     private void onPayAmount() {
 
         spnPaymentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -310,7 +319,7 @@ public class InvoiceFragment extends Fragment {
                 }
             }
         });
-    }
+    }*/
 
     //    To send bill-contents to server
     @SuppressLint("SetTextI18n")
@@ -330,7 +339,7 @@ public class InvoiceFragment extends Fragment {
                         //                    The contents of invoice should be deleted
                         InvoiceFragment.posDatabase.myDao().delete();
 //                      print the invoice
-                        onPrint();
+//                        onPrint();
                         //To refresh the fragment
                         onRefresh();
                     } else if (response.trim().contains("fail")) {
@@ -404,7 +413,7 @@ public class InvoiceFragment extends Fragment {
                                 //                    The contents of invoice should be deleted
                                 InvoiceFragment.posDatabase.myDao().delete();
 //                                print the invoice
-                             onPrint();
+//                             onPrint();
                                 //To refresh the fragment
                                 onRefresh();
                             } else if (response.trim().contains("fail")) {
@@ -480,17 +489,27 @@ public class InvoiceFragment extends Fragment {
 
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
 //    Print invoice which is here the listview
-    private void onPrint() {
+    /*private void onPrint() {
         PrintManager printManager = (PrintManager) getContext().getSystemService(getContext().PRINT_SERVICE);
         WebView webView = new WebView(getContext());
         PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter();
         assert printManager != null;
         printManager.print(String.valueOf(R.id.list_invoice_content), adapter, null);
-    }
+    }*/
 
 //    To check if products are added in cart/invoice
-    private void onCheckCart() {
+    /*private void onCheckCart() {
         List<Product> products = InvoiceFragment.posDatabase.myDao().getProducts(Users.getCompanyId());
         if (products.size() > 0) {
             btnCancel.setEnabled(true);
@@ -499,5 +518,5 @@ public class InvoiceFragment extends Fragment {
             btnCancel.setEnabled(false);
             btnCancel.setBackgroundColor(getResources().getColor(R.color.disable_color));
         }
-    }
+    }*/
 }

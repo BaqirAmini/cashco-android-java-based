@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
     tools:context="com.xamuor.cashco.Views.ProductFragment">
 <android.support.v7.widget.SearchView
     android:id="@+id/search_item"
     android:layout_width="1000dp"
+    android:layout_height="40dp"
     android:layout_alignStart="@+id/rcv_inventory"
-    style="@style/Widget.AppCompat.SearchView.ActionBar"
+    app:theme="@style/AppSearchView"
     android:focusable="false"
-    android:background="@drawable/searchview_design"
-    android:layout_height="wrap_content" />
+    android:background="@drawable/searchview_design" />
 
   <android.support.v7.widget.RecyclerView
       android:id="@+id/rcv_inventory"
