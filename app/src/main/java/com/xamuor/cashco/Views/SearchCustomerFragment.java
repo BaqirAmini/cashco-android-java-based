@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.xamuor.cashco.Adapters.CategoryAdapter;
 import com.xamuor.cashco.Adapters.SearchCustomerAdapter;
 import com.xamuor.cashco.Customer;
 import com.xamuor.cashco.Model.CategoryDataModal;
@@ -42,7 +46,7 @@ import java.util.Map;
  */
 public class SearchCustomerFragment extends Fragment implements SearchView.OnQueryTextListener  {
     public static PosDatabase posDatabase;
-    private ListView listViewSearchCustomer;
+    private RecyclerView rvCustomerSearch;
     private SearchCustomerDataModal searchCustomerDataModal;
     public SearchCustomerAdapter adapter;
     private List<SearchCustomerDataModal> customerList;
@@ -53,8 +57,10 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
         View view = inflater.inflate(R.layout.fragment_search_customer, container, false);
 
         /* ---------------------------------------- Initialize WIDGETS ------------------------------*/
-        listViewSearchCustomer = view.findViewById(R.id.lv_customer_search_result);
-        /* ----------------------------------------/. Initialize WIDGETS ------------------------------*/
+        rvCustomerSearch = view.findViewById(R.id.rv_customer_search_result);
+        customerList = new ArrayList<>();
+        rvCustomerSearch.setHasFixedSize(true);
+        rvCustomerSearch.setLayoutManager(new LinearLayoutManager(getContext()));
         /* ----------------------------------------/. Initialize WIDGETS ------------------------------*/
 
         /* ------------------------------ SearchView for CUSTOMERS ----------------------------------- */
@@ -122,6 +128,13 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
                                 customer.setCustomerPhoto(custPhoto);
                                 SearchCustomerFragment.posDatabase.myDao().insertCustomer(customer);
                         }
+                  // Set data into Adapter and set Adapter into RecyclerView
+                        adapter = new SearchCustomerAdapter(getContext(), customerList);
+                        rvCustomerSearch.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
+
+
                      /*for (Customer cust : existingCustomer) {
                             int rCustId = cust.getCustomerId();
                             String rSellerPermitNumber = cust.getSellerPermitNumber();
@@ -136,9 +149,9 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
                         }*/
 
 //                 Populate SearchCustomerAdapter from ROOD DB
-                adapter = new SearchCustomerAdapter(getContext(), R.layout.search_customer_datamodal, customerList);
+               /* adapter = new SearchCustomerAdapter(getContext(), R.layout.search_customer_datamodal, customerList);
                 listViewSearchCustomer.setAdapter(adapter);
-                listViewSearchCustomer.deferNotifyDataSetChanged();
+                listViewSearchCustomer.deferNotifyDataSetChanged();*/
                     /* if (getActivity() != null) {
                          ArrayAdapter<String> customerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, customerList);
                          spnCustomers.setAdapter(customerAdapter);
@@ -174,10 +187,11 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
 
     @Override
     public boolean onQueryTextChange(String customer) {
+        rvCustomerSearch.setVisibility(View.VISIBLE);
         String userInput = customer.toLowerCase();
         List<SearchCustomerDataModal> newList = new ArrayList<>();
         for (SearchCustomerDataModal scm : customerList) {
-            if ((scm.getfName().toLowerCase().contains(userInput))) {
+            if ((scm.getfName().toLowerCase().contains(userInput)) || (scm.getPhone().toLowerCase().contains(userInput))) {
                 newList.add(scm);
             }
         }
