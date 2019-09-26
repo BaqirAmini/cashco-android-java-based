@@ -1,6 +1,7 @@
 package com.xamuor.cashco.Views;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
@@ -50,17 +51,18 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     private SearchCustomerDataModal searchCustomerDataModal;
     public SearchCustomerAdapter adapter;
     private List<SearchCustomerDataModal> customerList;
+    private ListView lvInvoice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_customer, container, false);
-
         /* ---------------------------------------- Initialize WIDGETS ------------------------------*/
         rvCustomerSearch = view.findViewById(R.id.rv_customer_search_result);
         customerList = new ArrayList<>();
         rvCustomerSearch.setHasFixedSize(true);
         rvCustomerSearch.setLayoutManager(new LinearLayoutManager(getContext()));
+        lvInvoice = ((getActivity())).findViewById(R.id.list_invoice_content);
         /* ----------------------------------------/. Initialize WIDGETS ------------------------------*/
 
         /* ------------------------------ SearchView for CUSTOMERS ----------------------------------- */
@@ -115,7 +117,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
                             String custLastname = custObject.getString("cust_lastname");
                             String sellerPermitNumber = custObject.getString("SellerPermitNumber");
 
-                            searchCustomerDataModal = new SearchCustomerDataModal(custPhoto, custBN, custPhone, custName, custLastname, sellerPermitNumber);
+                            searchCustomerDataModal = new SearchCustomerDataModal(custID, custPhoto, custBN, custPhone, custName, custLastname, sellerPermitNumber);
                             customerList.add(searchCustomerDataModal);
 //                            customerList.add(String.valueOf(custID));
 //                         set json-values into ROOM
@@ -188,6 +190,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     @Override
     public boolean onQueryTextChange(String customer) {
         rvCustomerSearch.setVisibility(View.VISIBLE);
+        lvInvoice.setVisibility(View.GONE);
         String userInput = customer.toLowerCase();
         List<SearchCustomerDataModal> newList = new ArrayList<>();
         for (SearchCustomerDataModal scm : customerList) {

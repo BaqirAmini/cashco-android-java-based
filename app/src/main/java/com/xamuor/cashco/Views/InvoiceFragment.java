@@ -162,7 +162,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         });*/
 
         invoiceListView = view.findViewById(R.id.list_invoice_content);
-//        onInvoice();
+        onInvoice();
         // call method to load customers
 //        listCustomers();
 
@@ -243,7 +243,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         Volley.newRequestQueue(getContext()).add(selectCustomerRequest);
     }*/
 
-/*    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n")
     private void onInvoice() {
 
         InvoiceDataModal modal = null;
@@ -260,16 +260,16 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             list.add(modal);
             total = total + subTotal;
         }
-        if (total > 0.0) {
+        /*if (total > 0.0) {
             txtTotal.setVisibility(View.VISIBLE);
             txtTotal.setText("$" + total);
             editRecievable.setText(total + "");
-        }
+        }*/
 //     To print sold-items into listView
         InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
         invoiceListView.setAdapter(adapter);
         invoiceListView.deferNotifyDataSetChanged();
-    }*/
+    }
 
     // see if all amount paid
   /*  @SuppressLint("SetTextI18n")
@@ -502,7 +502,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     }*/
 
 //    To check if products are added in cart/invoice
-    /*private void onCheckCart() {
+    private void onCheckCart() {
         List<Product> products = InvoiceFragment.posDatabase.myDao().getProducts(Users.getCompanyId());
         if (products.size() > 0) {
             btnCancel.setEnabled(true);
@@ -511,7 +511,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             btnCancel.setEnabled(false);
             btnCancel.setBackgroundColor(getResources().getColor(R.color.disable_color));
         }
-    }*/
+    }
 
 
 //    Refresh onRefreshSearchCustomerFragment

@@ -1,6 +1,7 @@
 package com.xamuor.cashco.Model;
 
 public class SearchCustomerDataModal {
+    private int cid;
     private String photo;
     private String businessName;
     private String phone;
@@ -8,13 +9,18 @@ public class SearchCustomerDataModal {
     private String lName;
     private String sellerPermitNumber;
 
-    public SearchCustomerDataModal(String photo, String businessName, String phone, String fName, String lName, String sellerPermitNumber) {
+    public SearchCustomerDataModal(int cid, String photo, String businessName, String phone, String fName, String lName, String sellerPermitNumber) {
+        this.cid = cid;
         this.photo = photo;
        this.businessName = businessName;
        this.phone = phone;
        this.fName = fName;
        this.lName = lName;
        this.sellerPermitNumber = sellerPermitNumber;
+    }
+
+    public int getCid() {
+        return cid;
     }
 
     public String getPhoto() {

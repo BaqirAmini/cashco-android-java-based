@@ -41,6 +41,7 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         TextView txtItemQty = convertView.findViewById(R.id.txt_item_qty);
         TextView txtItemPrice = convertView.findViewById(R.id.txt_item_price);
         TextView txtItemSubtotal = convertView.findViewById(R.id.txt_item_subtotal);
+//        Widgets out of invoice data modal (fragment_invoice.xml)
 //        define values inside widgets from invoiceDataModal
         if (product != null) {
             txtItemQty.setText(product.getProductQty()+"");

@@ -126,6 +126,10 @@
     <string name="txt_item_name">Item Name</string>
     <string name="txt_price">Price</string>
     <string name="txt_qty">Quantity</string>
+    <string name="txt_lbl_subtotal">Sub Total</string>
+    <string name="btn_pay_invoice">Pay</string>
+    <string name="txt_lbl_tax">Tax</string>
+    <string name="txt_lbl_total">Total</string>
     <string-array name="payment_type">
         <item>Cash</item>
         <item>Master Card</item>

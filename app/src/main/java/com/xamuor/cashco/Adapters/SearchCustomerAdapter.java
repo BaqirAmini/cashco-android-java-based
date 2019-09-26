@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.xamuor.cashco.Model.CategoryDataModal;
 import com.xamuor.cashco.Model.InvoiceDataModal;
 import com.xamuor.cashco.Model.SearchCustomerDataModal;
+import com.xamuor.cashco.Users;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
@@ -89,6 +91,8 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
             @Override
             public void onClick(View view) {
                 holder.custSearchView.setQuery(modal.getfName().concat(" ").concat(modal.getlName()), false);
+                Users.setCustId(modal.getCid());
+                holder.lvInvoice.setVisibility(View.VISIBLE);
             }
         });
         /* ---------------------/. Set values in textViews ------------------*/
@@ -100,7 +104,8 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public android.support.v7.widget.SearchView custSearchView;
+        private android.support.v7.widget.SearchView custSearchView;
+        private ListView lvInvoice;
         private RelativeLayout rlSearchCustomer;
         private ImageView imgCustPhoto;
         private TextView txtBN, txtPhone, txtFN, txtLN;
@@ -108,6 +113,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
             super(itemView);
 //   Initiate widgets of invoice-data-modal
             custSearchView = ((Activity) context).findViewById(R.id.search_customer);
+            lvInvoice = ((Activity)context).findViewById(R.id.list_invoice_content);
             rlSearchCustomer = itemView.findViewById(R.id.rl_search_customer);
             imgCustPhoto = itemView.findViewById(R.id.img_customer_photo);
             txtBN = itemView.findViewById(R.id.txt_cust_bn);
