@@ -1,5 +1,6 @@
 package com.xamuor.cashco.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.xamuor.cashco.Model.InvoiceDataModal;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
     ArrayList<InvoiceDataModal> products;
@@ -27,6 +30,7 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         this.myResource = resource;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -41,7 +45,13 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         TextView txtItemQty = convertView.findViewById(R.id.txt_item_qty);
         TextView txtItemPrice = convertView.findViewById(R.id.txt_item_price);
         TextView txtItemSubtotal = convertView.findViewById(R.id.txt_item_subtotal);
+
 //        Widgets out of invoice data modal (fragment_invoice.xml)
+        TextView txtSubtotal = ((Activity)context).findViewById(R.id.txt_val_subtotal);
+        TextView txtTax = ((Activity)context).findViewById(R.id.txt_val_tax);
+        TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
+        Button btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
+
 //        define values inside widgets from invoiceDataModal
         if (product != null) {
             txtItemQty.setText(product.getProductQty()+"");
@@ -55,6 +65,10 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         if (product != null) {
             txtItemSubtotal.setText(product.getProductSubtotal() + "");
         }
+//        txtSubtotal.setText("$"+ Objects.requireNonNull(product).getProductSubtotal());
+       /* txtTax.setText("$" + 10);
+        double tax = 10 * product.getProductSubtotal() / 100;
+        txtTotal.setText("$" + (product.getProductSubtotal() + tax));*/
         return convertView;
     }
 }

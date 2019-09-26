@@ -111,7 +111,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 
                     onRefreshInvoiceFragment();
                 } else {
-                    //                  decrease one unit the qty on any click on the same item
+//                  decrease one unit the qty on any click on the same item
                     initialQty--;
 //                    update qty in inventories table in ROOM db with decremented value
                     InvoiceFragment.posDatabase.myDao().updateInventory(initialQty, Users.getCompanyId(), modal.getProductId());

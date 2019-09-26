@@ -56,6 +56,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -74,7 +75,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     private Spinner spnPaymentType;
     private ImageButton btnPrint;
     private Button btnCancel;
-    private TextView txtTotal;
+    private TextView txtSubtotal, txtTax, txtTotal;
     private String paymentValue = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,15 +88,18 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 /* ---------------------------------/. Call SearchCustomerFragment ---------------------------*/
 
 
-//        Initiate textView of total-price
-//        txtTotal = view.findViewById(R.id.txt_total_price);
+/* ------------------------------------------ textviews in invoice payment area at the bottom -----------------------*/
+        txtSubtotal = view.findViewById(R.id.txt_val_subtotal);
+        txtTax = view.findViewById(R.id.txt_val_tax);
+        txtTotal = view.findViewById(R.id.txt_val_total);
+/* ------------------------------------------ /.textviews in invoice payment area at the bottom -----------------------*/
 //        Initiate widgets
-        spnPaymentType = view.findViewById(R.id.spn_payment_type);
+     /*   spnPaymentType = view.findViewById(R.id.spn_payment_type);
         layoutForPayment = view.findViewById(R.id.layout_for_payment);
 //        chkAllAmount = view.findViewById(R.id.chk_paid_all);
         editTransCode = view.findViewById(R.id.edit_trans_code);
         editRecievable = view.findViewById(R.id.edit_rcvable_amount);
-        editRecieved = view.findViewById(R.id.edit_rcv_amount);
+        editRecieved = view.findViewById(R.id.edit_rcv_amount);*/
         /*ImageView imgNewCustomer = view.findViewById(R.id.img_new_customer);*/
         posDatabase = Room.databaseBuilder(getContext(), PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
        /* imgNewCustomer.setOnClickListener(new View.OnClickListener() {
@@ -260,11 +264,16 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             list.add(modal);
             total = total + subTotal;
         }
-        /*if (total > 0.0) {
-            txtTotal.setVisibility(View.VISIBLE);
-            txtTotal.setText("$" + total);
-            editRecievable.setText(total + "");
-        }*/
+
+
+        if (total > 0.0) {
+//            txtTotal.setVisibility(View.VISIBLE);
+            txtSubtotal.setText("$" + total);
+//            editRecievable.setText(total + "");
+            double tax = 10 * Objects.requireNonNull(modal).getProductSubtotal() / 100;
+            txtTax.setText("$" + tax);
+            txtTotal.setText("$" + (total + tax));
+        }
 //     To print sold-items into listView
         InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
         invoiceListView.setAdapter(adapter);

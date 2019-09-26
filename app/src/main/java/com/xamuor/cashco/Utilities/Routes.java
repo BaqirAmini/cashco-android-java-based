@@ -11,8 +11,6 @@ public class Routes {
         //    Remote-server...
 //        String url = "http://cashco.xamuor.com/api/" + route;
         String url = "http://192.168.56.1:8000/api/" + route;
-//        String url = "http://cashco.xamuor.com/api/" + route;
-//        String url = "http://192.168.56.1:8000/api/" + route;
 //        Virtual-device IP
         return url;
 
