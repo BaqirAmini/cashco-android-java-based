@@ -5,22 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.Views.CategoriesFragment;
 import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Views.ProductFragment;
@@ -248,7 +247,8 @@ public class InventoryActivity extends AppCompatActivity
             testIntent = new Intent(this, ReportActivity.class);
             startActivity(testIntent);
 
-        } else */if ( id == R.id.nav_log_out) {
+        } else */
+        if ( id == R.id.nav_log_out) {
             AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
             logoutDialog.setTitle("Confirm Sign Out");
             logoutDialog.setMessage("Are you sure you want exit from the app?");
@@ -262,15 +262,27 @@ public class InventoryActivity extends AppCompatActivity
             });
             logoutDialog.setNegativeButton("Cancel", null);
             logoutDialog.show();
-        } /*else if (id == R.id.nav_setting) {
-            testIntent = new Intent(this, SettingsActivity.class);
-            startActivity(testIntent);
-
-
-        }*/
+        } else if (id == R.id.nav_sale) {
+            loadFrgInventory();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void loadFrgInventory() {
+        /*txtProductsTab = findViewById(R.id.txt_products);
+        txtCategories = ((Activity)context).findViewById(R.id.txt_categories);
+        txtKeyboard = ((Activity)context).findViewById(R.id.txt_keyboard);*/
+        txtProductsTab.setVisibility(View.VISIBLE);
+        txtCategoriesTab.setVisibility(View.VISIBLE);
+        txtKeyboardTab.setVisibility(View.VISIBLE);
+
+        FragmentManager fragmentManager =  ((InventoryActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ProductFragment myfragment = new ProductFragment();  //your fragment
+        fragmentTransaction.replace(R.id.frg_product, myfragment);
+        fragmentTransaction.commit();
     }
 }
