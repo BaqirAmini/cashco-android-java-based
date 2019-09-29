@@ -114,7 +114,7 @@
     <string name="menu_sell">Sell</string>
     <string name="txt_park">Park</string>
     <string name="txt_void">Void</string>
-    <string name="txt_products">Products</string>
+    <string name="txt_products">Items</string>
     <string name="txt_categories">Categories</string>
     <string name="txt_keyboard">Keyboard</string>
     <string name="content_desription_product_image">Product Image</string>
@@ -130,10 +130,17 @@
     <string name="btn_pay_invoice">Pay</string>
     <string name="txt_lbl_tax">Tax</string>
     <string name="txt_lbl_total">Total</string>
-    <string-array name="payment_type">
-        <item>Cash</item>
-        <item>Master Card</item>
-        <item>Debit Card</item>
+    <string name="txt_lbl_total_amount_due">Total Amount Due</string>
+    <string name="btn_lbl_credit_card">Credit Card</string>
+    <string name="btn_lbl_debit_card">Debit Card</string>
+    <string name="btn_lbl_check_card">Check</string>
+    <string name="txt_lbl_amound_recieved">Amount Recieved</string>
+    <string name="lbl_change_due">Change Due</string>
+    <string name="btn_done">Done</string>
+    <string name="txt_lbl_balance_due">Balance Due</string>
+    <string-array name="method_amount_due">
+        <item>Pay Full</item>
+        <item>Pay Partial</item>
     </string-array>
     <string-array name="user_roles">
         <item>Stock Manager</item>

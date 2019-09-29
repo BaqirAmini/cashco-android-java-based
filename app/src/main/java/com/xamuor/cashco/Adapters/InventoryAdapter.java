@@ -17,12 +17,12 @@ import com.bumptech.glide.Glide;
 import com.xamuor.cashco.Inventories;
 import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Model.InventoryDataModal;
-import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Product;
+import com.xamuor.cashco.Users;
+import com.xamuor.cashco.Utilities.Routes;
+import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Views.ProductFragment;
 import com.xamuor.cashco.cashco.R;
-import com.xamuor.cashco.Utilities.Routes;
-import com.xamuor.cashco.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -176,6 +176,14 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 
     //    To refresh the invoiceFragment
     private void onRefreshInvoiceFragment() {
+       /* FragmentManager fragmentManager =  ()getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SearchCustomerFragment myfragment = new SearchCustomerFragment();  //your fragment
+        fragmentTransaction.replace(R.id.frg_search_customer, myfragment);
+        fragmentTransaction.commit();*/
+
+
+
         android.support.v4.app.FragmentManager fragmentManager = ((InventoryActivity) context).getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         InvoiceFragment myfragment = new InvoiceFragment();  //your fragment

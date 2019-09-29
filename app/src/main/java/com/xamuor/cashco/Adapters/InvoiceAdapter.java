@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Model.InvoiceDataModal;
+import com.xamuor.cashco.Views.PaymentFragment;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
     ArrayList<InvoiceDataModal> products;
@@ -52,6 +55,14 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
         Button btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
 
+
+        btnPayInvoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onPay();
+            }
+        });
+
 //        define values inside widgets from invoiceDataModal
         if (product != null) {
             txtItemQty.setText(product.getProductQty()+"");
@@ -70,5 +81,23 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         double tax = 10 * product.getProductSubtotal() / 100;
         txtTotal.setText("$" + (product.getProductSubtotal() + tax));*/
         return convertView;
+    }
+
+    private void onPay() {
+//        Hide labels of tabs at the top
+        TextView txtItems, txtCategories, txtKeyboard;
+        txtItems = ((Activity)context).findViewById(R.id.txt_products);
+        txtCategories = ((Activity)context).findViewById(R.id.txt_categories);
+        txtKeyboard = ((Activity)context).findViewById(R.id.txt_keyboard);
+        txtItems.setVisibility(View.GONE);
+        txtCategories.setVisibility(View.GONE);
+        txtKeyboard.setVisibility(View.GONE);
+
+
+        FragmentManager fragmentManager =  ((InventoryActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PaymentFragment myfragment = new PaymentFragment();  //your fragment
+        fragmentTransaction.replace(R.id.frg_product, myfragment);
+        fragmentTransaction.commit();
     }
 }
