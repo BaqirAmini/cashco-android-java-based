@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xamuor.cashco.cashco.R;
 
@@ -97,28 +96,31 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.btn_credit_card:
-                btnDone.setVisibility(View.VISIBLE);
-                break;
-            case R.id.btn_debit_card:
-                Toast.makeText(getActivity(), "Debit Card", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_check:
-                Toast.makeText(getActivity(), "Check", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.btn_done:
-                Toast.makeText(getActivity(), "Done", Toast.LENGTH_SHORT).show();
+            case R.id.btn_debit_card:
+            case R.id.btn_check:
+                btnDone.setVisibility(View.VISIBLE);
+                onPayWithCard();
                 break;
             default:
-                Toast.makeText(getActivity(), "Cash", Toast.LENGTH_SHORT).show();
+                btnDone.setVisibility(View.VISIBLE);
+                onCash();
         }
     }
 
 //    Cash selected
-    /*private void onCash() {
+    private void onCash() {
         txtAmountRcv.setVisibility(View.VISIBLE);
         editAmountRcv.setVisibility(View.VISIBLE);
         txtChangeDue.setVisibility(View.VISIBLE);
         editChangeDue.setVisibility(View.VISIBLE);
-    }*/
-    
+        txtTransactionCode.setVisibility(View.INVISIBLE);
+        editTransCode.setVisibility(View.INVISIBLE);
+    }
+
+//    If payment is not cash
+    private void onPayWithCard() {
+        txtTransactionCode.setVisibility(View.VISIBLE);
+        editTransCode.setVisibility(View.VISIBLE);
+    }
 }

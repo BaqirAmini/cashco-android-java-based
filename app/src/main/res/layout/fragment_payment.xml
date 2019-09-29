@@ -118,7 +118,7 @@
         android:elevation="5dp"
         android:visibility="invisible"
         android:layout_marginTop="@dimen/small_margin"
-        android:inputType="numberDecimal"
+        android:inputType="none"
         android:maxLines="1"/>
     <TextView
         android:id="@+id/txt_lbl_balance_due"
@@ -138,10 +138,10 @@
         android:layout_below="@+id/edit_change_due"
         android:background="@drawable/payment_edittext"
         android:elevation="5dp"
-        android:text="20.20"
+        android:text="0.00"
         android:visibility="invisible"
         android:layout_marginTop="@dimen/small_margin"
-        android:inputType="numberDecimal"
+        android:inputType="none"
         android:maxLines="1"/>
     <TextView
         android:id="@+id/txt_lbl_transaction_code"
@@ -163,7 +163,7 @@
         android:visibility="invisible"
         android:elevation="5dp"
         android:layout_marginTop="@dimen/small_margin"
-        android:inputType="number"
+        android:inputType="none"
         android:maxLines="1"/>
 
 <!--    btn Done -->
