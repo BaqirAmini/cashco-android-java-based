@@ -138,6 +138,8 @@
     <string name="lbl_change_due">Change Due</string>
     <string name="btn_done">Done</string>
     <string name="txt_lbl_balance_due">Balance Due</string>
+    <string name="hint_amount_rvd">Amount Recieved</string>
+    <string name="txt_lbl_trans_code">Transaction Code</string>
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>
