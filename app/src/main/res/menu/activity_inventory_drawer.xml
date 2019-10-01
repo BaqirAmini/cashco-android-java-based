@@ -7,14 +7,20 @@
         <item
             android:id="@+id/nav_sale"
             android:icon="@drawable/ic_sale"
-            app:showAsAction="always|withText"
+            app:showAsAction="ifRoom|withText"
             android:title="@string/menu_sell" />
 
         <item
             android:id="@+id/nav_customers"
             android:icon="@drawable/ic_supervisor_account_black_24dp"
-            app:showAsAction="always|withText"
+            app:showAsAction="ifRoom|withText"
             android:title="@string/customer" />
+
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/ic_products"
+            app:showAsAction="ifRoom|withText"
+            android:title="@string/menu_products" />
         <item
             android:id="@+id/nav_reports"
             android:icon="@drawable/ic_report"

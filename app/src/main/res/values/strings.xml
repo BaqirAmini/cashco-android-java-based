@@ -54,6 +54,7 @@
     <string name="menu_customer">Customers</string>
     <string name="menu_inventory">Inventories</string>
     <string name="menu_category">Categories</string>
+    <string name="menu_products">Products</string>
     <string name="menu_report">Reports</string>
     <string name="menu_setting">Settings</string>
     <string name="icon_new_customer">Icon of new customer</string>
