@@ -1,18 +1,17 @@
 package com.xamuor.cashco.Views;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,10 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.xamuor.cashco.Adapters.CategoryAdapter;
 import com.xamuor.cashco.Adapters.SearchCustomerAdapter;
 import com.xamuor.cashco.Customer;
-import com.xamuor.cashco.Model.CategoryDataModal;
 import com.xamuor.cashco.Model.SearchCustomerDataModal;
 import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.PosDatabase;
@@ -52,6 +49,8 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     public SearchCustomerAdapter adapter;
     private List<SearchCustomerDataModal> customerList;
     private ListView lvInvoice;
+    private android.support.v7.widget.SearchView searchCustomer;
+    private Button btnPayInvoice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,11 +62,12 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
         rvCustomerSearch.setHasFixedSize(true);
         rvCustomerSearch.setLayoutManager(new LinearLayoutManager(getContext()));
         lvInvoice = ((getActivity())).findViewById(R.id.list_invoice_content);
+        btnPayInvoice = ((getActivity())).findViewById(R.id.btn_pay_invoice);
         /* ----------------------------------------/. Initialize WIDGETS ------------------------------*/
 
         /* ------------------------------ SearchView for CUSTOMERS ----------------------------------- */
 //     Searchview
-        android.support.v7.widget.SearchView searchCustomer = view.findViewById(R.id.search_customer);
+        searchCustomer = view.findViewById(R.id.search_customer);
         searchCustomer.setOnQueryTextListener(this);
         searchCustomer.setIconified(false);
         searchCustomer.setQueryHint(getString(R.string.search_customer));
@@ -189,16 +189,18 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
 
     @Override
     public boolean onQueryTextChange(String customer) {
-        rvCustomerSearch.setVisibility(View.VISIBLE);
-        lvInvoice.setVisibility(View.GONE);
-        String userInput = customer.toLowerCase();
-        List<SearchCustomerDataModal> newList = new ArrayList<>();
-        for (SearchCustomerDataModal scm : customerList) {
-            if ((scm.getfName().toLowerCase().contains(userInput)) || (scm.getPhone().toLowerCase().contains(userInput))) {
-                newList.add(scm);
+
+            rvCustomerSearch.setVisibility(View.VISIBLE);
+            lvInvoice.setVisibility(View.GONE);
+            String userInput = customer.toLowerCase();
+            List<SearchCustomerDataModal> newList = new ArrayList<>();
+            for (SearchCustomerDataModal scm : customerList) {
+                if ((scm.getfName().toLowerCase().contains(userInput)) || (scm.getPhone().toLowerCase().contains(userInput))) {
+                    newList.add(scm);
+                }
             }
-        }
-        adapter.onUpdateList(newList);
+            adapter.onUpdateList(newList);
+            btnPayInvoice.setEnabled(true);
         return true;
     }
 }

@@ -15,8 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.xamuor.cashco.ValidationActivity"></activity>
-        <activity android:name="com.xamuor.cashco.SplashActivity">
+        <activity android:name="com.xamuor.cashco.ValidationActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.xamuor.cashco.SplashActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +29,7 @@
             android:name="com.xamuor.cashco.LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name="com.xamuor.cashco.InventoryActivity"
             android:configChanges="orientation"

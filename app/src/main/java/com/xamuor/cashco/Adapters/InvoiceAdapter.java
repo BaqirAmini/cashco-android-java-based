@@ -50,15 +50,16 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         TextView txtItemSubtotal = convertView.findViewById(R.id.txt_item_subtotal);
 
 //        Widgets out of invoice data modal (fragment_invoice.xml)
-        TextView txtSubtotal = ((Activity)context).findViewById(R.id.txt_val_subtotal);
-        TextView txtTax = ((Activity)context).findViewById(R.id.txt_val_tax);
-        TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
+        final TextView txtSubtotal = ((Activity)context).findViewById(R.id.txt_val_subtotal);
+        final TextView txtTax = ((Activity)context).findViewById(R.id.txt_val_tax);
+        final TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
         Button btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
 
 
         btnPayInvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                double subTotal = Double.parseDouble(txtSubtotal.getText().toString());
                 onPay();
             }
         });
@@ -83,6 +84,7 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         return convertView;
     }
 
+//    Take data and go to payment fragment
     private void onPay() {
 //        Hide labels of tabs at the top
         TextView txtItems, txtCategories, txtKeyboard;
@@ -92,7 +94,6 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         txtItems.setVisibility(View.GONE);
         txtCategories.setVisibility(View.GONE);
         txtKeyboard.setVisibility(View.GONE);
-
 
         FragmentManager fragmentManager =  ((InventoryActivity) context).getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

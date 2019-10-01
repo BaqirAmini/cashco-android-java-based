@@ -16,9 +16,9 @@
     <dimen name="nav_drawer_with">100dp</dimen>
     <dimen name="nav_drawer_margin_top">55dp</dimen>
     <dimen name="margin_large">50dp</dimen>
-    <dimen name="font_total_amount_due">25sp</dimen>
+    <dimen name="font_total_amount_due">20sp</dimen>
 <!--    Enlarge icons in navigation drawer -->
-    <dimen name="design_navigation_icon_size" tools:override="true">55dp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">45sp</dimen>
 
 
 

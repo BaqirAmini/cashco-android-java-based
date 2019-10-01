@@ -30,9 +30,10 @@
     android:autofillHints="nothing"
     tools:ignore="UnusedAttribute"
     android:elevation="5dp"
-    android:text="220.69"
+    android:text="0.00"
     android:background="@drawable/payment_edittext"
-    android:inputType="numberDecimal" />
+    android:inputType="none"
+    android:focusable="false"/>
 
     <!-- buttons payment methods-->
     <Button
@@ -93,7 +94,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/txt_lbl_amount_recieved"
         android:background="@drawable/payment_edittext"
-        android:hint="@string/hint_amount_rvd"
         android:visibility="invisible"
         android:elevation="5dp"
         android:inputType="numberDecimal"
@@ -119,6 +119,7 @@
         android:visibility="invisible"
         android:layout_marginTop="@dimen/small_margin"
         android:inputType="none"
+        android:focusable="false"
         android:maxLines="1"/>
     <TextView
         android:id="@+id/txt_lbl_balance_due"
@@ -142,6 +143,7 @@
         android:visibility="invisible"
         android:layout_marginTop="@dimen/small_margin"
         android:inputType="none"
+        android:focusable="false"
         android:maxLines="1"/>
     <TextView
         android:id="@+id/txt_lbl_transaction_code"

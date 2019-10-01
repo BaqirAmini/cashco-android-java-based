@@ -2,7 +2,6 @@ package com.xamuor.cashco.Views;
 
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,32 +20,17 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.xamuor.cashco.Adapters.InventoryAdapter;
 import com.xamuor.cashco.Adapters.InvoiceAdapter;
-import com.xamuor.cashco.CustomerIDForInvoice;
+import com.xamuor.cashco.Invoice;
 import com.xamuor.cashco.Model.InvoiceDataModal;
 import com.xamuor.cashco.Product;
 import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.PosDatabase;
-import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.cashco.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -54,6 +38,11 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextListener {
+
+    /*--------------------------- Members member variables to be use for other fragment ------------------------------ */
+    public double mSubTotal, mTax, mTotal;
+    /*--------------------------- /.Members member variables to be use for other fragment ------------------------------ */
+
     private String custName;
     public static PosDatabase posDatabase;
 
@@ -262,8 +251,22 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             txtSubtotal.setText("$" + total);
 //            editRecievable.setText(total + "");
             double tax = 10 * Objects.requireNonNull(modal).getProductSubtotal() / 100;
-            txtTax.setText("$" + tax);
-            txtTotal.setText("$" + (total + tax));
+
+//  Inititalize member variables
+            mSubTotal = total;
+            mTax = 10;
+            mTotal = (total + tax);
+
+            txtSubtotal.setText("$" + mSubTotal);
+            txtTax.setText(mTax + "%");
+            txtTotal.setText("$" + mTotal);
+
+//            Class Invoice that gets these values for next usage
+            Invoice.setSubTotal(mSubTotal);
+            Invoice.setTax(mTax);
+            Invoice.setTotal(mTotal);
+
+
         }
 //     To print sold-items into listView
         InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
@@ -314,7 +317,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         });
     }*/
 
-    //    To send bill-contents to server
+  /*  //    To send bill-contents to server
     @SuppressLint("SetTextI18n")
     private void onCreateSale() {
         final String transCode = editTransCode.getText().toString();
@@ -465,10 +468,10 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
                 }
             }
         }
-    }
+    }*/
 
-    //    To refresh the fragment
-    private void onRefresh() {
+//    To refresh the fragment
+    /*private void onRefresh() {
         InventoryAdapter.qty = 1;
         android.support.v4.app.FragmentManager fragmentManager = (getActivity()).getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -480,7 +483,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         fragmentTransaction.commit();
 
 
-    }
+    }*/
 
     @Override
     public boolean onQueryTextSubmit(String query) {

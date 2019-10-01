@@ -1,29 +1,24 @@
 package com.xamuor.cashco.Adapters;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.xamuor.cashco.Model.CategoryDataModal;
-import com.xamuor.cashco.Model.InvoiceDataModal;
 import com.xamuor.cashco.Model.SearchCustomerDataModal;
 import com.xamuor.cashco.Users;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerAdapter.ViewHolder>  {
     List<SearchCustomerDataModal> customerList;
@@ -88,9 +83,12 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
         holder.txtFN.setText(modal.getfName());
         holder.txtLN.setText(modal.getlName());
         holder.rlSearchCustomer.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 holder.custSearchView.setQuery(modal.getfName().concat(" ").concat(modal.getlName()), false);
+                holder.btnPayInvoice.setEnabled(true);
+                holder.btnPayInvoice.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
                 Users.setCustId(modal.getCid());
                 holder.lvInvoice.setVisibility(View.VISIBLE);
             }
@@ -109,6 +107,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
         private RelativeLayout rlSearchCustomer;
         private ImageView imgCustPhoto;
         private TextView txtBN, txtPhone, txtFN, txtLN;
+        private Button btnPayInvoice;
         public ViewHolder(View itemView) {
             super(itemView);
 //   Initiate widgets of invoice-data-modal
@@ -120,6 +119,8 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
             txtPhone = itemView.findViewById(R.id.txt_cust_phone);
             txtFN = itemView.findViewById(R.id.txt_cust_fn);
             txtLN = itemView.findViewById(R.id.txt_cust_ln);
+
+            btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
         }
     }
 }
