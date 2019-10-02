@@ -11,7 +11,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="customer">Customer Fragment</string>
     <string name="inventory">Inventory Fragment</string>
-    <string name="title_activity_new_customer">Register New Customer</string>
+    <string name="title_activity_customer">Customers</string>
 
     <!-- Payment types -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -122,6 +122,7 @@
     <string name="content_description_category_image">Category Image</string>
     <string name="search_product">Search for products</string>
     <string name="search_category">Search for categories</string>
+    <string name="search_customers_and_places">Search customers and places</string>
     <string name="search_customer">Search for customers</string>
     <string name="txt_category">Category</string>
     <string name="txt_item_name">Item Name</string>
@@ -144,6 +145,13 @@
     <string name="txt_lbl_check_code">Check Number</string>
     <string name="err_check_required">Check number required</string>
     <string name="err_trans_code_required">Check number required</string>
+    <string name="txt_label_list_cust_bn">Business Name</string>
+    <string name="txt_lbl_list_cust_id">ID</string>
+    <string name="txt_lbl_list_cust_fn">First Name</string>
+    <string name="txt_lbl_list_cust_ln">Last Name</string>
+    <string name="txt_lbl_list_cust_phone">Phone</string>
+    <string name="txt_lbl_list_cust_accb">Acc. Balance</string>
+    <string name="txt_lbl_list_cust_status">Status</string>
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>

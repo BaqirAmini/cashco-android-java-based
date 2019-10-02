@@ -1,3 +1,4 @@
+/*
 package com.xamuor.cashco.Views;
 
 
@@ -33,9 +34,11 @@ import java.util.List;
 import java.util.Map;
 
 
+*/
 /**
  * A simple {@link Fragment} subclass.
- */
+ *//*
+
 public class CustomerFragment extends Fragment {
     private RecyclerView customerRv;
     private CustomerAdapter adapter;
@@ -107,3 +110,4 @@ public class CustomerFragment extends Fragment {
     }
 
 }
+*/

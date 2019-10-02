@@ -1,32 +1,19 @@
 package com.xamuor.cashco.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
+import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Model.CustomerDataModal;
-import com.xamuor.cashco.Views.CustomerEditFragment;
 import com.xamuor.cashco.cashco.R;
-import com.xamuor.cashco.Utilities.Routes;
-import com.xamuor.cashco.Users;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
     private List<CustomerDataModal> custList;
@@ -39,13 +26,32 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     @Override
     public CustomerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_data_modal, parent, false);
-        return new ViewHolder(view);
+        return new CustomerAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final CustomerAdapter.ViewHolder holder, int position) {
         final CustomerDataModal modal = custList.get(position);
-        holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
+        holder.txtListCustBN.setText(modal.getBusinessName());
+        holder.txtListCustID.setText(modal.getCustId());
+        holder.txtListCustFN.setText(modal.getCustFname());
+        holder.txtListCustLN.setText(modal.getCustLname());
+        holder.txtListCustPhone.setText(modal.getCustPhone());
+        holder.txtListCustAB.setText(modal.getCustBalance() + "");
+        holder.txtListCustStatus.setText(modal.getCustStatus());
+
+//        Set background-color for rows
+        if (position % 2 != 0) {
+            holder.txtListCustBN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustID.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustFN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustLN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustPhone.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustAB.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustStatus.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+        }
+  /*      holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
 //        check customer-status
         int custStatus = modal.getCustStatus();
         if (custStatus == 1) {
@@ -72,7 +78,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
                 }
 
             }
-        });
+        })*/;
     }
 
     @Override
@@ -80,27 +86,45 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         return custList.size();
     }
 
+    public void onUpdateList(List<CustomerDataModal> newList) {
+        custList = new ArrayList<>();
+        custList.addAll(newList);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 //        private ImageView imageCustomer;
-        private CardView cardCustomer;
+        private TextView txtListCustBN, txtListCustID, txtListCustFN, txtListCustLN, txtListCustPhone, txtListCustAB, txtListCustStatus;
+        private TableRow tblRow2;
+      /*  private CardView cardCustomer;
         private TextView txtCustFname;
-        private SwitchCompat switchCustStatus;
+        private SwitchCompat switchCustStatus;*/
         public ViewHolder(View itemView) {
             super(itemView);
+
+            txtListCustBN = itemView.findViewById(R.id.txt_list_cust_bn);
+            txtListCustID = itemView.findViewById(R.id.txt_list_cust_id);
+            txtListCustFN = itemView.findViewById(R.id.txt_list_cust_fn);
+            txtListCustLN = itemView.findViewById(R.id.txt_list_cust_ln);
+            txtListCustPhone = itemView.findViewById(R.id.txt_list_cust_phone);
+            txtListCustAB = itemView.findViewById(R.id.txt_list_cust_accb);
+            txtListCustStatus = itemView.findViewById(R.id.txt_list_cust_status);
+
+            tblRow2 = itemView.findViewById(R.id.trow_label2);
 //            imageCustomer = itemView.findViewById(R.id.image_customer);
-            txtCustFname = itemView.findViewById(R.id.txt_cust_fullname);
+          /*  txtCustFname = itemView.findViewById(R.id.txt_cust_fullname);
             cardCustomer = itemView.findViewById(R.id.card_customer);
             switchCustStatus = itemView.findViewById(R.id.switch_cust_status);
-
-            if (Users.getRole().equalsIgnoreCase("cashier")) {
+*/
+           /* if (Users.getRole().equalsIgnoreCase("cashier")) {
                 switchCustStatus.setEnabled(false);
-            }
+            }*/
 
         }
     }
 
 //    Change customer-status (Active or Inactive)
-  private void onChangeCustomerStatus(final int custId, final int statusValue, final String customer) {
+  /*private void onChangeCustomerStatus(final int custId, final int statusValue, final String customer) {
       StringRequest statusRequest = new StringRequest(Request.Method.POST, Routes.setUrl("customerStatus"), new Response.Listener<String>() {
           @Override
           public void onResponse(String response) {
@@ -129,5 +153,5 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
           }
       };
       Volley.newRequestQueue(context).add(statusRequest);
-  }
+  }*/
 }

@@ -1,28 +1,34 @@
 package com.xamuor.cashco.Model;
 
 public class CustomerDataModal {
-    private int custId, custStatus;
-    private String custFname, custLname, custPhone, custEmail, cust_state, cust_addr;
+    private Double custBalance;
+    private String  custId, custStatus, businessName, custFname, custLname, custPhone, custEmail, cust_state, cust_addr;
 
 
-    public CustomerDataModal(int custId, int custStatus, String custFname, String custLname, String custPhone, String custEmail, String cust_state, String cust_addr) {
+    public CustomerDataModal(String custId, String custStatus, String businessName, String custFname, String custLname, String custPhone, double custBalance) {
         this.custId = custId;
         this.custStatus = custStatus;
+        this.businessName = businessName;
         this.custFname = custFname;
         this.custLname = custLname;
         this.custPhone = custPhone;
+        this.custBalance = custBalance;
         this.custEmail = custEmail;
         this.cust_state = cust_state;
         this.cust_addr = cust_addr;
 
     }
 
-    public int getCustId() {
+    public String getCustId() {
         return custId;
     }
 
-    public int getCustStatus() {
+    public String getCustStatus() {
         return custStatus;
+    }
+
+    public String getBusinessName() {
+        return businessName;
     }
 
     public String getCustFname() {
@@ -37,7 +43,11 @@ public class CustomerDataModal {
         return custPhone;
     }
 
-    public String getCustEmail() {
+    public Double getCustBalance() {
+        return custBalance;
+    }
+
+   /* public String getCustEmail() {
         return custEmail;
     }
 
@@ -47,5 +57,5 @@ public class CustomerDataModal {
 
     public String getCust_addr() {
         return cust_addr;
-    }
+    }*/
 }

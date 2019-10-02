@@ -248,7 +248,10 @@ public class InventoryActivity extends AppCompatActivity
             startActivity(testIntent);
 
         } else */
-        if ( id == R.id.nav_log_out) {
+        if (id == R.id.nav_customers) {
+            testIntent = new Intent(this, CustomerActivity.class);
+            startActivity(testIntent);
+        }else if ( id == R.id.nav_log_out) {
             AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
             logoutDialog.setTitle("Confirm Sign Out");
             logoutDialog.setMessage("Are you sure you want exit from the app?");

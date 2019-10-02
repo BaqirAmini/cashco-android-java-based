@@ -1,3 +1,4 @@
+/*
 package com.xamuor.cashco.Views;
 
 
@@ -32,9 +33,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+*/
 /**
  * A simple {@link Fragment} subclass.
- */
+ *//*
+
 public class CustomerEditFragment extends Fragment {
     private EditText editCustName, editCustLastname, editCustPhone, editCustEmail, editCustState, editCustAddress;
     private Button btnEdit, btnCancel;
@@ -95,6 +98,7 @@ public class CustomerEditFragment extends Fragment {
                         final String custEmail = editCustEmail.getText().toString();
                         final String custState = editCustState.getText().toString();
                         final String custAddress = editCustAddress.getText().toString();
+*/
 /*
 //                        to avoid calling method inside worker thread because it is for background tasks
                         Handler handler = new Handler(Looper.myLooper());
@@ -107,7 +111,8 @@ public class CustomerEditFragment extends Fragment {
                                     onEditCustomer(custId, custFName, custLName, custPhone, custEmail, custState, custAddress);
                                 }
                             }
-                        });*/
+                        });*//*
+
                         onEditCustomer(custId, custFName, custLName, custPhone, custEmail, custState, custAddress);
 //                        Toast.makeText(getContext(), "Working", Toast.LENGTH_SHORT).show();
                     }
@@ -169,8 +174,10 @@ public class CustomerEditFragment extends Fragment {
                 map.put("custEmail", email);
                 map.put("custState", state);
                 map.put("custAddress", address);
-              /*  dialog.setMessage("Sending request, just a moment...");
-                dialog.show();*/
+              */
+/*  dialog.setMessage("Sending request, just a moment...");
+                dialog.show();*//*
+
                 return map;
             }
         };
@@ -207,3 +214,4 @@ public class CustomerEditFragment extends Fragment {
         fragmentTransaction.commit();
     }
 }
+*/

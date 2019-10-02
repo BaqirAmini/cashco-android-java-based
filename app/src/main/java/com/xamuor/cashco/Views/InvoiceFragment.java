@@ -85,7 +85,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
        /* imgNewCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(getContext(), NewCustomerActivity.class);
+                intent = new Intent(getContext(), CustomerActivity.class);
                 startActivity(intent);
             }
         });*/

@@ -42,9 +42,9 @@
                 android:value="com.xamuor.cashco.cashco.com.xamuor.cashco.LoginActivity" />
         </activity>
         <activity
-            android:name="com.xamuor.cashco.NewCustomerActivity"
+            android:name="com.xamuor.cashco.CustomerActivity"
             android:configChanges="orientation"
-            android:label="@string/title_activity_new_customer"
+            android:label="@string/title_activity_customer"
             android:parentActivityName="com.xamuor.cashco.InventoryActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme">

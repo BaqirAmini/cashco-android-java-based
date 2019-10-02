@@ -1,12 +1,11 @@
 package com.xamuor.cashco;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.xamuor.cashco.Views.CategoriesFragment;
-import com.xamuor.cashco.Views.CustomerFragment;
 import com.xamuor.cashco.cashco.R;
+
+//import com.xamuor.cashco.Views.CustomerFragment;
 
 public class DrawerMenuActivity extends AppCompatActivity {
 
@@ -15,7 +14,7 @@ public class DrawerMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_menu);
 
-        if (MenuID.getMenuId() == 1) {
+      /*  if (MenuID.getMenuId() == 1) {
             android.support.v4.app.FragmentManager fragmentManager = (this.getSupportFragmentManager());
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             CustomerFragment myfragment = new CustomerFragment();  //your fragment
@@ -25,12 +24,12 @@ public class DrawerMenuActivity extends AppCompatActivity {
         } else if (MenuID.getMenuId() == 2){
             Intent intent = new Intent(this, InventoryActivity.class);
             startActivity(intent);
-           /* android.support.v4.app.FragmentManager fragmentManager = (this.getSupportFragmentManager());
+           *//* android.support.v4.app.FragmentManager fragmentManager = (this.getSupportFragmentManager());
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             InventoryFragment myfragment = new InventoryFragment();  //your fragment
             // work here to add, remove, etc
             fragmentTransaction.replace(R.id.menu_item_frgs, myfragment);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();*//*
         }
         else if (MenuID.getMenuId() == 3) {
             android.support.v4.app.FragmentManager fragmentManager = (this.getSupportFragmentManager());
@@ -39,7 +38,7 @@ public class DrawerMenuActivity extends AppCompatActivity {
             // work here to add, remove, etc
             fragmentTransaction.replace(R.id.menu_item_frgs, myfragment);
             fragmentTransaction.commit();
-        }
+        }*/
     }
 
 
