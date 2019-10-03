@@ -43,13 +43,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
 //        Set background-color for rows
         if (position % 2 != 0) {
-            holder.txtListCustBN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            /*holder.txtListCustBN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustID.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustFN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustLN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustPhone.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustAB.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
-            holder.txtListCustStatus.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+            holder.txtListCustStatus.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));*/
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
         }
   /*      holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
 //        check customer-status

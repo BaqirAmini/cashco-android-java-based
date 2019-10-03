@@ -4,6 +4,7 @@ package com.xamuor.cashco.Views;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,14 +51,16 @@ public class ProductEditFragment extends Fragment {
 //    Define widgets....
         rvProductEdit = view.findViewById(R.id.rv_list_product_for_edit);
         rvProductEdit.setHasFixedSize(true);
-
+        rvProductEdit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        prdList = new ArrayList<>();
+        loadProducts();
     return view;
     }
 
 
     // Load Inventory data for a specific authenticated System-Admin
     public void loadProducts() {
-
+//        String dateString = formatter.format(new Date(Long.parseLong(YOUR TIMESTAMP VALUE)));
         StringRequest request = new StringRequest(Request.Method.POST, Routes.setUrl("loadProduct"), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -77,8 +83,13 @@ public class ProductEditFragment extends Fragment {
                         String pSellPrice = jsonObject.getString("sell_price");
                         String created = jsonObject.getString("created_at");
                         String updated = jsonObject.getString("updated_at");
-                        int pQty = jsonObject.getInt("quantity");
-                        ProductEditDataModal dataModal = new ProductEditDataModal(pId, pImage, pName, pSellPrice, created, updated);
+
+                        Calendar cal = Calendar.getInstance();
+                        SimpleDateFormat dateOnly = new SimpleDateFormat("MM/dd/yyyy");
+                        String c = dateOnly.format(cal.getTime());
+                        String u = dateOnly.format(cal.getTime());
+                        String pQty = jsonObject.getString("quantity");
+                        ProductEditDataModal dataModal = new ProductEditDataModal(pId, pImage, pName, pQty, pSellPrice, c, u);
                         prdList.add(dataModal);
 //         Set data into inventories of ROOM from server
                         /*inventory.setCompId(Users.getCompanyId());
@@ -107,7 +118,6 @@ public class ProductEditFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
 
             }

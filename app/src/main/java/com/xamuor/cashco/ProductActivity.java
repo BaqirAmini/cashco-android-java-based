@@ -1,18 +1,25 @@
 package com.xamuor.cashco;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xamuor.cashco.Adapters.ProductAdapter;
+import com.xamuor.cashco.Model.ProductEditDataModal;
+import com.xamuor.cashco.Views.ProductEditFragment;
 import com.xamuor.cashco.cashco.R;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ProductActivity extends AppCompatActivity implements View.OnClickListener {
-    
+    private ProductAdapter adapter;
+    private List<ProductEditDataModal> prdList;
     private TextView txtProductsTab, txtCategoriesTab;
 
     @Override
@@ -28,7 +35,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtProductsTab.setOnClickListener(this);
         txtCategoriesTab.setOnClickListener(this);
 
-
+        loadProducts();
 
 
 //   back button in actionbar
@@ -63,6 +70,14 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtCategoriesTab.setBackgroundResource(R.color.bg_tabs);
         txtProductsTab.setTextColor(getResources().getColor(R.color.txt_selected_tab));
         txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
+
+//        Load products fragment
+        FragmentManager fragmentManager =  getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ProductEditFragment myfragment = new ProductEditFragment();  //your fragment
+        fragmentTransaction.replace(R.id.prd_floyout1, myfragment);
+        fragmentTransaction.commit();
+
     }
 
 //    Load Fragment Categories
@@ -85,4 +100,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
+
+
 }

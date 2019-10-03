@@ -12,57 +12,57 @@
         android:weightSum="7">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_product"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_launcher_background"
             android:layout_weight="1"
             android:layout_gravity="center"
             app:civ_border_color="@color/white_color"
             android:contentDescription="@string/content_desription_product_image" />
         <TextView
-            android:id="@+id/txt_supplier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_supplier"
+            android:id="@+id/txt_product_for_edit"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:text="@string/txt_products"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/txt_inventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:text="@string/txt_inventory"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/txt_retail_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:text="@string/txt_retail_price"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/txt_created"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:text="@string/txt_created"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/txt_updated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
             android:text="@string/txt_updated"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"/>
         <ImageView
-            android:id="@+id/txt_edit"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:id="@+id/img_edit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_edit"
             android:layout_weight="1"
             android:gravity="center"

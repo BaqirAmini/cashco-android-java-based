@@ -116,6 +116,7 @@
     <string name="txt_park">Park</string>
     <string name="txt_void">Void</string>
     <string name="txt_products">Items</string>
+    <string name="txt_product">Product</string>
     <string name="txt_categories">Categories</string>
     <string name="txt_keyboard">Keyboard</string>
     <string name="content_desription_product_image">Product Image</string>
@@ -158,6 +159,7 @@
     <string name="txt_created">Created</string>
     <string name="txt_updated">Updated</string>
     <string name="img_edition_icon">Edition Icon</string>
+    <string name="txt_lbl_edit">Edit</string>
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>
