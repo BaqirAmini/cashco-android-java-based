@@ -69,7 +69,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
 //     Searchview
         searchCustomer = view.findViewById(R.id.search_customer);
         searchCustomer.setOnQueryTextListener(this);
-        searchCustomer.setIconified(false);
+        searchCustomer.setIconified(true);
         searchCustomer.setQueryHint(getString(R.string.search_customer));
         /* ------------------------------ /. SearchView for CUSTOMERS ----------------------------------- */
 

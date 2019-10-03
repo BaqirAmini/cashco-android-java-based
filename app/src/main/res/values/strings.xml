@@ -152,6 +152,12 @@
     <string name="txt_lbl_list_cust_phone">Phone</string>
     <string name="txt_lbl_list_cust_accb">Acc. Balance</string>
     <string name="txt_lbl_list_cust_status">Status</string>
+    <string name="txt_supplier">Supplier</string>
+    <string name="txt_inventory">Inventory</string>
+    <string name="txt_retail_price">Retail Price</string>
+    <string name="txt_created">Created</string>
+    <string name="txt_updated">Updated</string>
+    <string name="img_edition_icon">Edition Icon</string>
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>

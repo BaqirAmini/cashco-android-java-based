@@ -40,6 +40,7 @@ public class InventoryActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
 //        Initiate TextViews
         txtParkTab = findViewById(R.id.txt_park);
         txtVoidTab = findViewById(R.id.txt_void);
@@ -131,7 +132,7 @@ public class InventoryActivity extends AppCompatActivity
         txtKeyboardTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtKeyboardTab.setTextColor(Color.parseColor("#6200EE"));
+                txtKeyboardTab.setTextColor(getResources().getColor(R.color.txt_selected_tab));
                 txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
                 txtVoidTab.setTextColor(getResources().getColor(R.color.text_color));
@@ -162,6 +163,7 @@ public class InventoryActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
         navigationView.setItemIconTintList(null);
+
 //        Access menu-options in navigation-drawer
       /*  menuCustomer = menu.findItem(R.id.nav_customer);
         menuInventory = menu.findItem(R.id.nav_inventory);
@@ -248,10 +250,15 @@ public class InventoryActivity extends AppCompatActivity
             startActivity(testIntent);
 
         } else */
+
         if (id == R.id.nav_customers) {
             testIntent = new Intent(this, CustomerActivity.class);
             startActivity(testIntent);
-        }else if ( id == R.id.nav_log_out) {
+        }
+        if (id == R.id.nav_products) {
+            testIntent = new Intent(this, ProductActivity.class);
+            startActivity(testIntent);
+        } else if ( id == R.id.nav_log_out) {
             AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
             logoutDialog.setTitle("Confirm Sign Out");
             logoutDialog.setMessage("Are you sure you want exit from the app?");

@@ -62,11 +62,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         final InventoryDataModal modal = productList.get(position);
         holder.txtProduct.setText(modal.getProductName());
         holder.txtPrice.setText("$" + modal.getProductPrice());
-        holder.txtQty.setText(String.valueOf(modal.getProductQty()));
+//        holder.txtQty.setText(String.valueOf(modal.getProductQty()));
         Glide.with(context).load(Routes.onLoadImage("product_images/".concat(modal.getProductImage()))).into(holder.productImage);
 
 //        See if any product qty is zero of not existing anymore
-        remainingQty = Integer.parseInt(holder.txtQty.getText().toString());
+        remainingQty = /*Integer.parseInt(holder.txtQty.getText().toString())*/ 50;
         if (remainingQty <= 0) {
             Toast.makeText(context, modal.getProductName() + " not existing anymore.", Toast.LENGTH_SHORT).show();
             holder.txtQty.setTextColor(Color.rgb(139, 0, 0));
@@ -79,7 +79,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             @Override
             public void onClick(View view) {
 //     Get the initial value of qty shown in the card
-                initialQty = Integer.parseInt(holder.txtQty.getText().toString());
+//                initialQty = Integer.parseInt(holder.txtQty.getText().toString());
                 Product product = new Product();
                 TextView txtProduct = (TextView) view.findViewById(R.id.txt_product);
                 String myProduct = txtProduct.getText().toString();
@@ -103,11 +103,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
                         holder.itemView.setEnabled(false);
                     }
 //                   Set the new qty in textview in the cards
-                    holder.txtQty.setText(remainingQty+"");
+//                    holder.txtQty.setText(remainingQty+"");
 
                     q = ++qty;
                     InvoiceFragment.posDatabase.myDao().updateItem(q, Users.getCompanyId(), myProduct);
-//                    holder.txtQty.setText(remainingQty+"");
+//                    holder..setText(remainingQty+"");
 
                     onRefreshInvoiceFragment();
                 } else {
@@ -118,7 +118,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 //                  Fetch back the update qty from inventories in ROOM db
                     remainingQty = InvoiceFragment.posDatabase.myDao().getQty(Users.getCompanyId(), modal.getProductId());
 //                   Set the new qty in textview in the cards
-                    holder.txtQty.setText(remainingQty+"");
+//                    holder.txtQty.setText(remainingQty+"");
 
 /* Print values in the invoice when an item is clicked */
                     qty = 1;

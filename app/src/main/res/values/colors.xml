@@ -10,4 +10,5 @@
     <color name="colorBackground">#f1f1f1</color>
     <color name="text_color">#7A7777</color>
     <color name="bg_product">#444343</color>
+    <color name="txt_selected_tab">#6200EE</color>
 </resources>

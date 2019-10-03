@@ -2,16 +2,14 @@ package com.xamuor.cashco.Views;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.SearchView;
-
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,12 +18,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.InventoryAdapter;
-import com.xamuor.cashco.Model.InventoryDataModal;
 import com.xamuor.cashco.Inventories;
-import com.xamuor.cashco.Utilities.PosDatabase;
-import com.xamuor.cashco.cashco.R;
-import com.xamuor.cashco.Utilities.Routes;
+import com.xamuor.cashco.Model.InventoryDataModal;
 import com.xamuor.cashco.Users;
+import com.xamuor.cashco.Utilities.PosDatabase;
+import com.xamuor.cashco.Utilities.Routes;
+import com.xamuor.cashco.cashco.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,11 +43,6 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     private RecyclerView inventoryRv;
     private InventoryAdapter adapter;
     private List<InventoryDataModal> productList;
-
-
-    public ProductFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
