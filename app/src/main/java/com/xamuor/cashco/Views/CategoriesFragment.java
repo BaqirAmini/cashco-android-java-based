@@ -2,15 +2,16 @@ package com.xamuor.cashco.Views;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.SearchView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,10 +21,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.CategoryAdapter;
 import com.xamuor.cashco.Model.CategoryDataModal;
-import com.xamuor.cashco.Model.InventoryDataModal;
-import com.xamuor.cashco.cashco.R;
 import com.xamuor.cashco.Utilities.Routes;
-import com.xamuor.cashco.Users;
+import com.xamuor.cashco.cashco.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +40,7 @@ public class CategoriesFragment extends Fragment implements SearchView.OnQueryTe
     private RecyclerView categoryRV;
     private List<CategoryDataModal> ctgList;
     private CategoryAdapter adapter;
+    private SharedPreferences ctgSp;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,10 +55,13 @@ public class CategoriesFragment extends Fragment implements SearchView.OnQueryTe
         //        Searchview
         android.support.v7.widget.SearchView searchCategory = view.findViewById(R.id.search_category);
         searchCategory.setOnQueryTextListener(this);
-        searchCategory.setIconified(false);
+        searchCategory.setIconified(true);
         searchCategory.setQueryHint(getString(R.string.search_category));
 
         loadCategories();
+
+//        Define sharePreferences
+        ctgSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         return view;
     }
 // Load categories from server
@@ -94,7 +97,7 @@ public class CategoriesFragment extends Fragment implements SearchView.OnQueryTe
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("compId", String.valueOf(Users.getCompanyId()));
+                map.put("compId", String.valueOf(ctgSp.getInt("spCompId", 0)));
                 return  map;
             }
         };

@@ -3,6 +3,8 @@ package com.xamuor.cashco.Views;
 
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,6 +53,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     private ListView lvInvoice;
     private android.support.v7.widget.SearchView searchCustomer;
     private Button btnPayInvoice;
+    private SharedPreferences searchCustomerSp;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +81,9 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
 /* -------------------------------------------/. ROOM Database ----------------------------------------*/
 // Call listCustomers()
         listCustomers();
+
+//        Define sharePreferences
+        searchCustomerSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         return view;
     }
 
@@ -175,7 +181,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("compId", Users.getCompanyId() + "");
+                map.put("compId", String.valueOf(searchCustomerSp.getInt("spCompId", 0)));
                 return map;
             }
         };

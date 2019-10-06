@@ -3,6 +3,8 @@ package com.xamuor.cashco.Views;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     private TextView txtAmountRcv, txtChangeDue, txtBalanceDue, txtTransactionCode;
     private EditText editTotalAmountDue, editAmountRcv, editChangeDue, editBalanceDue, editTransCode;
     private Spinner spnPayment;
+    private SharedPreferences paymentSp;
 //    these members may be needed later
     private double totalAmountDue;
     private double recievedAmount;
@@ -150,6 +153,9 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
             }
         });
 /* ------------------------/. Choose PAYMENT-METHODS --------------------------*/
+
+//        Define sharePreferences
+        paymentSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 
         return view;
     }
@@ -279,7 +285,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                         jsonObject = new JSONObject();
                         try {
                             jsonObject.put("id", dataList.get(i).getProductId());
-                            jsonObject.put("compId", Users.getCompanyId());
+                            jsonObject.put("compId", String.valueOf(paymentSp.getInt("spCompId", 0)));
                             jsonObject.put("userId", Users.getUserId());
                             jsonObject.put("custId", Users.getCustId());
                             int qty = dataList.get(i).getProductQty();

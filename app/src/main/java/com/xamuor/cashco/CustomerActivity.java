@@ -1,6 +1,8 @@
 package com.xamuor.cashco;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
     private CustomerAdapter adapter;
     private List<CustomerDataModal> custList;
     private SwitchCompat switchCustStatus;
+    private SharedPreferences customerSp;
 //    Only this is globally defined
     private double custBalance = 0;
 
@@ -81,8 +84,11 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
 
         android.support.v7.widget.SearchView searchCategory = findViewById(R.id.search_customer_and_places);
         searchCategory.setOnQueryTextListener(this);
-        searchCategory.setIconified(false);
+        searchCategory.setIconified(true);
         searchCategory.setQueryHint(getString(R.string.search_customers_and_places));
+
+//        Define sharePreferences
+        customerSp = getSharedPreferences("login", Context.MODE_PRIVATE);
 
     }
 
@@ -130,7 +136,7 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("compId", Users.getCompanyId()+"");
+                map.put("compId", String.valueOf(customerSp.getInt("spCompId", 0)));
                 return map;
             }
         };
