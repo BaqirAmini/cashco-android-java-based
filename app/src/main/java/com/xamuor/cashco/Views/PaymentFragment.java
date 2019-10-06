@@ -4,6 +4,7 @@ package com.xamuor.cashco.Views;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.InventoryAdapter;
+import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Invoice;
 import com.xamuor.cashco.Product;
 import com.xamuor.cashco.Users;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
  * A simple {@link Fragment} subclass.
  */
 public class PaymentFragment extends Fragment implements View.OnClickListener {
-    private Button btnCash, btnCreditCard, btnDebitCard, btnCheck, btnDone;
+    private Button btnCash, btnCreditCard, btnDebitCard, btnCheck, btnDone, btnCancel;
     private TextView txtAmountRcv, txtChangeDue, txtBalanceDue, txtTransactionCode;
     private EditText editTotalAmountDue, editAmountRcv, editChangeDue, editBalanceDue, editTransCode;
     private Spinner spnPayment;
@@ -77,6 +79,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         btnDebitCard = view.findViewById(R.id.btn_debit_card);
         btnCheck = view.findViewById(R.id.btn_check);
         btnDone = view.findViewById(R.id.btn_done);
+        btnCancel = view.findViewById(R.id.btn_cancel_payment);
 
         txtAmountRcv = view.findViewById(R.id.txt_lbl_amount_recieved);
         txtChangeDue = view.findViewById(R.id.txt_lbl_change_due);
@@ -97,7 +100,13 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         btnDebitCard.setOnClickListener(this);
         btnCheck.setOnClickListener(this);
         btnDone.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
     /* ----------------------------------/. Initialize Widgets -----------------------------*/
+
+    /* ------------------------------------------- background for DEFAULT selected payment method -----------------------------*/
+        btnCash.setBackground(getActivity().getResources().getDrawable(R.drawable.selected_payment_method));
+    /* ------------------------------------------- /. background for DEFAULT selected payment method -----------------------------*/
+
 /* ------------------------ Choose PAYMENT-METHODS --------------------------*/
 
     /* -------------------------------- Select Payment i.e. Partial or Full -----------------------------*/
@@ -168,11 +177,13 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                 paymentMethod = "Credit Card";
                 btnDone.setVisibility(View.VISIBLE);
                 onPayWithCard(null);
+                onSelectedPaymentMethod(paymentMethod);
                 break;
             case R.id.btn_debit_card:
                 btnDone.setVisibility(View.VISIBLE);
                 onPayWithCard(null);
                 paymentMethod = "Debit Card";
+                onSelectedPaymentMethod(paymentMethod);
                 break;
             case R.id.btn_done:
                 /*if (!editTransCode.getText().toString().isEmpty()) {
@@ -180,6 +191,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                 }*/
 
                 if (paymentMethod.equals("Cash")) {
+                    onSelectedPaymentMethod(paymentMethod);
                     onCreateSale();
                 } else if (paymentMethod.equals("Credit Card") || paymentMethod.equals("Debit Card") || paymentMethod.equals("Check")){
                     if (!editTransCode.getText().toString().isEmpty()) {
@@ -197,12 +209,18 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                 btnDone.setVisibility(View.VISIBLE);
                 onPayWithCard("check");
                 paymentMethod = "Check";
+                onSelectedPaymentMethod(paymentMethod);
                 break;
-            default:
+            case R.id.btn_cash:
                 btnDone.setVisibility(View.VISIBLE);
                 paymentMethod = "Cash";
                 transactionNumber = String.valueOf(0);
                 onCash();
+                onSelectedPaymentMethod(paymentMethod);
+                break;
+            case R.id.btn_cancel_payment:
+                Intent intent = new Intent(getActivity(), InventoryActivity.class);
+                startActivity(intent);
         }
     }
 
@@ -441,4 +459,31 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         fragmentTransaction.commit();
     }
 
+    private void onSelectedPaymentMethod(String method) {
+        switch (method) {
+            case "Credit Card":
+                btnCash.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnDebitCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCheck.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCreditCard.setBackground(getActivity().getResources().getDrawable(R.drawable.selected_payment_method));
+                break;
+            case "Debit Card":
+                btnCash.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCreditCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCheck.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnDebitCard.setBackground(getActivity().getResources().getDrawable(R.drawable.selected_payment_method));
+                break;
+            case "Check":
+                btnCash.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnDebitCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCreditCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCheck.setBackground(getActivity().getResources().getDrawable(R.drawable.selected_payment_method));
+                break;
+            default:
+                btnCheck.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnDebitCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCreditCard.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                btnCash.setBackground(getActivity().getResources().getDrawable(R.drawable.selected_payment_method));
+        }
+    }
 }

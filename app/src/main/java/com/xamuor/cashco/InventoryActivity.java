@@ -220,8 +220,8 @@ public class InventoryActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+            onLogOut();
         }
 
         return super.onOptionsItemSelected(item);
@@ -261,7 +261,7 @@ public class InventoryActivity extends AppCompatActivity
         if (id == R.id.nav_products) {
             testIntent = new Intent(this, ProductActivity.class);
             startActivity(testIntent);
-        } else if ( id == R.id.nav_log_out) {
+        } /*else if ( id == R.id.nav_log_out) {
             AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
             logoutDialog.setTitle("Confirm Sign Out");
             logoutDialog.setMessage("Are you sure you want exit from the app?");
@@ -276,7 +276,7 @@ public class InventoryActivity extends AppCompatActivity
             });
             logoutDialog.setNegativeButton("Cancel", null);
             logoutDialog.show();
-        } else if (id == R.id.nav_sale) {
+        }*/ else if (id == R.id.nav_sale) {
             loadFrgInventory();
         }
 
@@ -298,5 +298,23 @@ public class InventoryActivity extends AppCompatActivity
         ProductFragment myfragment = new ProductFragment();  //your fragment
         fragmentTransaction.replace(R.id.frg_product, myfragment);
         fragmentTransaction.commit();
+    }
+
+//    LOG OUT of app
+    private void onLogOut() {
+        AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context);
+        logoutDialog.setTitle("Confirm Sign Out");
+        logoutDialog.setMessage("Are you sure you want exit from the app?");
+        logoutDialog.setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sharedPreferences.edit().putBoolean("logged", false).apply();
+                Intent logoutInent = new Intent(context, LoginActivity.class);
+                startActivity(logoutInent);
+                finish();
+            }
+        });
+        logoutDialog.setNegativeButton("Cancel", null);
+        logoutDialog.show();
     }
 }

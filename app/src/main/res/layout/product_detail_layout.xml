@@ -10,8 +10,7 @@
     android:id="@+id/cv_product"
     android:layout_width="140dp"
     app:cardElevation="3dp"
-    android:layout_height="140dp"
-    app:cardCornerRadius="3dp">
+    android:layout_height="140dp">
     <LinearLayout
         android:id="@+id/inside_card_layout"
         android:layout_width="match_parent"

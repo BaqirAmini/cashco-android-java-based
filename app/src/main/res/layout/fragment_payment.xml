@@ -168,15 +168,33 @@
         android:inputType="none"
         android:maxLines="1"/>
 
-<!--    btn Done -->
-    <Button
-        android:id="@+id/btn_done"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:id="@+id/llayout_in_payment_fragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:text="@string/btn_done"
-        android:visibility="invisible"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white_color"/>
+        android:gravity="center">
+
+        <!--    btn Cancel -->
+        <Button
+            android:id="@+id/btn_cancel_payment"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancel_payment"
+            android:visibility="visible"
+            android:background="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:textColor="@color/white_color"/>
+        <!--    btn Done -->
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_done"
+            android:visibility="invisible"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white_color"/>
+    </LinearLayout>
 </RelativeLayout>

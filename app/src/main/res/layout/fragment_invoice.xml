@@ -29,7 +29,7 @@
         android:layout_width="560dp"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:background="@color/bg_invoice"
+        android:background="@color/white_color"
         android:layout_height="wrap_content" />
     <!-- Total Price-->
         <!--<TextView
