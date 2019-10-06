@@ -3,6 +3,7 @@ package com.xamuor.cashco;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -33,6 +34,7 @@ public class InventoryActivity extends AppCompatActivity
     private ImageView imgNav;
     private TextView txtNavName, txtNavRole, txtParkTab, txtVoidTab, txtProductsTab, txtCategoriesTab, txtKeyboardTab;
     private MenuItem menuCustomer, menuInventory, menuCategory, menuReport, menuSettings;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class InventoryActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
 //        Initiate TextViews
         txtParkTab = findViewById(R.id.txt_park);
@@ -171,7 +174,7 @@ public class InventoryActivity extends AppCompatActivity
         menuReport = menu.findItem(R.id.nav_report);
         menuSettings = menu.findItem(R.id.nav_setting);*/
 //        Set permission for three roles
-        if (Users.getRole().equalsIgnoreCase("stock manager")) {
+       /* if (Users.getRole().equalsIgnoreCase("stock manager")) {
             menuCustomer.setVisible(false);
             menuReport.setVisible(false);
             menuSettings.setVisible(false);
@@ -179,7 +182,7 @@ public class InventoryActivity extends AppCompatActivity
             menuSettings.setVisible(false);
             menuInventory.setVisible(false);
             menuCategory.setVisible(false);
-        }
+        }*/
         navigationView.setNavigationItemSelectedListener(this);
 
 //        Initiate widgets
@@ -265,6 +268,7 @@ public class InventoryActivity extends AppCompatActivity
             logoutDialog.setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    sharedPreferences.edit().putBoolean("logged", false).apply();
                     Intent logoutInent = new Intent(context, LoginActivity.class);
                     startActivity(logoutInent);
                     finish();

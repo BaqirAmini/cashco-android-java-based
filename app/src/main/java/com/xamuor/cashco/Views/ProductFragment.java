@@ -2,6 +2,7 @@ package com.xamuor.cashco.Views;
 import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,7 +21,6 @@ import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.InventoryAdapter;
 import com.xamuor.cashco.Inventories;
 import com.xamuor.cashco.Model.InventoryDataModal;
-import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.PosDatabase;
 import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.cashco.R;
@@ -34,6 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,6 +45,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     private RecyclerView inventoryRv;
     private InventoryAdapter adapter;
     private List<InventoryDataModal> productList;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -59,10 +62,11 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 //        Searchview
         android.support.v7.widget.SearchView searchProduct = view.findViewById(R.id.search_item);
         searchProduct.setOnQueryTextListener(this);
-        searchProduct.setIconified(false);
+        searchProduct.setIconified(true);
         searchProduct.setQueryHint(getString(R.string.search_product));
         // call the method to load data
         loadInventoryData();
+        sharedPreferences = getActivity().getSharedPreferences("login", MODE_PRIVATE);
         return view;
 
 
@@ -83,7 +87,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 //                        for ROOM DB
                         Inventories inventory = new Inventories();
 //                        Fetch all inventories from ROOM
-                        List<Inventories> inventories = InvoiceFragment.posDatabase.myDao().getInventories(Users.getCompanyId());
+                        List<Inventories> inventories = InvoiceFragment.posDatabase.myDao().getInventories(sharedPreferences.getInt("spCompId", 0));
 
 //                        fetch data of inventories from server
                         JSONArray jsonArray = new JSONArray(response);
@@ -96,7 +100,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
                             int pQty = jsonObject.getInt("quantity");
 
 //                            Set data into inventories of ROOM from server
-                                inventory.setCompId(Users.getCompanyId());
+                                inventory.setCompId(sharedPreferences.getInt("spCompId", 0));
                                 inventory.setProductId(pId);
                                 inventory.setProductImage(pImage);
                                 inventory.setProductName(pName);
@@ -137,7 +141,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("compId", Users.getCompanyId()+"");
+                map.put("compId", String.valueOf(sharedPreferences.getInt("spCompId", 0)));
                 return map;
             }
         };

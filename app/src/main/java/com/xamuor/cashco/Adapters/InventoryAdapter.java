@@ -158,11 +158,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             txtQty = itemView.findViewById(R.id.txt_qty);
             cardItem = itemView.findViewById(R.id.cv_product);
 
-//            Set permission for cashier
+/*//            Set permission for cashier
             if (Users.getRole().equalsIgnoreCase("cashier")) {
                 itemView.setEnabled(false);
 
-            }
+            }*/
 
         }
     }

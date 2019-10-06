@@ -2,15 +2,14 @@ package com.xamuor.cashco;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editUserName, editPassword;
     Context context = LoginActivity.this;
     ImageView imgLogo;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +52,21 @@ public class LoginActivity extends AppCompatActivity {
         editPassword = findViewById(R.id.edit_password);
         btnLogin = findViewById(R.id.btn_login);
         imgLogo = findViewById(R.id.img_logo);
+        
+        
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLogin();
             }
         });
+//  Define SHAREDPREFERENCES
+        sp = getSharedPreferences("login", MODE_PRIVATE);
+
     }
 // To let System-admin log into the system
     private void onLogin() {
+
         /*
         Aman: Juy 06 2019
         Should check for user name and password before submitting date to data base at the client side
@@ -77,19 +83,20 @@ public class LoginActivity extends AppCompatActivity {
                    if (password.isEmpty()) {
                        editPassword.setError("Password required!");
                    } else  {
+                       goToValidation();
+
                       /* editUserName.getText().clear();
                        editPassword.getText().clear();
                        editUserName.setError("Username or password wrong!");*/
 
 //                      Go to next activity for validation
-                     loginIntent = new Intent(context, ValidationActivity.class);
-                     startActivity(loginIntent);
+                    /* loginIntent = new Intent(context, ValidationActivity.class);
+                     startActivity(loginIntent);*/
                    }
                }
                else {
                    try {
-//                       Fetch users' details from server while login
-
+// Fetch users' details from server while login
                        /*
                        Aman: July 06
                        From where Users object is accessed
@@ -103,16 +110,22 @@ public class LoginActivity extends AppCompatActivity {
                        Users.setRole(jsonObject.getString("role"));
                        Users.setStatus(jsonObject.getInt("status"));
                        Users.setPhoto(jsonObject.getString("photo"));
+
+//     Keep LOGGED IN if login is successful
+                       sp.edit().putBoolean("logged", true).apply();
+                       sp.edit().putInt("spCompId", Users.getCompanyId()).apply();
                    } catch (JSONException e) {
                        e.printStackTrace();
                    }
+
+                   goToInventory();
                    /*
                    Aman: July 06
                    Why InventoryActivity
                     */
-                   loginIntent = new Intent(getApplicationContext(), InventoryActivity.class);
+                  /* loginIntent = new Intent(getApplicationContext(), InventoryActivity.class);
                    startActivity(loginIntent);
-                   finish();
+                   finish();*/
                }
            }
        }, new Response.ErrorListener() {
@@ -127,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
 
            @Override
            protected Map<String, String> getParams() throws AuthFailureError {
-               Map<String, String> map = new HashMap<String, String>();
+               Map<String, String> map = new HashMap<>();
                map.put("username", username);
                map.put("password", password);
                return map;
@@ -138,4 +151,22 @@ public class LoginActivity extends AppCompatActivity {
 loginRequest.setRetryPolicy(new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
        Volley.newRequestQueue(getApplicationContext()).add(loginRequest);
     }
+
+    private void goToLogin() {
+        loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(loginIntent);
+    }
+
+    private void goToInventory() {
+        loginIntent = new Intent(getApplicationContext(), InventoryActivity.class);
+        startActivity(loginIntent);
+        finish();
+    }
+
+    private void goToValidation() {
+        loginIntent = new Intent(context, ValidationActivity.class);
+        startActivity(loginIntent);
+    }
+
+
 }
