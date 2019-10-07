@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -186,7 +187,8 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
                             @Override
                             public void afterTextChanged(Editable editable) {
-                                editChangeDue.setText(String.valueOf(changeDue));
+                                DecimalFormat precision = new DecimalFormat("0.00");
+                                editChangeDue.setText(precision.format(changeDue));
                             }
                         });
                     }
@@ -234,7 +236,8 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
                            @Override
                            public void afterTextChanged(Editable editable) {
-                                editBalanceDue.setText(String.valueOf(balanceAmount));
+                               DecimalFormat precision = new DecimalFormat("0.00");
+                                editBalanceDue.setText(precision.format(balanceAmount));
                                 balanceAmount = Double.parseDouble(editBalanceDue.getText().toString());
                            }
                        });
@@ -390,17 +393,17 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                     public void onResponse(String response) {
 
                         if (response.trim().contains("success!")) {
-                            Toast.makeText(getContext(), "Sale was successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Sale was successful!", Toast.LENGTH_SHORT).show();
                             //                    The contents of invoice should be deleted
-//                            InvoiceFragment.posDatabase.myDao().delete();
+                            InvoiceFragment.posDatabase.myDao().delete();
 //                            btnDone.setBackgroundColor(getContext().getResources().getColor(R.color.bg_tabs));
 //                            btnDone.setEnabled(false);
 //                      print the invoice
-//                        onPrint();
-                            //To refresh the fragment
-//                            onRefresh();
+                        onPrint();
+    //To refresh the fragment
+                        onRefresh();
                         } else if (response.trim().contains("fail")) {
-                            Toast.makeText(getContext(), "Sorry, sale not done, please try again!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Sorry, sale not done, please try again!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -467,13 +470,13 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                             if (response.trim().contains("success!")) {
                                 Toast.makeText(getContext(), "Sale was successful!", Toast.LENGTH_LONG).show();
 //                       The contents of invoice should be deleted
-//                                InvoiceFragment.posDatabase.myDao().delete();
+                                InvoiceFragment.posDatabase.myDao().delete();
 //                                btnDone.setBackgroundColor(getContext().getResources().getColor(R.color.bg_tabs));
 //                                btnDone.setEnabled(false);
 //                                print the invoice
-//                             onPrint();
+                             onPrint();
                                 //To refresh the fragment
-//                                onRefresh();
+                                onRefresh();
                             } else if (response.trim().contains("fail")) {
                                 Toast.makeText(getContext(), "Sorry, sale not done, please try again!", Toast.LENGTH_SHORT).show();
                             }
@@ -599,16 +602,10 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
     //    Print invoice which is here the listview
     private void onPrint() {
-        if (onCreateSale()) {
             PrintManager printManager = (PrintManager) getContext().getSystemService(PRINT_SERVICE);
             WebView webView = new WebView(getContext());
             PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter();
             assert printManager != null;
             printManager.print(String.valueOf(R.id.list_invoice_content), adapter, null);
-        } else {
-
         }
-
-
-    }
 }
