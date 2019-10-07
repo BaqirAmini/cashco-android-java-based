@@ -193,7 +193,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_done"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:background="@color/colorPrimary"
             android:textColor="@color/white_color"/>
     </LinearLayout>

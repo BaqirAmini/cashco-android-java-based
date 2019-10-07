@@ -495,8 +495,8 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         return false;
     }
 
-//    Print invoice which is here the listview
-    /*private void onPrint() {
+/*//    Print invoice which is here the listview
+    private void onPrint() {
         PrintManager printManager = (PrintManager) getContext().getSystemService(getContext().PRINT_SERVICE);
         WebView webView = new WebView(getContext());
         PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter();

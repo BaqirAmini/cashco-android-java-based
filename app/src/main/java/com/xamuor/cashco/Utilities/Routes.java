@@ -2,8 +2,8 @@ package com.xamuor.cashco.Utilities;
 
 public class Routes {
 //    Remote-server...
-
 //    private static String IMG_PATH = "http://cashco.xamuor.com/uploads/";
+
 //    Virtual-device IP
     private static String IMG_PATH = "http://192.168.56.1:8000/uploads/";
 //    private static String IMG_PATH = "http://192.168.133.2:8000/uploads/";

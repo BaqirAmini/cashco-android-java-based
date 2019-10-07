@@ -95,10 +95,12 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         txtCategories.setVisibility(View.GONE);
         txtKeyboard.setVisibility(View.GONE);
 
+
         FragmentManager fragmentManager =  ((InventoryActivity) context).getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PaymentFragment myfragment = new PaymentFragment();  //your fragment
         fragmentTransaction.replace(R.id.frg_product, myfragment);
         fragmentTransaction.commit();
     }
+
 }
