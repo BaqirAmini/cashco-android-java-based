@@ -11,6 +11,9 @@ public class Category {
     private String categoryName;
     private String CategoryDesc;
 
+//    Set it and get it where required
+    private static int sCtgId;
+
 
     @PrimaryKey(autoGenerate = true)
     public int ctgId;
@@ -48,4 +51,24 @@ public class Category {
     public void setCategoryDesc(String categoryDesc) {
         CategoryDesc = categoryDesc;
     }
+
+    public int getCtgId() {
+        return ctgId;
+    }
+
+    public void setCtgId(int ctgId) {
+        this.ctgId = ctgId;
+    }
+
+
+ /* -------------------------- USE STATICALLY WHERE NEEDED --------------------------------*/
+
+    public static int getsCtgId() {
+        return sCtgId;
+    }
+
+    public static void setsCtgId(int sCtgId) {
+        Category.sCtgId = sCtgId;
+    }
+    /* --------------------------/. USE STATICALLY WHERE NEEDED --------------------------------*/
 }

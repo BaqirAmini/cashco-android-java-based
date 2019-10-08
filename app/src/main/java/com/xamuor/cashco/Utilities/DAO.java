@@ -89,5 +89,10 @@ public interface DAO {
     @Query("DELETE FROM categories")
     public void deleteCategories();
 
+    //    Fetch category-id of a specific category
+//   * is set to return all columns only to avoid giving error otherwise only we need category-id here
+    @Query("SELECT * FROM categories WHERE categoryName = :ctgName")
+    public int getCategoryId(String ctgName);
+// It may return the first column which is id
 /* ---------------------------- /.CATEGORIES ------------------------------*/
 }

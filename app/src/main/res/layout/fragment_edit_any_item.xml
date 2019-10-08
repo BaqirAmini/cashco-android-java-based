@@ -1,5 +1,6 @@
 <LinearLayout
-    android:layout_width="400dp"
+    android:id="@+id/layout_for_edit_products"
+    android:layout_width="450dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/padding"
@@ -34,7 +35,7 @@
         android:hint="@string/edit_product_qty"
         android:gravity="center"
         android:layout_marginTop="@dimen/margin"
-        android:inputType="textAutoComplete"
+        android:inputType="number"
         android:importantForAutofill="no" />
     <EditText
         android:id="@+id/edit_product_barcode"
@@ -43,7 +44,7 @@
         android:hint="@string/edit_product_barcode"
         android:gravity="center"
         android:layout_marginTop="@dimen/margin"
-        android:inputType="textAutoComplete"
+        android:inputType="number"
         android:importantForAutofill="no" />
     <EditText
         android:id="@+id/edit_product_cost"
@@ -52,7 +53,7 @@
         android:hint="@string/edit_product_cost"
         android:layout_marginTop="@dimen/margin"
         android:gravity="center"
-        android:inputType="textAutoComplete"
+        android:inputType="numberDecimal"
         android:importantForAutofill="no" />
     <EditText
         android:id="@+id/edit_product_retail_price"
@@ -61,7 +62,7 @@
         android:hint="@string/txt_retail_price"
         android:gravity="center"
         android:layout_marginTop="@dimen/margin"
-        android:inputType="textAutoComplete"
+        android:inputType="numberDecimal"
         android:importantForAutofill="no" />
     <Spinner
         android:id="@+id/spn_product_taxable"

@@ -167,6 +167,16 @@
     <string name="btn_cancel_payment">Cancel</string>
     <string name="edit_product_cost">Cost</string>
     <string name="btn_save">Save</string>
+
+    <!-- PRODUCTS -->
+    <string name="prd_name_required">Product name required</string>
+    <string name="prd_qty_required">Product quantity required</string>
+    <string name="prd_barcode_required">Product barcode number required</string>
+    <string name="prd_cost_required">Product cost required</string>
+    <string name="prd_retail_price_required">Product retail price required</string>
+    <!-- /.PRODUCTS -->
+
+
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>
