@@ -5,6 +5,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import com.xamuor.cashco.Category;
 import com.xamuor.cashco.Customer;
 import com.xamuor.cashco.Inventories;
 import com.xamuor.cashco.Product;
@@ -75,4 +76,18 @@ public interface DAO {
 //   * is set to return all columns only to avoid giving error otherwise only we need customer-id here
     @Query("SELECT * FROM customers WHERE customerName = :custName")
     public int getCustId(String custName);
+
+
+/* ---------------------------- CATEGORIES ------------------------------*/
+//    Insert categories from server into ROOM
+@Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertCategory(Category category);
+//    Fetch categories based on company-id
+    @Query("SELECT * FROM categories WHERE companyId = :cid")
+    public List<Category> getCategories(int cid);
+//    Delete categories
+    @Query("DELETE FROM categories")
+    public void deleteCategories();
+
+/* ---------------------------- /.CATEGORIES ------------------------------*/
 }

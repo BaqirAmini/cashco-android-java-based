@@ -2,6 +2,8 @@ package com.xamuor.cashco.Views;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +21,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Adapters.ProductAdapter;
 import com.xamuor.cashco.Model.ProductEditDataModal;
-import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.cashco.R;
 
@@ -41,6 +42,7 @@ public class ProductEditFragment extends Fragment {
     private RecyclerView rvProductEdit;
     private ProductAdapter adapter;
     private List<ProductEditDataModal> prdList;
+    private SharedPreferences prdEditSp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,9 @@ public class ProductEditFragment extends Fragment {
         rvProductEdit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         prdList = new ArrayList<>();
         loadProducts();
+
+//   Define Shared preferences
+        prdEditSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
     return view;
     }
 
@@ -80,6 +85,9 @@ public class ProductEditFragment extends Fragment {
                         int pId = jsonObject.getInt("item_id");
                         String pImage = jsonObject.getString("item_image");
                         String pName = jsonObject.getString("item_name");
+                        String pDesc = jsonObject.getString("item_desc");
+                        String barcode = jsonObject.getString("barcode_number");
+                        String pPurchasePrice = jsonObject.getString("purchase_price");
                         String pSellPrice = jsonObject.getString("sell_price");
                         String created = jsonObject.getString("created_at");
                         String updated = jsonObject.getString("updated_at");
@@ -89,7 +97,7 @@ public class ProductEditFragment extends Fragment {
                         String c = dateOnly.format(cal.getTime());
                         String u = dateOnly.format(cal.getTime());
                         String pQty = jsonObject.getString("quantity");
-                        ProductEditDataModal dataModal = new ProductEditDataModal(pId, pImage, pName, pQty, pSellPrice, c, u);
+                        ProductEditDataModal dataModal = new ProductEditDataModal(pId, pImage, pName, pDesc, pQty, barcode, pPurchasePrice, pSellPrice, c, u);
                         prdList.add(dataModal);
 //         Set data into inventories of ROOM from server
                         /*inventory.setCompId(Users.getCompanyId());
@@ -132,7 +140,7 @@ public class ProductEditFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("compId", Users.getCompanyId()+"");
+                map.put("compId", String.valueOf(prdEditSp.getInt("spCompId", 0)));
                 return map;
             }
         };

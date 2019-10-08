@@ -27,6 +27,7 @@
     <string name="txt_customer">Customer</string>
     <string name="txt_recieved">Recieved</string>
     <string name="spn_choose_customer">Choose / Add add a customer</string>
+    <string name="spn_categories">Choose a category</string>
     <string name="txt_recievable">Recievable</string>
     <string name="txt_balance_date">Date</string>
     <string name="title_activity_text_drawer">TextDrawerActivity</string>
@@ -164,6 +165,8 @@
     <string name="img_edition_icon">Edition Icon</string>
     <string name="txt_lbl_edit">Edit</string>
     <string name="btn_cancel_payment">Cancel</string>
+    <string name="edit_product_cost">Cost</string>
+    <string name="btn_save">Save</string>
     <string-array name="method_amount_due">
         <item>Pay Full</item>
         <item>Pay Partial</item>
@@ -172,4 +175,10 @@
         <item>Stock Manager</item>
         <item>Cashier</item>
     </string-array>
+<!--  Product taxable -->
+    <string-array name="product_taxable">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+<!--/.  Product taxable -->
 </resources>

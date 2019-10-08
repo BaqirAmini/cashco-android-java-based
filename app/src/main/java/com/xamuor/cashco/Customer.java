@@ -17,9 +17,9 @@ public class Customer {
     private String customerPhoto;
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
+
     public int pCustId;
-    @NonNull
+
     public int getpCustId() {
         return pCustId;
     }

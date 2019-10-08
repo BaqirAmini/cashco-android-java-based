@@ -15,13 +15,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
-<ImageView
-    android:id="@+id/img_logo"
-    android:layout_width="160dp"
-    android:layout_height="140dp"
-    android:src="@drawable/cashco_logo"
-    android:layout_margin="20dp"
-    android:contentDescription="@string/logo" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="160dp"
+        android:layout_height="104dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/cashco_logo" />
 
     <EditText
         android:id="@+id/edit_username"

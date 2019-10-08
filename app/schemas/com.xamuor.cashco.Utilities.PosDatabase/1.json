@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0d2e0da96419dafa769da2a3871109bf",
+    "identityHash": "baff1e28905f42cc248895793e8d6d71",
     "entities": [
       {
         "tableName": "invoices",
@@ -195,11 +195,64 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "categories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`categoryID` INTEGER NOT NULL, `companyId` INTEGER NOT NULL, `categoryName` TEXT, `CategoryDesc` TEXT, `ctgId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "categoryID",
+            "columnName": "categoryID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "companyId",
+            "columnName": "companyId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryName",
+            "columnName": "categoryName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "CategoryDesc",
+            "columnName": "CategoryDesc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ctgId",
+            "columnName": "ctgId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ctgId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_categories_categoryID",
+            "unique": true,
+            "columnNames": [
+              "categoryID"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_categories_categoryID` ON `${TABLE_NAME}` (`categoryID`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0d2e0da96419dafa769da2a3871109bf\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"baff1e28905f42cc248895793e8d6d71\")"
     ]
   }
 }

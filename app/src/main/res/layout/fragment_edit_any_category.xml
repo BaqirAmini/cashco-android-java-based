@@ -1,0 +1,23 @@
+<LinearLayout
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:id="@+id/edit_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_ctg_name"
+        android:gravity="center"
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
+    <EditText
+        android:id="@+id/edit_category_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_ctg_desc"
+        android:gravity="center"
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
+
+</LinearLayout>

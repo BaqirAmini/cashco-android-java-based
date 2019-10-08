@@ -1,6 +1,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:id="@+id/products_layout_bar"
@@ -43,5 +44,15 @@
         android:id="@+id/prd_floyout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    <Button
+        android:id="@+id/btn_save_edited_product"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:background="@color/txt_selected_tab"
+        android:textColor="@color/white_color"
+        android:text="@string/btn_save"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:visibility="gone"/>
 </RelativeLayout>
