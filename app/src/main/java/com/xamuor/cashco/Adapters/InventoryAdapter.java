@@ -51,11 +51,12 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     @Override
     public void onBindViewHolder(final InventoryAdapter.ViewHolder holder, final int position) {
 
-        if (position % 2 == 0) {
+       /* if (position % 2 == 0) {
             holder.cardItem.setCardBackgroundColor(Color.parseColor("#689ACA"));
         } else {
             holder.cardItem.setCardBackgroundColor(Color.parseColor("#FD9926"));
-        }
+        }*/
+       holder.cardItem.setCardBackgroundColor(context.getResources().getColor(R.color.bg_second_column));
 
 
 

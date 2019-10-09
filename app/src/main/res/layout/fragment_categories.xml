@@ -21,6 +21,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_category"
         android:padding="5dp"
-        android:background="@color/bg_product"/>
+        android:background="@color/white_color"/>
 
 </RelativeLayout>
