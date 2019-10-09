@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xamuor.cashco.Model.CategoryDataModal;
-import com.xamuor.cashco.Model.InventoryDataModal;
-import com.xamuor.cashco.Views.CategoryRelatedFragment;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
@@ -45,12 +43,12 @@ public class CategoryAdapter extends RecyclerView.Adapter <CategoryAdapter.ViewH
         holder.txtCtgName.setText(modal.getCtgName());
 //        holder.txtCtgDesc.setText(modal.getCtgDesc());
 //        card is clickable
-        holder.cardCategory.setOnClickListener(new View.OnClickListener() {
+      /*  holder.cardCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CategoryRelatedFragment.onRefreshCategoryRelated(modal, context);
             }
-        });
+        });*/
 
     }
 
