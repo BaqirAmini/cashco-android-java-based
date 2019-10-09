@@ -50,4 +50,5 @@ dependencies {
 //    Stetho ( debug bridge library)
     implementation 'me.dlkanth:stetho-volley:1.0'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.stetho.Stetho;
 import com.xamuor.cashco.Views.CategoriesFragment;
 import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Views.ProductFragment;
@@ -41,6 +42,9 @@ public class InventoryActivity extends AppCompatActivity
         setContentView(R.layout.activity_inventory);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Stetho.initializeWithDefaults(this);
 
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 

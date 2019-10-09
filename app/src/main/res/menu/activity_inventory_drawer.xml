@@ -11,31 +11,16 @@
             android:title="@string/menu_sell" />
 
         <item
-            android:id="@+id/nav_space1"
-            app:showAsAction="ifRoom|withText"
-            android:title="" />
-
-        <item
             android:id="@+id/nav_customers"
             android:icon="@drawable/ic_supervisor_account_black_24dp"
             app:showAsAction="ifRoom|withText"
-            android:title="@string/customer" />
-
-        <item
-            android:id="@+id/nav_space2"
-            app:showAsAction="ifRoom|withText"
-            android:title="" />
+            android:title="@string/title_activity_customer" />
 
         <item
             android:id="@+id/nav_products"
             android:icon="@drawable/ic_products"
             app:showAsAction="ifRoom|withText"
             android:title="@string/menu_products" />
-        <item
-            android:id="@+id/nav_space3"
-            app:showAsAction="ifRoom|withText"
-            android:title="" />
-
         <item
             android:id="@+id/nav_reports"
             android:icon="@drawable/ic_report"
@@ -75,9 +60,9 @@
                 <!--android:title="Send" />-->
         <!--</menu>-->
     <!--</item>-->
-    <item
+    <!--<item
         android:id="@+id/nav_log_out"
         android:icon="@drawable/ic_logout"
-        android:title="@string/lbl_sign_out" />
+        android:title="@string/lbl_sign_out" />-->
 
 </menu>

@@ -13,12 +13,12 @@
     <dimen name="card_txt_size">10sp</dimen>
     <dimen name="small_margin">10dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
-    <dimen name="nav_drawer_with">100dp</dimen>
+    <dimen name="nav_drawer_width">170dp</dimen>
     <dimen name="nav_drawer_margin_top">55dp</dimen>
     <dimen name="margin_large">50dp</dimen>
     <dimen name="font_total_amount_due">20sp</dimen>
 <!--    Enlarge icons in navigation drawer -->
-    <dimen name="design_navigation_icon_size" tools:override="true">45sp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">25sp</dimen>
 
 
 
