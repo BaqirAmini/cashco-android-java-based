@@ -14,7 +14,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_bn"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="Business Name"
                 android:gravity="center"
@@ -22,7 +22,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_id"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="ID"
                 android:gravity="center"
@@ -30,7 +30,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_fn"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="First Name"
                 android:gravity="center"
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_ln"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="Last Name"
                 android:gravity="center"
@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_phone"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="Phone"
                 android:gravity="center"
@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_accb"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="Acc. Balance"
                 android:gravity="center"
@@ -62,7 +62,7 @@
             <TextView
                 android:id="@+id/txt_list_cust_status"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/table_row_height"
                 android:padding="5dp"
                 android:text="Status"
                 android:gravity="center"

@@ -42,7 +42,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         holder.txtListCustStatus.setText(modal.getCustStatus());
 
 //        Set background-color for rows
-        if (position % 2 != 0) {
+        if (position % 2 == 0) {
             /*holder.txtListCustBN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustID.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustFN.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
@@ -50,6 +50,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             holder.txtListCustPhone.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustAB.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.txtListCustStatus.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));*/
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.white_color));
+        } else {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
         }
   /*      holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
