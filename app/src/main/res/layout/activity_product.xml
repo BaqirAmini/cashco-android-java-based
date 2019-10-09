@@ -43,7 +43,8 @@
     <FrameLayout
         android:id="@+id/prd_floyout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prd_floyout1"/>
     <Button
         android:id="@+id/btn_save_edited_product"
         android:layout_width="wrap_content"
@@ -55,4 +56,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_large"
         android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_save_edited_category"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:background="@color/txt_selected_tab"
+        android:textColor="@color/white_color"
+        android:text="@string/btn_save"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_below="@+id/btn_save_edited_product"/>
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.xamuor.cashco.Adapters.ProductAdapter;
@@ -22,6 +23,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private ProductAdapter adapter;
     private List<ProductEditDataModal> prdList;
     private TextView txtProductsTab, txtCategoriesTab;
+    private Button btnSaveEditedProduct, btnSaveEditedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
 /*------------------------------ Define widgets here --------------------------------*/
         txtProductsTab = findViewById(R.id.txt_products_tab);
         txtCategoriesTab = findViewById(R.id.txt_categories_tab);
+        btnSaveEditedProduct = findViewById(R.id.btn_save_edited_product);
+        btnSaveEditedCategory = findViewById(R.id.btn_save_edited_category);
 /*------------------------------ /.Define widgets here --------------------------------*/
 
         txtProductsTab.setOnClickListener(this);
@@ -72,6 +76,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtProductsTab.setTextColor(getResources().getColor(R.color.txt_selected_tab));
         txtCategoriesTab.setTextColor(getResources().getColor(R.color.text_color));
 
+//        Hide
+        btnSaveEditedCategory.setVisibility(View.GONE);
+
 //        Load products fragment
         FragmentManager fragmentManager =  getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -87,6 +94,9 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtProductsTab.setBackgroundResource(R.color.bg_tabs);
         txtCategoriesTab.setTextColor(getResources().getColor(R.color.txt_selected_tab));
         txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+
+//        Hide
+        btnSaveEditedProduct.setVisibility(View.GONE);
 
 //        Load categories fragment
         FragmentManager fragmentManager =  getSupportFragmentManager();

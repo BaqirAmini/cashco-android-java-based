@@ -152,7 +152,7 @@ public class CategoryEditFragment extends Fragment {
 //                     To populate customers into it for spinner
                             List<String> categoryList = new ArrayList<String>();
 //                     Existing categories into ROOM database
-                            List<Category> existingCategories = InvoiceFragment.posDatabase.myDao().getCategories(Users.getCompanyId());
+                            List<Category> existingCategories = posDatabase.myDao().getCategories(ctgEditSp.getInt("spCompId", 0));
 //                      First Delete previous customers
                            /* if (getActivity() != null) {
                                 categoryList.add(getResources().getString(R.string.spn_categories));
@@ -170,17 +170,19 @@ public class CategoryEditFragment extends Fragment {
                                 category.setCategoryDesc(ctgDesc);
                                 InvoiceFragment.posDatabase.myDao().insertCategory(category);
                             }
-/*//              Set categories in SPINNER from ROOM
+///              Set categories in SPINNER from ROOM
                             for (Category ctg : existingCategories) {
-                                int rCtgId = ctg.getCategoryID();
-                                String rCtgName = ctg.getCategoryName();
-                                categoryList.add(rCtgName);
+                                int id = ctg.getCategoryID();
+                                String name = ctg.getCategoryName();
+                                String desc = ctg.getCategoryDesc();
+                                CategoryDataModal modal = new CategoryDataModal(id, name, desc);
+                                ctgList.add(modal);
                             }
                             if (getActivity() != null) {
-                                ArrayAdapter<String> customerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, categoryList);
-                                spnCategory.setAdapter(customerAdapter);
-                                customerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            }*/
+                                adapter = new CategoryEditAdapter(getContext(), ctgList);
+                                rvForCategoryEdit.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -209,7 +211,7 @@ public class CategoryEditFragment extends Fragment {
 
         List<Category> category = posDatabase.myDao().getCategories(ctgEditSp.getInt("spCompId", 0));
 
-        for (Category ctg : category) {
+      /*  for (Category ctg : category) {
             int id = ctg.getCategoryID();
             String name = ctg.getCategoryName();
             String desc = ctg.getCategoryDesc();
@@ -219,6 +221,6 @@ public class CategoryEditFragment extends Fragment {
 
         adapter = new CategoryEditAdapter(getContext(), ctgList);
         rvForCategoryEdit.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 }

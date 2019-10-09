@@ -1,7 +1,10 @@
 <LinearLayout
-    android:layout_width="400dp"
+    android:id="@+id/layout_for_edit_categories"
+    android:layout_width="450dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_gravity="end"
+    android:layout_marginEnd="@dimen/margin"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <EditText
         android:id="@+id/edit_category_name"

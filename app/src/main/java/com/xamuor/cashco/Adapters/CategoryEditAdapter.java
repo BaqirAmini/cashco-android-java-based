@@ -83,7 +83,7 @@ public class CategoryEditAdapter extends RecyclerView.Adapter<CategoryEditAdapte
             imgEdit = itemView.findViewById(R.id.img_edit_category);
 
 //            btn SAVE to save changes after an item is edited
-            btnSave = ((Activity)context).findViewById(R.id.btn_save_edited_product);
+            btnSave = ((Activity)context).findViewById(R.id.btn_save_edited_category);
 
         }
     }

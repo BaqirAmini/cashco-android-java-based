@@ -1,7 +1,6 @@
 package com.xamuor.cashco.Views;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -132,9 +131,9 @@ public class ProductEditFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                AlertDialog.Builder d = new AlertDialog.Builder(getContext());
+               /* AlertDialog.Builder d = new AlertDialog.Builder(getContext());
                 d.setMessage(error.toString());
-                d.show();
+                d.show();*/
             }
         }) {
             @Override
