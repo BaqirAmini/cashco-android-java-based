@@ -1,6 +1,6 @@
 <LinearLayout
     android:id="@+id/layout_for_edit_products"
-    android:layout_width="450dp"
+    android:layout_width="500dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/padding"

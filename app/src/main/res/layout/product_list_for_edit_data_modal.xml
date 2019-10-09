@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent"
+        android:padding="@dimen/small_margin"
         android:weightSum="7">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_product"
