@@ -21,6 +21,10 @@
 <!--    Enlarge icons in navigation drawer -->
     <dimen name="design_navigation_icon_size" tools:override="true">25sp</dimen>
 
+<!--    FAB -->
+    <dimen name="design_fab_size_mini" tools:override="true">100dp</dimen>
+    <dimen name="design_fab_size_normal" tools:override="true">90dp</dimen>
+
 
 
 </resources>

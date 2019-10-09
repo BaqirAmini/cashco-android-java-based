@@ -175,6 +175,7 @@
     <string name="prd_cost_required">Product cost required</string>
     <string name="prd_retail_price_required">Product retail price required</string>
     <string name="ctg_name_required">Category name required</string>
+    <string name="FAB">FAB</string>
     <!-- /.PRODUCTS -->
 
 
