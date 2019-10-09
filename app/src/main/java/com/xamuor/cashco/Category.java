@@ -52,15 +52,6 @@ public class Category {
         CategoryDesc = categoryDesc;
     }
 
-    public int getCtgId() {
-        return ctgId;
-    }
-
-    public void setCtgId(int ctgId) {
-        this.ctgId = ctgId;
-    }
-
-
  /* -------------------------- USE STATICALLY WHERE NEEDED --------------------------------*/
 
     public static int getsCtgId() {

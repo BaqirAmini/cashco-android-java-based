@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.xamuor.cashco.Adapters.ProductAdapter;
 import com.xamuor.cashco.Model.ProductEditDataModal;
+import com.xamuor.cashco.Views.CategoryEditFragment;
 import com.xamuor.cashco.Views.ProductEditFragment;
 import com.xamuor.cashco.cashco.R;
 
@@ -86,6 +87,13 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtProductsTab.setBackgroundResource(R.color.bg_tabs);
         txtCategoriesTab.setTextColor(getResources().getColor(R.color.txt_selected_tab));
         txtProductsTab.setTextColor(getResources().getColor(R.color.text_color));
+
+//        Load categories fragment
+        FragmentManager fragmentManager =  getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        CategoryEditFragment myfragment = new CategoryEditFragment();  //your fragment
+        fragmentTransaction.replace(R.id.prd_floyout1, myfragment);
+        fragmentTransaction.commit();
     }
 
     @Override
