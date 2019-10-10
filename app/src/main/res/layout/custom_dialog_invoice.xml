@@ -75,16 +75,17 @@
                android:layout_width="45dp"
                android:layout_height="45dp"
                android:text="-"
+               android:layout_marginTop="-5dp"
                android:textColor="@color/white_color"
                android:textStyle="bold"
                android:background="@color/colorPrimary"/>
            <EditText
                android:id="@+id/edit_change_qty"
                android:layout_width="60dp"
-               android:layout_height="48dp"
+               android:layout_height="wrap_content"
                android:inputType="numberDecimal"
                android:importantForAutofill="no"
-               android:background="@drawable/payment_edittext"/>
+               android:background="@drawable/dialog_field_design"/>
            <Button
                android:id="@+id/btn_plus"
                android:layout_width="45dp"
@@ -92,28 +93,29 @@
                android:text="+"
                android:textColor="@color/white_color"
                android:textStyle="bold"
-               android:background="@color/colorPrimary"/>
+               android:background="@color/colorPrimary"
+               android:layout_marginTop="-5dp"/>
 
            <EditText
                android:id="@+id/edit_change_price"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:background="@drawable/payment_edittext"/>
+               android:background="@drawable/dialog_field_design"/>
 
            <EditText
                android:id="@+id/edit_change_discount"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:background="@drawable/payment_edittext"
+               android:background="@drawable/dialog_field_design"
                android:importantForAutofill="no" />
            <EditText
                android:id="@+id/edit_change_total"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:background="@drawable/payment_edittext"/>
+               android:background="@drawable/dialog_field_design"/>
        </TableRow>
     </TableLayout>
     <Button
