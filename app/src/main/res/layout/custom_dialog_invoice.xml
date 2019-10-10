@@ -74,7 +74,7 @@
                android:id="@+id/btn_minus"
                android:layout_width="45dp"
                android:layout_height="45dp"
-               android:text="-"
+               android:text="@string/btn_minus"
                android:layout_marginTop="-5dp"
                android:textColor="@color/white_color"
                android:textStyle="bold"
@@ -83,14 +83,15 @@
                android:id="@+id/edit_change_qty"
                android:layout_width="60dp"
                android:layout_height="wrap_content"
-               android:inputType="numberDecimal"
+               android:inputType="none"
+               android:focusable="false"
                android:importantForAutofill="no"
                android:background="@drawable/dialog_field_design"/>
            <Button
                android:id="@+id/btn_plus"
                android:layout_width="45dp"
                android:layout_height="45dp"
-               android:text="+"
+               android:text="@string/btn_plus"
                android:textColor="@color/white_color"
                android:textStyle="bold"
                android:background="@color/colorPrimary"
@@ -101,6 +102,7 @@
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
+               android:inputType="numberDecimal"
                android:background="@drawable/dialog_field_design"/>
 
            <EditText
@@ -108,6 +110,7 @@
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
+               android:inputType="numberDecimal"
                android:background="@drawable/dialog_field_design"
                android:importantForAutofill="no" />
            <EditText
@@ -115,6 +118,8 @@
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
+               android:inputType="none"
+               android:focusable="false"
                android:background="@drawable/dialog_field_design"/>
        </TableRow>
     </TableLayout>

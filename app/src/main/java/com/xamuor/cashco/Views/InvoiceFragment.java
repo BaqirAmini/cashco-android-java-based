@@ -242,11 +242,12 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         List<Product> dataList = InvoiceFragment.posDatabase.myDao().getProducts(invSp.getInt("spCompId", 0));
         double total = 0;
         for (Product p : dataList) {
+            int invoiceID = p.getInvoiceId();
             int qty = p.getProductQty();
             String item = p.getProductName();
             double price = p.getProductPrice();
             double subTotal = qty * price;
-            modal = new InvoiceDataModal(qty, item, price, subTotal);
+            modal = new InvoiceDataModal(invoiceID, qty, item, price, subTotal);
             list.add(modal);
             total = total + subTotal;
         }

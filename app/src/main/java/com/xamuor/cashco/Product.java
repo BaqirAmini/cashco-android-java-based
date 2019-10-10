@@ -2,10 +2,7 @@ package com.xamuor.cashco;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 @Entity(tableName = "invoices")
 public class Product {
@@ -23,6 +20,9 @@ public class Product {
 
     @ColumnInfo(name = "product_price")
     public double productPrice;
+
+    @ColumnInfo(name = "product_total")
+    public double productTotal;
 
     public int getInvoiceId() {
         return invoiceId;
@@ -79,6 +79,11 @@ public class Product {
         this.productPrice = productPrice;
     }
 
+    public double getProductTotal() {
+        return productTotal;
+    }
 
-
+    public void setProductTotal(double productTotal) {
+        this.productTotal = productTotal;
+    }
 }

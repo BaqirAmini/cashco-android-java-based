@@ -1,6 +1,7 @@
 package com.xamuor.cashco.Model;
 
 public class InvoiceDataModal {
+    private int invoiceID;
     private String productName;
     private int productQty;
     private double productPrice;
@@ -8,11 +9,16 @@ public class InvoiceDataModal {
 public InvoiceDataModal(){
 
 }
-    public InvoiceDataModal(int productQty, String productName, double productPrice,  double productSubtotal) {
+    public InvoiceDataModal(int invoiceID, int productQty, String productName, double productPrice,  double productSubtotal) {
+        this.invoiceID = invoiceID;
         this.productName = productName;
         this.productQty = productQty;
         this.productPrice = productPrice;
         this.productSubtotal = productSubtotal;
+    }
+
+    public int getInvoiceID() {
+        return invoiceID;
     }
 
     public String getProductName() {

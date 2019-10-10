@@ -177,7 +177,12 @@
     <string name="ctg_name_required">Category name required</string>
     <string name="FAB">FAB</string>
     <string name="txt_change_discount">Discount</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_minus">-</string>
     <!-- /.PRODUCTS -->
+<!--    INVOICE -->
+    <string name="minimum_one">Quantity can be at least one.</string>
+<!--    /.INVOICE -->
 
 
     <string-array name="method_amount_due">

@@ -55,6 +55,10 @@ public interface DAO {
     @Query("UPDATE invoices SET product_qty = :qty WHERE comp_id = :cid AND product_name = :item")
     public void updateItem(int qty, int cid, String item);
 
+    // Edit Item using invoiceId and companyID
+    @Query("UPDATE invoices SET product_qty = :qty, product_price =:price, product_total = :total WHERE comp_id = :cid AND invoiceId = :invId")
+    public void updateProduct(int qty, double price, double total, int cid, int invId);
+
 /*
 //    select sum of price
     @Query("SELECT SUM( product_price) FROM products WHERE comp_id = :cid;")
