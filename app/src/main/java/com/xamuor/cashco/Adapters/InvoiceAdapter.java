@@ -2,7 +2,10 @@ package com.xamuor.cashco.Adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +13,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Model.InvoiceDataModal;
@@ -22,6 +25,7 @@ import com.xamuor.cashco.Views.PaymentFragment;
 import com.xamuor.cashco.cashco.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
     ArrayList<InvoiceDataModal> products;
@@ -47,7 +51,7 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
             convertView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    Toast.makeText(context, "Position: " + position, Toast.LENGTH_SHORT).show();
+                    openInvoiceDialog();
                     return true;
                 }
             });
@@ -176,4 +180,12 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
 
         });
     }*/
+
+    private void openInvoiceDialog() {
+        Dialog d = new Dialog(context);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.custom_dialog_invoice);
+        Objects.requireNonNull(d.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        d.show();
+    }
 }

@@ -1,82 +1,94 @@
 <RelativeLayout
     android:id="@+id/rlayout_change_items_in_invoice"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_width="400dp"
+    android:paddingBottom="@dimen/padding"
+    android:background="@color/white_color"
+    android:layout_gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
         android:id="@+id/txt_product_name"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:text="Product Name"
-        android:padding="@dimen/padding"
+        android:textColor="@color/white_color"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_total_amount_due"
+        android:padding="@dimen/card_padding"
         android:background="@color/colorPrimary"/>
     <TableLayout
         android:id="@+id/linearLayout_change_items_in_invoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
         android:layout_marginTop="@dimen/margin_large"
         android:layout_below="@+id/txt_product_name">
         <TableRow
             android:id="@+id/trow1_label_change_items_in_invoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="end"
             android:gravity="center"
             android:layout_weight="4">
             <TextView
                 android:id="@+id/txt_lbl_change_qty"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_qty"
-                android:gravity="center"
+                android:gravity="end"
+                android:layout_gravity="end"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/txt_lbl_change_price"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_price"
-                android:gravity="center"
+                android:gravity="end"
+                android:layout_gravity="end"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/txt_lbl_change_discount"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_change_discount"
-                android:gravity="center"
+                android:gravity="end"
+                android:layout_gravity="end"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/txt_lbl_change_total"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_lbl_total"
                 android:gravity="center"
+                android:layout_gravity="end"
                 android:layout_weight="1"/>
         </TableRow>
        <TableRow
-           android:id="trow2_label_change_items_in_invoice"
+           android:id="@+id/trow2_label_change_items_in_invoice"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_weight="3">
            <Button
                android:id="@+id/btn_minus"
-               android:layout_width="50dp"
-               android:layout_height="50dp"
+               android:layout_width="45dp"
+               android:layout_height="45dp"
                android:text="-"
                android:textColor="@color/white_color"
                android:textStyle="bold"
                android:background="@color/colorPrimary"/>
            <EditText
                android:id="@+id/edit_change_qty"
-               android:layout_width="80dp"
-               android:layout_height="50dp"
+               android:layout_width="60dp"
+               android:layout_height="48dp"
                android:inputType="numberDecimal"
                android:importantForAutofill="no"
                android:background="@drawable/payment_edittext"/>
            <Button
                android:id="@+id/btn_plus"
-               android:layout_width="0dp"
-               android:layout_height="50dp"
+               android:layout_width="45dp"
+               android:layout_height="45dp"
                android:text="+"
                android:textColor="@color/white_color"
                android:textStyle="bold"
@@ -107,19 +119,20 @@
     <Button
         android:id="@+id/btn_done_change"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:text="@string/btn_done"
+        android:layout_marginEnd="@dimen/margin"
         android:background="@color/colorPrimary"
         android:textColor="@color/white_color"
         android:layout_alignParentEnd="true"/>
     <Button
         android:id="@+id/btn_cancel_change"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:text="@string/btn_cancel"
         android:background="@color/white_color"
         android:layout_marginEnd="@dimen/margin"
-        android:layout_toStartOf="@+id/btn_done_change"/>
+        android:layout_toStartOf="@+id/btn_done_change" />
 </RelativeLayout>
