@@ -3,7 +3,9 @@ package com.xamuor.cashco.Views;
 
 import android.annotation.SuppressLint;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,7 +27,6 @@ import com.xamuor.cashco.Adapters.InvoiceAdapter;
 import com.xamuor.cashco.Invoice;
 import com.xamuor.cashco.Model.InvoiceDataModal;
 import com.xamuor.cashco.Product;
-import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.PosDatabase;
 import com.xamuor.cashco.cashco.R;
 
@@ -38,7 +39,7 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  */
 public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextListener {
-
+    private SharedPreferences invSp;
     /*--------------------------- Members member variables to be use for other fragment ------------------------------ */
     public double mSubTotal, mTax, mTotal;
     /*--------------------------- /.Members member variables to be use for other fragment ------------------------------ */
@@ -67,12 +68,14 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         onRefreshSearchCustomerFragment();
 /* ---------------------------------/. Call SearchCustomerFragment ---------------------------*/
 
-
 /* ------------------------------------------ textviews in invoice payment area at the bottom -----------------------*/
         txtSubtotal = view.findViewById(R.id.txt_val_subtotal);
         txtTax = view.findViewById(R.id.txt_val_tax);
         txtTotal = view.findViewById(R.id.txt_val_total);
 /* ------------------------------------------ /.textviews in invoice payment area at the bottom -----------------------*/
+
+//        Sharedpreferences
+        invSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 //        Initiate widgets
      /*   spnPaymentType = view.findViewById(R.id.spn_payment_type);
         layoutForPayment = view.findViewById(R.id.layout_for_payment);
@@ -147,8 +150,11 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
         invoiceListView = view.findViewById(R.id.list_invoice_content);
         onInvoice();
+
+
         // call method to load customers
 //        listCustomers();
+
 
 //        set permission for cashier
         /*if (Users.getRole().equalsIgnoreCase("cashier")) {
@@ -231,9 +237,9 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     private void onInvoice() {
 
         InvoiceDataModal modal = null;
-        ArrayList<InvoiceDataModal> list = new ArrayList<>();
+        final ArrayList<InvoiceDataModal> list = new ArrayList<>();
 //     Read from room-architecture
-        List<Product> dataList = InvoiceFragment.posDatabase.myDao().getProducts(Users.getCompanyId());
+        List<Product> dataList = InvoiceFragment.posDatabase.myDao().getProducts(invSp.getInt("spCompId", 0));
         double total = 0;
         for (Product p : dataList) {
             int qty = p.getProductQty();
@@ -269,9 +275,10 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
         }
 //     To print sold-items into listView
-        InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
+        final InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
         invoiceListView.setAdapter(adapter);
         invoiceListView.deferNotifyDataSetChanged();
+
     }
 
     // see if all amount paid
@@ -506,7 +513,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
 //    To check if products are added in cart/invoice
     private void onCheckCart() {
-        List<Product> products = InvoiceFragment.posDatabase.myDao().getProducts(Users.getCompanyId());
+        List<Product> products = InvoiceFragment.posDatabase.myDao().getProducts(invSp.getInt("spCompId", 0));
         if (products.size() > 0) {
             btnCancel.setEnabled(true);
             btnCancel.setBackgroundColor(getResources().getColor(R.color.colorPrimary));

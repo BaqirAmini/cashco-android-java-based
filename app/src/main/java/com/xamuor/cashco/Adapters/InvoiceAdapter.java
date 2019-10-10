@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Model.InvoiceDataModal;
@@ -36,11 +38,24 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
     @SuppressLint("SetTextI18n")
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.invoice_datamodal_layout, null, true);
+
+//     Long click to edit qty, discount, or ...
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Toast.makeText(context, "Position: " + position, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
         }
+
+
+        remove(position);
 
         InvoiceDataModal product = getItem(position);
 //        Initiate widgets of invoice-data-modal
@@ -53,6 +68,7 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         final TextView txtSubtotal = ((Activity)context).findViewById(R.id.txt_val_subtotal);
         final TextView txtTax = ((Activity)context).findViewById(R.id.txt_val_tax);
         final TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
+        final ListView listView = ((Activity)context).findViewById(R.id.list_invoice_content);
         Button btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
 
 
@@ -77,6 +93,32 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         if (product != null) {
             txtItemSubtotal.setText(product.getProductSubtotal() + "");
         }
+
+       /* final SwipeToDismissTouchListener<ListViewAdapter> touchListener = new SwipeToDismissTouchListener<>(new ListViewAdapter(invoiceListView),
+                new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                    @Override
+                    public boolean canDismiss(int position) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(ListViewAdapter recyclerView, int position) {
+                        InvoiceAdapter.remove(position);
+                    }
+                });
+        listView.setOnTouchListener(touchListener);
+        listView.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (touchListener.existPendingDismisses()) {
+                    touchListener.undoPendingDismiss();
+                } else {
+                    Toast.makeText(context, "Position " + i, LENGTH_SHORT).show();
+                }
+            }
+
+        });*/
 //        txtSubtotal.setText("$"+ Objects.requireNonNull(product).getProductSubtotal());
        /* txtTax.setText("$" + 10);
         double tax = 10 * product.getProductSubtotal() / 100;
@@ -103,4 +145,35 @@ public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
         fragmentTransaction.commit();
     }
 
+    public void remove(int position) {
+    }
+
+    /*private void onSwipePosition(View v) {
+
+        final SwipeToDismissTouchListener<ListViewAdapter> touchListener = new SwipeToDismissTouchListener<>(new ListViewAdapter(invoiceListView),
+                new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                    @Override
+                    public boolean canDismiss(int position) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(ListViewAdapter recyclerView, int position) {
+                        adapter.remove(position);
+                    }
+                });
+        v.setOnTouchListener(touchListener);
+        v.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
+        v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (touchListener.existPendingDismisses()) {
+                    touchListener.undoPendingDismiss();
+                } else {
+                    Toast.makeText(context, "Position " + i, LENGTH_SHORT).show();
+                }
+            }
+
+        });
+    }*/
 }

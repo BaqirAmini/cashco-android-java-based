@@ -3,6 +3,7 @@ package com.xamuor.cashco.Adapters;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,6 @@ import com.xamuor.cashco.Inventories;
 import com.xamuor.cashco.InventoryActivity;
 import com.xamuor.cashco.Model.InventoryDataModal;
 import com.xamuor.cashco.Product;
-import com.xamuor.cashco.Users;
 import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.Views.InvoiceFragment;
 import com.xamuor.cashco.Views.ProductFragment;
@@ -32,6 +32,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     public int remainingQty = 0;
     private int initialQty = 0;
     private int q;
+    private SharedPreferences invAdapterSp;
     private List<InventoryDataModal> productList;
     private Context context;
     private List<Inventories> inventoriesList;
@@ -85,7 +86,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
                 TextView txtProduct = (TextView) view.findViewById(R.id.txt_product);
                 String myProduct = txtProduct.getText().toString();
                 InventoryDataModal productList = new InventoryDataModal(modal.getProductId(), modal.getProductImage(), modal.getProductName(), modal.getProductPrice(), modal.getProductQty());
-                InvoiceFragment.posDatabase.myDao().getProducts(Users.getCompanyId());
+                InvoiceFragment.posDatabase.myDao().getProducts(invAdapterSp.getInt("spCompId", 0));
 //                remainingQty--;
 //               Initiate Product entity
                 List<Product> existingList = InvoiceFragment.posDatabase.myDao().getItem(myProduct);
@@ -93,9 +94,9 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 //                  decrease one unit the qty on any click on the same item
                     initialQty--;
 //                    update qty in inventories table in ROOM db with decremented value
-                    InvoiceFragment.posDatabase.myDao().updateInventory(initialQty, Users.getCompanyId(), modal.getProductId());
+                    InvoiceFragment.posDatabase.myDao().updateInventory(initialQty, invAdapterSp.getInt("spCompId", 0), modal.getProductId());
 //                  Fetch back the update qty from inventories in ROOM db
-                    remainingQty = InvoiceFragment.posDatabase.myDao().getQty(Users.getCompanyId(), modal.getProductId());
+                    remainingQty = InvoiceFragment.posDatabase.myDao().getQty(invAdapterSp.getInt("spCompId", 0), modal.getProductId());
                     if (remainingQty == 5) {
                         holder.txtQty.setTextColor(Color.rgb(139, 0, 0));
                     } else if (remainingQty == 0) {
@@ -107,7 +108,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 //                    holder.txtQty.setText(remainingQty+"");
 
                     q = ++qty;
-                    InvoiceFragment.posDatabase.myDao().updateItem(q, Users.getCompanyId(), myProduct);
+                    InvoiceFragment.posDatabase.myDao().updateItem(q, invAdapterSp.getInt("spCompId", 0), myProduct);
 //                    holder..setText(remainingQty+"");
 
                     onRefreshInvoiceFragment();
@@ -115,16 +116,16 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 //                  decrease one unit the qty on any click on the same item
                     initialQty--;
 //                    update qty in inventories table in ROOM db with decremented value
-                    InvoiceFragment.posDatabase.myDao().updateInventory(initialQty, Users.getCompanyId(), modal.getProductId());
+                    InvoiceFragment.posDatabase.myDao().updateInventory(initialQty, invAdapterSp.getInt("spCompId", 0), modal.getProductId());
 //                  Fetch back the update qty from inventories in ROOM db
-                    remainingQty = InvoiceFragment.posDatabase.myDao().getQty(Users.getCompanyId(), modal.getProductId());
+                    remainingQty = InvoiceFragment.posDatabase.myDao().getQty(invAdapterSp.getInt("spCompId", 0), modal.getProductId());
 //                   Set the new qty in textview in the cards
 //                    holder.txtQty.setText(remainingQty+"");
 
 /* Print values in the invoice when an item is clicked */
                     qty = 1;
                     product.setProductId(productList.getProductId());
-                    product.setCompanyId(Users.getCompanyId());
+                    product.setCompanyId(invAdapterSp.getInt("spCompId", 0));
                     product.setProductQty(qty);
                     product.setProductName(productList.getProductName());
                     product.setProductPrice(productList.getProductPrice());
@@ -158,6 +159,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             txtPrice = itemView.findViewById(R.id.txt_price);
             txtQty = itemView.findViewById(R.id.txt_qty);
             cardItem = itemView.findViewById(R.id.cv_product);
+            invAdapterSp = context.getSharedPreferences("login", Context.MODE_PRIVATE);
 
 /*//            Set permission for cashier
             if (Users.getRole().equalsIgnoreCase("cashier")) {
