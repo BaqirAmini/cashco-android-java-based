@@ -10,7 +10,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +22,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,8 +50,9 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     public static PosDatabase posDatabase;
 
     private Spinner spnCustomers;
-    Intent intent;
-    ListView invoiceListView;
+    private Intent intent;
+    private RecyclerView rvInvoice;
+    private List<InvoiceAdapter> list;
     private CheckBox chkAllAmount;
     private LinearLayout layoutForPayment;
     private EditText editTransCode, editRecievable, editRecieved;
@@ -76,6 +79,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
 //        Sharedpreferences
         invSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+
 //        Initiate widgets
      /*   spnPaymentType = view.findViewById(R.id.spn_payment_type);
         layoutForPayment = view.findViewById(R.id.layout_for_payment);
@@ -147,10 +151,12 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
             }
         });*/
+        list = new ArrayList<>();
+        rvInvoice = view.findViewById(R.id.list_invoice_content);
+        rvInvoice.setHasFixedSize(true);
+        rvInvoice.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        invoiceListView = view.findViewById(R.id.list_invoice_content);
         onInvoice();
-
 
         // call method to load customers
 //        listCustomers();
@@ -275,10 +281,31 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
 
 
         }
-//     To print sold-items into listView
-        final InvoiceAdapter adapter = new InvoiceAdapter(getContext(), R.layout.invoice_datamodal_layout, list);
-        invoiceListView.setAdapter(adapter);
-        invoiceListView.deferNotifyDataSetChanged();
+//     To print sold-items into RecyclerView
+        final InvoiceAdapter adapter = new InvoiceAdapter(list, getActivity());
+        rvInvoice.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        /*------------------------------------------ Swipe invioce items to delete ------------------------------------*/
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int pos = viewHolder.getAdapterPosition();
+                list.remove(pos);
+                adapter.notifyItemRemoved(pos);
+                onRefresh();
+
+
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(rvInvoice);
+        /*------------------------------------------ /.Swipe invioce items to delete ------------------------------------*/
 
     }
 
@@ -479,10 +506,10 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
     }*/
 
 //    To refresh the fragment
-    /*private void onRefresh() {
-        InventoryAdapter.qty = 1;
-        android.support.v4.app.FragmentManager fragmentManager = (getActivity()).getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    private void onRefresh() {
+//        InventoryAdapter.qty = 1;
+        FragmentManager fragmentManager = (getActivity()).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         InvoiceFragment myfragment = new InvoiceFragment();  //your fragment
 
@@ -491,7 +518,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         fragmentTransaction.commit();
 
 
-    }*/
+    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {

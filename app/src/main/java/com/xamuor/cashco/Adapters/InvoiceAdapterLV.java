@@ -1,109 +1,121 @@
 package com.xamuor.cashco.Adapters;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Dialog;
-import android.arch.persistence.room.Room;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.xamuor.cashco.InventoryActivity;
-import com.xamuor.cashco.Model.InvoiceDataModal;
-import com.xamuor.cashco.Utilities.PosDatabase;
-import com.xamuor.cashco.Views.InvoiceFragment;
-import com.xamuor.cashco.Views.PaymentFragment;
-import com.xamuor.cashco.cashco.R;
-
-import java.util.List;
-import java.util.Objects;
-
-public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHolder> {
-    List<InvoiceDataModal> products;
+/*
+public class InvoiceAdapter extends ArrayAdapter<InvoiceDataModal> {
+    ArrayList<InvoiceDataModal> products;
+    SharedPreferences invSp;
     Context context;
+    int myResource;
     private int initialQty;
     private double totalValue = 0;
-    SharedPreferences invSp;
-    public InvoiceAdapter(List<InvoiceDataModal> itemList, Context context) {
-        this.products = itemList;
+    public InvoiceAdapter(@NonNull Context context, int resource, @NonNull ArrayList<InvoiceDataModal> products) {
+        super(context, resource, products);
+        this.products = products;
         this.context = context;
-    }
-
-    @Override
-    public InvoiceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.invoice_datamodal_layout, parent, false);
-        return new InvoiceAdapter.ViewHolder(view);
+        this.myResource = resource;
     }
 
     @SuppressLint("SetTextI18n")
+    @NonNull
     @Override
-    public void onBindViewHolder(InvoiceAdapter.ViewHolder holder, int position) {
-        final InvoiceDataModal product = products.get(position);
-
-//        define values inside widgets from invoiceDataModal
-        holder.txtItemQty.setText(product.getProductQty() + "");
-        holder.txtItemName.setText(product.getProductName());
-        holder.txtItemPrice.setText(product.getProductPrice() + "");
-        holder.txtItemSubtotal.setText(product.getProductSubtotal() + "");
-
-        holder.btnPayInvoice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                double subTotal = Double.parseDouble(txtSubtotal.getText().toString());
-                onPay();
-            }
-        });
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        if (convertView == null) {
+            final InvoiceDataModal product = getItem(position);
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.invoice_datamodal_layout, null, true);
 
 //     Long click to edit qty, discount, or ...
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                openInvoiceDialog(product.getProductName(), product.getProductQty(), product.getProductPrice(), product.getProductSubtotal(), product.getInvoiceID());
-                return true;
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    openInvoiceDialog(product.getProductName(), product.getProductQty(), product.getProductPrice(), product.getProductSubtotal(), product.getInvoiceID());
+                    return true;
+                }
+            });
+
+
+            //        Widgets out of invoice data modal (fragment_invoice.xml)
+            final TextView txtSubtotal = ((Activity)context).findViewById(R.id.txt_val_subtotal);
+            final TextView txtTax = ((Activity)context).findViewById(R.id.txt_val_tax);
+            final TextView txtTotal = ((Activity)context).findViewById(R.id.txt_val_total);
+            final ListView listView = ((Activity)context).findViewById(R.id.list_invoice_content);
+            Button btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
+
+
+            btnPayInvoice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                double subTotal = Double.parseDouble(txtSubtotal.getText().toString());
+                    onPay();
+                }
+            });
+
+            //        Initiate widgets of invoice-data-modal
+            TextView txtItemName = convertView.findViewById(R.id.txt_item_name);
+            TextView txtItemQty = convertView.findViewById(R.id.txt_item_qty);
+            TextView txtItemPrice = convertView.findViewById(R.id.txt_item_price);
+            TextView txtItemSubtotal = convertView.findViewById(R.id.txt_item_subtotal);
+
+
+
+//        define values inside widgets from invoiceDataModal
+            if (product != null) {
+                txtItemQty.setText(product.getProductQty()+"");
             }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return products.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtItemName;
-        private TextView txtItemQty;
-        private TextView txtItemPrice;
-        private TextView txtItemSubtotal;
-        private Button btnPayInvoice;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-//        Initiate widgets of invoice-data-modal
-             txtItemName = itemView.findViewById(R.id.txt_item_name);
-             txtItemQty = itemView.findViewById(R.id.txt_item_qty);
-             txtItemPrice = itemView.findViewById(R.id.txt_item_price);
-             txtItemSubtotal = itemView.findViewById(R.id.txt_item_subtotal);
-             btnPayInvoice = ((Activity)context).findViewById(R.id.btn_pay_invoice);
-
+            if (product != null) {
+                txtItemName.setText(product.getProductName());
+            }
+            if (product != null) {
+                txtItemPrice.setText(product.getProductPrice() + "");
+            }
+            if (product != null) {
+                txtItemSubtotal.setText(product.getProductSubtotal() + "");
+            }
         }
+
+
+        remove(position);
+
+
+
+
+       */
+/* final SwipeToDismissTouchListener<ListViewAdapter> touchListener = new SwipeToDismissTouchListener<>(new ListViewAdapter(invoiceListView),
+                new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                    @Override
+                    public boolean canDismiss(int position) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(ListViewAdapter recyclerView, int position) {
+                        InvoiceAdapter.remove(position);
+                    }
+                });
+        listView.setOnTouchListener(touchListener);
+        listView.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (touchListener.existPendingDismisses()) {
+                    touchListener.undoPendingDismiss();
+                } else {
+                    Toast.makeText(context, "Position " + i, LENGTH_SHORT).show();
+                }
+            }
+
+        });*//*
+
+//        txtSubtotal.setText("$"+ Objects.requireNonNull(product).getProductSubtotal());
+       */
+/* txtTax.setText("$" + 10);
+        double tax = 10 * product.getProductSubtotal() / 100;
+        txtTotal.setText("$" + (product.getProductSubtotal() + tax));*//*
+
+        return convertView;
     }
 
-    //    Take data and go to payment fragment
+//    Take data and go to payment fragment
     private void onPay() {
 //        Hide labels of tabs at the top
         TextView txtItems, txtCategories, txtKeyboard;
@@ -121,6 +133,40 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
         fragmentTransaction.replace(R.id.frg_product, myfragment);
         fragmentTransaction.commit();
     }
+
+    public void remove(int position) {
+    }
+
+    */
+/*private void onSwipePosition(View v) {
+
+        final SwipeToDismissTouchListener<ListViewAdapter> touchListener = new SwipeToDismissTouchListener<>(new ListViewAdapter(invoiceListView),
+                new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                    @Override
+                    public boolean canDismiss(int position) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(ListViewAdapter recyclerView, int position) {
+                        adapter.remove(position);
+                    }
+                });
+        v.setOnTouchListener(touchListener);
+        v.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
+        v.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (touchListener.existPendingDismisses()) {
+                    touchListener.undoPendingDismiss();
+                } else {
+                    Toast.makeText(context, "Position " + i, LENGTH_SHORT).show();
+                }
+            }
+
+        });
+    }*//*
+
 
     private void openInvoiceDialog(String product, int qty, double price, double total, final int INVOICE_ID) {
         TextView txtProduct;
@@ -150,14 +196,14 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
         editDiscount.setText(String.valueOf(0));
         editTotal.setText(String.valueOf(total));
 
-        initialQty = Integer.parseInt(editQty.getText().toString());
+         initialQty = Integer.parseInt(editQty.getText().toString());
 // btn plus (+)
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (initialQty >= 1) {
-                    initialQty++;
-                    editQty.setText(String.valueOf(initialQty));
+                   initialQty++;
+                   editQty.setText(String.valueOf(initialQty));
                     editQty.setText(String.valueOf(initialQty));
 
 // Auto-change total
@@ -193,25 +239,25 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
                     editQty.setText(String.valueOf(initialQty));
 
 // Auto-change total
-                    editQty.addTextChangedListener(new TextWatcher() {
-                        int q = Integer.parseInt(editQty.getText().toString());
-                        double price = Double.parseDouble(editPrice.getText().toString());
+                editQty.addTextChangedListener(new TextWatcher() {
+                    int q = Integer.parseInt(editQty.getText().toString());
+                    double price = Double.parseDouble(editPrice.getText().toString());
 
-                        @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                        }
+                    }
 
-                        @Override
-                        public void afterTextChanged(Editable editable) {
-                            editTotal.setText(String.valueOf(initialQty * price));
-                        }
-                    });
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        editTotal.setText(String.valueOf(initialQty * price));
+                    }
+                });
                 } else {
                     Toast.makeText(context, context.getString(R.string.minimum_one), Toast.LENGTH_SHORT).show();
                 }
@@ -221,7 +267,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
 
 // Change Price
         editPrice.addTextChangedListener(new TextWatcher() {
-            //            double total;
+//            double total;
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -229,11 +275,11 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!editPrice.getText().toString().isEmpty()) {
-                    double price = Double.parseDouble(editPrice.getText().toString());
-                    int q = Integer.parseInt(editQty.getText().toString());
-                    totalValue = price * q;
-                }
+                    if (!editPrice.getText().toString().isEmpty()) {
+                        double price = Double.parseDouble(editPrice.getText().toString());
+                        int q = Integer.parseInt(editQty.getText().toString());
+                        totalValue = price * q;
+                    }
             }
 
             @Override
@@ -246,7 +292,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
 // Set DISCOUNT
         editDiscount.addTextChangedListener(new TextWatcher() {
             double priceWithDiscount;
-            //            double total;
+//            double total;
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 //                editDiscount.setText(String.valueOf(0));
@@ -277,7 +323,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
             @Override
             public void onClick(View view) {
                 invSp = context.getSharedPreferences("login", Context.MODE_PRIVATE);
-                PosDatabase posDatabase = Room.databaseBuilder(context, PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
+                PosDatabase posDatabase = Room.databaseBuilder(getContext(), PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
                 int qty;
                 double price;
                 if (!editQty.getText().toString().isEmpty()) {
@@ -312,3 +358,4 @@ public class InvoiceAdapter extends RecyclerView.Adapter <InvoiceAdapter.ViewHol
         fragmentTransaction.commit();
     }
 }
+*/

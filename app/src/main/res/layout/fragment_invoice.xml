@@ -24,7 +24,7 @@
             android:layout_marginEnd="10dp" />-->
 
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/list_invoice_content"
         android:layout_width="560dp"
         android:scrollbars="vertical"

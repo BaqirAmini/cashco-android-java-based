@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -50,7 +49,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     private SearchCustomerDataModal searchCustomerDataModal;
     public SearchCustomerAdapter adapter;
     private List<SearchCustomerDataModal> customerList;
-    private ListView lvInvoice;
+    private RecyclerView rvInvoice;
     private android.support.v7.widget.SearchView searchCustomer;
     private Button btnPayInvoice;
     private SharedPreferences searchCustomerSp;
@@ -64,7 +63,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
         customerList = new ArrayList<>();
         rvCustomerSearch.setHasFixedSize(true);
         rvCustomerSearch.setLayoutManager(new LinearLayoutManager(getContext()));
-        lvInvoice = ((getActivity())).findViewById(R.id.list_invoice_content);
+        rvInvoice = ((getActivity())).findViewById(R.id.list_invoice_content);
         btnPayInvoice = ((getActivity())).findViewById(R.id.btn_pay_invoice);
         /* ----------------------------------------/. Initialize WIDGETS ------------------------------*/
 
@@ -197,7 +196,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     public boolean onQueryTextChange(String customer) {
 
             rvCustomerSearch.setVisibility(View.VISIBLE);
-            lvInvoice.setVisibility(View.GONE);
+            rvInvoice.setVisibility(View.GONE);
             String userInput = customer.toLowerCase();
             List<SearchCustomerDataModal> newList = new ArrayList<>();
             for (SearchCustomerDataModal scm : customerList) {

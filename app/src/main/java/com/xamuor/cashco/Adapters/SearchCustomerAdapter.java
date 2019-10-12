@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -90,7 +89,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
                 holder.btnPayInvoice.setEnabled(true);
                 holder.btnPayInvoice.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
                 Users.setCustId(modal.getCid());
-                holder.lvInvoice.setVisibility(View.VISIBLE);
+                holder.rvInvoice.setVisibility(View.VISIBLE);
             }
         });
         /* ---------------------/. Set values in textViews ------------------*/
@@ -103,7 +102,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private android.support.v7.widget.SearchView custSearchView;
-        private ListView lvInvoice;
+        private RecyclerView rvInvoice;
         private RelativeLayout rlSearchCustomer;
         private ImageView imgCustPhoto;
         private TextView txtBN, txtPhone, txtFN, txtLN;
@@ -112,7 +111,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
             super(itemView);
 //   Initiate widgets of invoice-data-modal
             custSearchView = ((Activity) context).findViewById(R.id.search_customer);
-            lvInvoice = ((Activity)context).findViewById(R.id.list_invoice_content);
+            rvInvoice = ((Activity)context).findViewById(R.id.list_invoice_content);
             rlSearchCustomer = itemView.findViewById(R.id.rl_search_customer);
             imgCustPhoto = itemView.findViewById(R.id.img_customer_photo);
             txtBN = itemView.findViewById(R.id.txt_cust_bn);
