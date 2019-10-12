@@ -9,6 +9,8 @@ public class Product {
     @PrimaryKey(autoGenerate = true)
     private int invoiceId;
 
+    @ColumnInfo(name = "adp_pos")
+    public int adapterPos;
     @ColumnInfo(name = "product_id")
     public int productId;
     @ColumnInfo(name = "comp_id")
@@ -23,6 +25,15 @@ public class Product {
 
     @ColumnInfo(name = "product_total")
     public double productTotal;
+
+
+    public int getAdapterPos() {
+        return adapterPos;
+    }
+
+    public void setAdapterPos(int adapterPos) {
+        this.adapterPos = adapterPos;
+    }
 
     public int getInvoiceId() {
         return invoiceId;

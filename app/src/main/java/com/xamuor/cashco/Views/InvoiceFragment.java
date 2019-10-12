@@ -155,6 +155,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
         rvInvoice = view.findViewById(R.id.list_invoice_content);
         rvInvoice.setHasFixedSize(true);
         rvInvoice.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvInvoice.setNestedScrollingEnabled(false);
 
         onInvoice();
 
@@ -298,6 +299,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
                 int pos = viewHolder.getAdapterPosition();
                 list.remove(pos);
                 adapter.notifyItemRemoved(pos);
+                posDatabase.myDao().deleteItem(pos);
                 onRefresh();
 
 

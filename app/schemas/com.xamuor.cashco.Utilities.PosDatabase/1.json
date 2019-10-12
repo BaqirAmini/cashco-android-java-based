@@ -2,15 +2,21 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "10aa9a625415ae9ac8c94725ab662165",
+    "identityHash": "3582239b525d49dd2e5c99be90b9c020",
     "entities": [
       {
         "tableName": "invoices",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`invoiceId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `product_id` INTEGER NOT NULL, `comp_id` INTEGER NOT NULL, `product_qty` INTEGER NOT NULL, `product_name` TEXT, `product_price` REAL NOT NULL, `product_total` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`invoiceId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `adp_pos` INTEGER NOT NULL, `product_id` INTEGER NOT NULL, `comp_id` INTEGER NOT NULL, `product_qty` INTEGER NOT NULL, `product_name` TEXT, `product_price` REAL NOT NULL, `product_total` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "invoiceId",
             "columnName": "invoiceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adapterPos",
+            "columnName": "adp_pos",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -258,7 +264,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"10aa9a625415ae9ac8c94725ab662165\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3582239b525d49dd2e5c99be90b9c020\")"
     ]
   }
 }

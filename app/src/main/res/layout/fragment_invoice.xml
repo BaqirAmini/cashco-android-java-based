@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_invoice"
     android:layout_marginStart="1dp"
+    android:orientation="vertical"
     tools:context="com.xamuor.cashco.Views.InvoiceFragment"
     xmlns:android="http://schemas.android.com/apk/res/android">
         <!--<Spinner
@@ -26,10 +27,9 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_invoice_content"
-        android:layout_width="560dp"
-        android:scrollbars="vertical"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:layout_width="300dp"
         android:background="@color/white_color"
+        android:layout_weight="2"
         android:layout_height="wrap_content" />
     <!-- Total Price-->
         <!--<TextView
@@ -117,10 +117,11 @@
     </RelativeLayout>-->
         <RelativeLayout
             android:id="@+id/rl_payment_area"
-            android:layout_width="560dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:background="@color/white_color"
+            android:background="@drawable/searchview_design"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
             android:padding="5dp">
             <TextView
                 android:id="@+id/txt_lbl_subtotal"
@@ -178,9 +179,10 @@
                 android:textColor="@color/white_color"
                 android:background="@color/bg_tabs"
                 android:enabled="false"
+                android:gravity="center"
                 android:layout_below="@id/txt_lbl_total"/>
         </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
