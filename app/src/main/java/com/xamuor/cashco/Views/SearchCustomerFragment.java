@@ -196,7 +196,7 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
     public boolean onQueryTextChange(String customer) {
 
             rvCustomerSearch.setVisibility(View.VISIBLE);
-            rvInvoice.setVisibility(View.GONE);
+            rvInvoice.setVisibility(View.INVISIBLE);
             String userInput = customer.toLowerCase();
             List<SearchCustomerDataModal> newList = new ArrayList<>();
             for (SearchCustomerDataModal scm : customerList) {

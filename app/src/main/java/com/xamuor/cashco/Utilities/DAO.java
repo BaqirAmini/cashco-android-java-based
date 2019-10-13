@@ -52,8 +52,8 @@ public interface DAO {
     public void delete();
 
 //    Delete from invoice based on a specific
-    @Query("DELETE FROM invoices WHERE adp_pos = :position")
-    public void deleteItem(int position);
+    @Query("DELETE FROM invoices WHERE adp_pos = :position AND comp_id = :compId")
+    public void deleteItem(int position, int compId);
     // Edit Item
     @Query("UPDATE invoices SET product_qty = :qty WHERE comp_id = :cid AND product_name = :item")
     public void updateItem(int qty, int cid, String item);

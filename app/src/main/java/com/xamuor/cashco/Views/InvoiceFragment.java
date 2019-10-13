@@ -42,6 +42,7 @@ import java.util.Objects;
  */
 public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextListener {
     private SharedPreferences invSp;
+    private int productID;
     /*--------------------------- Members member variables to be use for other fragment ------------------------------ */
     public double mSubTotal, mTax, mTotal;
     /*--------------------------- /.Members member variables to be use for other fragment ------------------------------ */
@@ -255,6 +256,7 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             double price = p.getProductPrice();
             double subTotal = qty * price;
             modal = new InvoiceDataModal(invoiceID, qty, item, price, subTotal);
+            productID = p.getProductId();
             list.add(modal);
             total = total + subTotal;
         }
@@ -297,9 +299,10 @@ public class InvoiceFragment extends Fragment implements SearchView.OnQueryTextL
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int pos = viewHolder.getAdapterPosition();
+                Product product = new Product();
                 list.remove(pos);
                 adapter.notifyItemRemoved(pos);
-                posDatabase.myDao().deleteItem(pos);
+                posDatabase.myDao().deleteItem(pos, invSp.getInt("spCompId", 0));
                 onRefresh();
 
 

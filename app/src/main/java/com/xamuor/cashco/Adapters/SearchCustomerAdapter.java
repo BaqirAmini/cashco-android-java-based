@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -103,6 +104,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
     public class ViewHolder extends RecyclerView.ViewHolder {
         private android.support.v7.widget.SearchView custSearchView;
         private RecyclerView rvInvoice;
+        private LinearLayout layoutInvoice;
         private RelativeLayout rlSearchCustomer;
         private ImageView imgCustPhoto;
         private TextView txtBN, txtPhone, txtFN, txtLN;
@@ -112,6 +114,7 @@ public class SearchCustomerAdapter extends RecyclerView.Adapter <SearchCustomerA
 //   Initiate widgets of invoice-data-modal
             custSearchView = ((Activity) context).findViewById(R.id.search_customer);
             rvInvoice = ((Activity)context).findViewById(R.id.list_invoice_content);
+            layoutInvoice = ((Activity)context).findViewById(R.id.llayout_invoice);
             rlSearchCustomer = itemView.findViewById(R.id.rl_search_customer);
             imgCustPhoto = itemView.findViewById(R.id.img_customer_photo);
             txtBN = itemView.findViewById(R.id.txt_cust_bn);

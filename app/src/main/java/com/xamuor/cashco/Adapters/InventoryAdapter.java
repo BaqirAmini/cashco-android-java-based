@@ -124,7 +124,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
 
 /* Print values in the invoice when an item is clicked */
                     qty = 1;
-                    product.setAdapterPos(position);
+                    product.setAdapterPos(holder.getAdapterPosition());
                     product.setProductId(productList.getProductId());
                     product.setCompanyId(invAdapterSp.getInt("spCompId", 0));
                     product.setProductQty(qty);
