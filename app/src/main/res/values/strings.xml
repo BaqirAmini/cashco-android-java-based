@@ -182,7 +182,8 @@
     <!-- /.PRODUCTS -->
 <!--    INVOICE -->
     <string name="minimum_one">Quantity can be at least one.</string>
-<!--    /.INVOICE -->
+    <string name="txt_lbl_new_product">New Product</string>
+    <!--    /.INVOICE -->
 
 
     <string-array name="method_amount_due">

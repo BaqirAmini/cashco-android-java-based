@@ -81,24 +81,25 @@
         android:padding="@dimen/padding"
         android:layout_marginTop="25dp"/>
 
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/myFAB"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_product"
+        android:layout_width="276dp"
+        android:layout_height="119dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/margin"
-        app:elevation="8dp"
         android:clickable="true"
-        android:background="@color/txt_selected_tab"
-        android:backgroundTint="@color/txt_selected_tab"
-        tools:targetApi="lollipop"
-        android:focusable="true" />-->
+        android:focusable="true"
+        app:backgroundTint="@color/txt_selected_tab"
+        app:elevation="8dp" />
 
-    <!--<TextView
+    <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="New Product"
-        android:textColor="#fff"
-        app:layout_anchor="@id/myFAB"
-        app:layout_anchorGravity="center"/>-->
+        android:text="@string/txt_lbl_new_product"
+        android:textColor="@color/white_color"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:foregroundGravity="center"
+        app:layout_anchor="@id/fab_new_product"
+        app:layout_anchorGravity="center"/>
 </android.support.design.widget.CoordinatorLayout>

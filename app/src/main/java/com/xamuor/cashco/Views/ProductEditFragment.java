@@ -4,6 +4,7 @@ package com.xamuor.cashco.Views;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class ProductEditFragment extends Fragment {
     private ProductAdapter adapter;
     private List<ProductEditDataModal> prdList;
     private SharedPreferences prdEditSp;
+    private FloatingActionButton fabNewProduct;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,13 @@ public class ProductEditFragment extends Fragment {
         rvProductEdit.setHasFixedSize(true);
         rvProductEdit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         prdList = new ArrayList<>();
+        fabNewProduct = view.findViewById(R.id.fab_new_product);
+        fabNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewPrdFragment();
+            }
+        });
         loadProducts();
 
 //   Define Shared preferences
@@ -153,5 +162,15 @@ public class ProductEditFragment extends Fragment {
         Volley.newRequestQueue(getActivity()).add(request);
         Volley.newRequestQueue(getContext()).add(request);
 
+    }
+
+    private void goToNewPrdFragment() {
+        android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        NewProductFragment nf = new NewProductFragment();  //your fragment
+//        eaf.setArguments(bundle);
+        // work here to add, remove, etc
+        fragmentTransaction.replace(R.id.prd_floyout1, nf);
+        fragmentTransaction.commit();
     }
 }
