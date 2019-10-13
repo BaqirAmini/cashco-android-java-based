@@ -3,7 +3,8 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/margin">
     <android.support.v7.widget.SearchView
         android:id="@+id/search_customer_and_places"
         android:layout_width="match_parent"
@@ -88,4 +89,19 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tlayout1"
         android:background="@color/white_color"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_customer"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:fabSize="auto"
+        android:scaleType="center"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/txt_selected_tab"
+        app:elevation="8dp"
+        android:layout_margin="@dimen/margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

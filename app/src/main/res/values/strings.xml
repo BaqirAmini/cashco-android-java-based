@@ -180,10 +180,26 @@
     <string name="btn_plus">+</string>
     <string name="btn_minus">-</string>
     <!-- /.PRODUCTS -->
-<!--    INVOICE -->
+    <!--    INVOICE -->
     <string name="minimum_one">Quantity can be at least one.</string>
     <string name="txt_lbl_new_product">New Product</string>
     <string name="txt_lbl_new_category">New Category</string>
+    <string name="txt_comp_profile">Company Profile</string>
+    <string name="txt_transactions">Transactions</string>
+    <string name="txt_add_new_cust">Add New Customer</string>
+    <string name="edit_business">Bussiness Name</string>
+    <string name="edit_cust_seller">Seller Permit Number</string>
+    <string name="txt_limit_purchase">Limit Purchase</string>
+    <string name="edit_country">Country</string>
+    <string name="edit_province">State/Province</string>
+    <string name="edit_address1">Address 1</string>
+    <string name="edit_address2">Address 2</string>
+    <string name="edit_city">City</string>
+    <string name="edit_zip_code">Zip Code</string>
+    <string name="edit_fax">Fax Number</string>
+    <string name="edit_notes">Notes</string>
+    <string name="edit_price_level">Price Level</string>
+    <string name="edit_tax_number">Tax Number</string>
     <!--    /.INVOICE -->
 
 
@@ -195,10 +211,10 @@
         <item>Stock Manager</item>
         <item>Cashier</item>
     </string-array>
-<!--  Product taxable -->
+    <!--  Product taxable -->
     <string-array name="product_taxable">
         <item>Yes</item>
         <item>No</item>
     </string-array>
-<!--/.  Product taxable -->
+    <!--/.  Product taxable -->
 </resources>

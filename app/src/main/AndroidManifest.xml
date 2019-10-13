@@ -11,11 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.xamuor.cashco.ProductActivity"
+        <activity android:name="com.xamuor.cashco.CustomerDetailActivity"></activity>
+        <activity
+            android:name="com.xamuor.cashco.ProductActivity"
             android:label="@string/menu_products"
             android:parentActivityName="com.xamuor.cashco.InventoryActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.xamuor.cashco.ValidationActivity"
             android:screenOrientation="landscape" />
@@ -68,9 +70,9 @@
             android:name="com.xamuor.cashco.ReportActivity"
             android:parentActivityName="com.xamuor.cashco.InventoryActivity" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

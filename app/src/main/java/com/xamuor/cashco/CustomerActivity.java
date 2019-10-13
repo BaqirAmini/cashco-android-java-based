@@ -2,8 +2,10 @@ package com.xamuor.cashco;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -41,6 +44,7 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
     private List<CustomerDataModal> custList;
     private SwitchCompat switchCustStatus;
     private SharedPreferences customerSp;
+    private FloatingActionButton fabNewCustomer;
 //    Only this is globally defined
     private double custBalance = 0;
 
@@ -73,6 +77,14 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
         customerRv = findViewById(R.id.rv_customers);
         customerRv.setHasFixedSize(true);
         customerRv.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false));
+        fabNewCustomer = findViewById(R.id.fab_new_customer);
+        
+        fabNewCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToDetailActivity();
+            }
+        });
 //        Initiating widgets...
 //        switchCustStatus = findViewById(R.id.switch_cust_status);
         // calling the method for fetching customer-data
@@ -166,5 +178,12 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
         }
         adapter.onUpdateList(newList);
         return true;
+    }
+
+
+//    Go to edit customer
+    private void goToDetailActivity() {
+        Intent intent = new Intent(this, CustomerDetailActivity.class);
+        startActivity(intent);
     }
 }
