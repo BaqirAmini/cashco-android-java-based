@@ -6,6 +6,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -48,6 +50,8 @@ public class CategoryEditFragment extends Fragment {
     private CategoryEditAdapter adapter;
     private List<CategoryDataModal> ctgList;
     private SharedPreferences ctgEditSp;
+    private FloatingActionButton fabNewCategory;
+    private Button btnSaveNewProduct, btnSaveNewCategory;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +64,16 @@ public class CategoryEditFragment extends Fragment {
        ctgEditSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
        rvForCategoryEdit.setHasFixedSize(true);
        rvForCategoryEdit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+       fabNewCategory = view.findViewById(R.id.fab_new_category);
+       btnSaveNewProduct = getActivity().findViewById(R.id.btn_add_product);
+       btnSaveNewProduct.setVisibility(View.GONE);
+       
+       fabNewCategory.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               goToNewCtgFragment();
+           }
+       });
 
         posDatabase = Room.databaseBuilder(getContext(), PosDatabase.class, "newpos_db").allowMainThreadQueries().build();
 
@@ -223,4 +237,14 @@ public class CategoryEditFragment extends Fragment {
         rvForCategoryEdit.setAdapter(adapter);
         adapter.notifyDataSetChanged();*/
     }
+// Create new CATEGORY
+    private void goToNewCtgFragment() {
+        android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        NewCategoryFragment nf = new NewCategoryFragment();  //your fragment
+//        eaf.setArguments(bundle);
+        // work here to add, remove, etc
+        fragmentTransaction.replace(R.id.prd_floyout1, nf);
+        fragmentTransaction.commit();
+}
 }

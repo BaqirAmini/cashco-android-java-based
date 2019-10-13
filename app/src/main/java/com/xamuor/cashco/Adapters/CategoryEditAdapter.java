@@ -45,6 +45,8 @@ public class CategoryEditAdapter extends RecyclerView.Adapter<CategoryEditAdapte
             holder.txtUpdated.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
             holder.imgEdit.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));*/
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
+        } else {
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.white_color));
         }
 
 //        Click any edit icon to edit an item

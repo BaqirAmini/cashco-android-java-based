@@ -83,16 +83,19 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_new_product"
-        android:layout_width="276dp"
-        android:layout_height="119dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/margin"
         android:clickable="true"
         android:focusable="true"
+        app:fabSize="auto"
+        android:scaleType="center"
+        android:src="@drawable/ic_add"
         app:backgroundTint="@color/txt_selected_tab"
         app:elevation="8dp" />
 
-    <TextView
+    <!--<TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/txt_lbl_new_product"
@@ -101,5 +104,5 @@
         android:textSize="18sp"
         android:foregroundGravity="center"
         app:layout_anchor="@id/fab_new_product"
-        app:layout_anchorGravity="center"/>
+        app:layout_anchorGravity="center"/>-->
 </android.support.design.widget.CoordinatorLayout>

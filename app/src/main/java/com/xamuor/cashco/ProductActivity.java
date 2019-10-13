@@ -1,6 +1,7 @@
 package com.xamuor.cashco;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
     private List<ProductEditDataModal> prdList;
     private TextView txtProductsTab, txtCategoriesTab;
     private Button btnSaveEditedProduct, btnSaveEditedCategory;
+    private FloatingActionButton fabNewProduct, fabNewCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class ProductActivity extends AppCompatActivity implements View.OnClickLi
         txtCategoriesTab = findViewById(R.id.txt_categories_tab);
         btnSaveEditedProduct = findViewById(R.id.btn_save_edited_product);
         btnSaveEditedCategory = findViewById(R.id.btn_save_edited_category);
+        fabNewProduct = findViewById(R.id.fab_new_product);
+        fabNewCategory = findViewById(R.id.fab_new_category);
 /*------------------------------ /.Define widgets here --------------------------------*/
 
         txtProductsTab.setOnClickListener(this);

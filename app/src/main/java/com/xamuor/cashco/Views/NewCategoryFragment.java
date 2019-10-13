@@ -2,6 +2,8 @@ package com.xamuor.cashco.Views;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,9 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.xamuor.cashco.Model.CategoryDataModal;
-import com.xamuor.cashco.cashco.R;
 import com.xamuor.cashco.Utilities.Routes;
-import com.xamuor.cashco.Users;
+import com.xamuor.cashco.cashco.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,19 +35,23 @@ import java.util.Map;
 public class NewCategoryFragment extends Fragment {
     private Button btnAddCategory, btnCancelCategory;
     private EditText editCategoryName, editCategoryDesc;
+    private Button btnSaveNewCategory;
+    private SharedPreferences newCtgSp;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_category, container, false);
 //        Initiate widgets
-        btnAddCategory = view.findViewById(R.id.btn_add_category);
         btnCancelCategory = view.findViewById(R.id.btn_cancel_category);
         editCategoryName = view.findViewById(R.id.edit_category_name);
         editCategoryDesc = view.findViewById(R.id.edit_category_desc);
+        btnSaveNewCategory = getActivity().findViewById(R.id.btn_add_category);
+        btnSaveNewCategory.setVisibility(View.VISIBLE);
+        newCtgSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 
 //        Add new category
-        btnAddCategory.setOnClickListener(new View.OnClickListener() {
+        btnSaveNewCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String ctgName = editCategoryName.getText().toString();
@@ -95,7 +100,7 @@ private void onSendCategory(final String ctgName, @Nullable final String ctgDesc
         @Override
         protected Map<String, String> getParams() throws AuthFailureError {
             Map<String, String> map = new HashMap<>();
-            map.put("compId", String.valueOf(Users.getCompanyId()));
+            map.put("compId", String.valueOf(newCtgSp.getInt("spCompId", 0)));
             map.put("ctgName", ctgName);
             map.put("ctgDesc", ctgDesc);
             return map;
@@ -108,8 +113,8 @@ private void onSendCategory(final String ctgName, @Nullable final String ctgDesc
         //                CustomerDetailFragment to show more detail for any customer
         FragmentManager fragmentManager =  (getActivity()).getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CategoryRelatedFragment myfragment = new CategoryRelatedFragment();  //your fragment
-        fragmentTransaction.replace(R.id.menu_item_frg_cust_detail, myfragment);
+        CategoryEditFragment myfragment = new CategoryEditFragment();  //your fragment
+        fragmentTransaction.replace(R.id.prd_floyout1, myfragment);
         fragmentTransaction.commit();
     }
 
