@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_cust_seller"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLines="1"/>
         <EditText
             android:id="@+id/edit_cust_fn"
@@ -91,13 +91,13 @@
                 android:id="@+id/rdb_limit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:layout_marginEnd="50dp"
                 android:text="@string/rdb_taxable"/>
             <RadioButton
                 android:id="@+id/rdb_not_limit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:layout_marginStart="50dp"
                 android:text="@string/rdb_not_taxable"/>
         </RadioGroup>
@@ -166,7 +166,6 @@
                 android:id="@+id/rdb_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:layout_marginEnd="50dp"
                 android:text="@string/rdb_taxable"/>
             <RadioButton
@@ -174,6 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
+                android:checked="true"
                 android:text="@string/rdb_not_taxable"/>
         </RadioGroup>
         <EditText

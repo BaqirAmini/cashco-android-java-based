@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CashCo</string>
     <string name="title_activity_inventory">Xamuor</string>
+    <string name="lbl_cust_detail">Customer Details</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -202,6 +203,16 @@
     <string name="edit_tax_number">Tax Number</string>
     <!--    /.INVOICE -->
 
+<!--    CUSTOMERS & COMPANIES -->
+    <string name="bn_required">Business name required.</string>
+    <string name="fn_required">First name required.</string>
+    <string name="phone_required">Phone required.</string>
+    <string name="min_phone_char">Phone must be at least 10 digits.</string>
+    <string name="country_required">Country required.</string>
+    <string name="state_required">State/Province required.</string>
+    <string name="addr1_required">Address 1 required.</string>
+    <string name="city_required">City required.</string>
+<!--    /.CUSTOMERS & COMPANIES -->
 
     <string-array name="method_amount_due">
         <item>Pay Full</item>

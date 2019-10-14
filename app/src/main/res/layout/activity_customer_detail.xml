@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white_color"
+    android:paddingBottom="@dimen/padding"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:id="@+id/cust_detail_bar"
@@ -41,4 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cust_detail_bar"
         android:layout_marginTop="@dimen/margin_large"/>
+    <Button
+        android:id="@+id/btn_save_new_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/btn_save"
+        android:background="@color/txt_selected_tab"
+        android:textColor="@color/white_color"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

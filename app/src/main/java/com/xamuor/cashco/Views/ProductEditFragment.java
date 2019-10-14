@@ -159,7 +159,6 @@ public class ProductEditFragment extends Fragment {
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(getActivity()).add(request);
         Volley.newRequestQueue(getContext()).add(request);
 
     }
