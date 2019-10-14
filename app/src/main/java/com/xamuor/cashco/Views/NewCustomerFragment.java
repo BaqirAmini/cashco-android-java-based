@@ -5,9 +5,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +35,12 @@ import com.xamuor.cashco.cashco.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +55,7 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
     private Button btnSaveNewCustomer;
     private int isPurchaseLimited = 0, isEmployee = 0;
     private String custPriceLevel;
+    private Bitmap bitmap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +89,21 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
         rdbNotEmployee = view.findViewById(R.id.rdb_no);
         rdbPurchaseLimited = view.findViewById(R.id.rdb_limit);
         rdbPurchaseNotLimited = view.findViewById(R.id.rdb_not_limit);
+        imgCustPhoto = view.findViewById(R.id.img_customer);
+
+// Upload customer photo
+        imgCustPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoIntent = new Intent();
+                photoIntent.setType("image/*");
+                photoIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(photoIntent, "Choose a product image ..."), 0);
+
+            }
+        });
+
+
         
         
 //  Check if customer is an employee
@@ -142,6 +166,7 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
             String custBusName = editBn.getText().toString();
             String custFname = editFn.getText().toString();
             String custLname = editLn.getText().toString();
+            String custPhoto = getCustImage(bitmap);
             String custPhone = editPhone.getText().toString();
             String custEmail = editEmail.getText().toString();
             String custCountry = editCountry.getText().toString();
@@ -244,5 +269,27 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
         Volley.newRequestQueue(getActivity()).add(request);
     }
 
-   
+
+//    While choosing a photo for customer, what should be the result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                imgCustPhoto.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Method for getting image from storage;
+    private String getCustImage(Bitmap bitmap) {
+        ByteArrayOutputStream b = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);
+        byte[] imageBytes = b.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
 }
