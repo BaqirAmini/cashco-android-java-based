@@ -56,6 +56,7 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
     private int isPurchaseLimited = 0, isEmployee = 0;
     private String custPriceLevel;
     private Bitmap bitmap;
+    private String custPhoto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -166,7 +167,7 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
             String custBusName = editBn.getText().toString();
             String custFname = editFn.getText().toString();
             String custLname = editLn.getText().toString();
-            String custPhoto = getCustImage(bitmap);
+                custPhoto = getCustImage(bitmap);
             String custPhone = editPhone.getText().toString();
             String custEmail = editEmail.getText().toString();
             String custCountry = editCountry.getText().toString();
@@ -182,8 +183,8 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
             }
 
             String custTaxNum = editTaxNo.getText().toString();
-
-            onSaveCustomer(custSellerPNO, custBusName, custFname, custLname, "", custPhone, custEmail, custCountry, custState, custAddr1, custAddr2, custCity, custZipCode, custFaxNum, custNotes, custPriceLevel, custTaxNum);
+//            Toast.makeText(getContext(), "Photo: " + custPhoto, Toast.LENGTH_SHORT).show();
+            onSaveCustomer(custSellerPNO, custBusName, custFname, custLname, custPhoto, custPhone, custEmail, custCountry, custState, custAddr1, custAddr2, custCity, custZipCode, custFaxNum, custNotes, custPriceLevel, custTaxNum);
 
 
         }
@@ -242,8 +243,7 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
                 map.put("business_name", bn);
                 map.put("first_name", fn);
                 map.put("ln", ln);
-                map.put("img", img);
-//             map.put("pImage", pImage);
+                map.put("customer_photo", img);
                 map.put("phone", phone);
                 map.put("email", email);
                 map.put("limit_purchase", String.valueOf(isPurchaseLimited));
@@ -286,9 +286,11 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
     }
 
     // Method for getting image from storage;
-    private String getCustImage(Bitmap bitmap) {
+    private String getCustImage(@Nullable Bitmap bitmap) {
         ByteArrayOutputStream b = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);
+        if (bitmap != null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);
+        }
         byte[] imageBytes = b.toByteArray();
         return Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }

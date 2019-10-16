@@ -15,6 +15,7 @@ import java.util.Objects;
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private Intent intent;
+    private String company;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +33,12 @@ public class SplashActivity extends AppCompatActivity {
 
         if (sharedPreferences.getBoolean("logged", true)) {
             intent = new Intent(this, InventoryActivity.class);
-            sharedPreferences.getInt("spCompId", Users.getCompanyId());
-            sharedPreferences.getString("spCompName", Users.getCompanyName());
+            company = sharedPreferences.getString("spCompName", null);
+            sharedPreferences.edit().putString("spCompName", company).apply();
+
         } else {
             intent = new Intent(this, LoginActivity.class);
+            company = sharedPreferences.getString("spCompName", Users.getCompanyName());
         }
 
         Thread thread = new Thread() {
@@ -45,6 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
+                    intent.putExtra("comp", company);
                     startActivity(intent);
                     finish();
                 }

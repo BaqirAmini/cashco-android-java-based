@@ -45,7 +45,7 @@ public class InventoryActivity extends AppCompatActivity
 
 //        TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setTitle(sharedPreferences.getString("spCompName", null));
+//        setTitle(Objects.requireNonNull(sharedPreferences.getString("spCompName", null)).replace("null", "Company Name"));
         setSupportActionBar(toolbar);
 
 
