@@ -3,6 +3,7 @@ package com.xamuor.cashco;
 public class Users {
 //    Values are set for these variable while login
     public static int companyId;
+    public static String companyName;
     private static int custId;
     private static int userId;
     private static String fname;
@@ -26,6 +27,14 @@ public class Users {
 
     public static void setCompanyId(int companyId) {
         Users.companyId = companyId;
+    }
+
+    public static String getCompanyName() {
+        return companyName;
+    }
+
+    public static void setCompanyName(String companyName) {
+        Users.companyName = companyName;
     }
 
     public static int getUserId() {

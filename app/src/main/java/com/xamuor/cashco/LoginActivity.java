@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         */
                        JSONObject jsonObject = new JSONObject(response);
                        Users.setCompanyId(jsonObject.getInt("compId"));
+                       Users.setCompanyName(jsonObject.getString("compName"));
                        Users.setUserId(jsonObject.getInt("userId"));
                        Users.setFname(jsonObject.getString("fname"));
                        Users.setLname(jsonObject.getString("lname"));
@@ -114,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 //     Keep LOGGED IN if login is successful
                        sp.edit().putBoolean("logged", true).apply();
                        sp.edit().putInt("spCompId", Users.getCompanyId()).apply();
+                       sp.edit().putString("spCompName", Users.getCompanyName()).apply();
                    } catch (JSONException e) {
                        e.printStackTrace();
                    }

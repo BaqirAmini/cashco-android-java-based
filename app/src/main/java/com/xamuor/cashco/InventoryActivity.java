@@ -40,13 +40,19 @@ public class InventoryActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
+
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+//        TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setTitle(sharedPreferences.getString("spCompName", null));
         setSupportActionBar(toolbar);
 
 
         Stetho.initializeWithDefaults(this);
 
-        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+
 
 //        Initiate TextViews
         txtParkTab = findViewById(R.id.txt_park);

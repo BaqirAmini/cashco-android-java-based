@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         if (sharedPreferences.getBoolean("logged", true)) {
             intent = new Intent(this, InventoryActivity.class);
             sharedPreferences.getInt("spCompId", Users.getCompanyId());
+            sharedPreferences.getString("spCompName", Users.getCompanyName());
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
