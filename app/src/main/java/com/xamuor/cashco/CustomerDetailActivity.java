@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.xamuor.cashco.Views.CompanyProfileFragment;
 import com.xamuor.cashco.Views.NewCustomerFragment;
+import com.xamuor.cashco.Views.TransactionSummaryFragment;
 import com.xamuor.cashco.cashco.R;
 
 public class CustomerDetailActivity extends AppCompatActivity implements View.OnClickListener {
@@ -87,6 +88,7 @@ public class CustomerDetailActivity extends AppCompatActivity implements View.On
                 txtTabTrans.setBackground(getResources().getDrawable(R.drawable.tab_design));
                 txtTabTrans.setTextColor(getResources().getColor(R.color.txt_selected_tab));
                 txtTabCompProfile.setTextColor(getResources().getColor(R.color.text_color));
+                toToTransFrag();
                 break;
         }
     }
@@ -97,6 +99,16 @@ public class CustomerDetailActivity extends AppCompatActivity implements View.On
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         CompanyProfileFragment myfragment = new CompanyProfileFragment();  //your fragment
         fragmentTransaction.replace(R.id.cust_detail_flayout, myfragment);
+        fragmentTransaction.commit();
+    }
+
+
+    //  Go to Company profile
+    private void toToTransFrag() {
+        FragmentManager fragmentManager =  getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        TransactionSummaryFragment myfragment = new TransactionSummaryFragment();  //your fragment
+        fragmentTransaction.replace(R.id.cust_trans_flayout, myfragment);
         fragmentTransaction.commit();
     }
 }

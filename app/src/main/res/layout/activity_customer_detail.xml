@@ -43,6 +43,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cust_detail_bar"
         android:layout_marginTop="@dimen/margin_large"/>
+    <FrameLayout
+        android:id="@+id/cust_trans_flayout"
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cust_detail_bar"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_toEndOf="@+id/cust_detail_flayout"/>
     <Button
         android:id="@+id/btn_save_new_customer"
         android:layout_width="wrap_content"
