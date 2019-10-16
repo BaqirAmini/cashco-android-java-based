@@ -4,12 +4,14 @@
     android:layout_width="450dp"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/linear_new_customer"
         android:layout_width="match_parent"
         android:padding="@dimen/padding"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="start"
-        tools:context="com.xamuor.cashco.cashco.com.xamuor.cashco.Views.NewCategoryFragment">
+        android:visibility="gone"
+        tools:context="com.xamuor.cashco.Views.NewCategoryFragment">
         <TextView
             android:id="@+id/txt_new_cust_title"
             android:layout_width="match_parent"

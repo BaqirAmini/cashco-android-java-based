@@ -184,6 +184,7 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
 //    Go to edit customer
     private void goToDetailActivity() {
         Intent intent = new Intent(this, CustomerDetailActivity.class);
+        intent.putExtra("AddNewCustomer", 99);
         startActivity(intent);
     }
 }

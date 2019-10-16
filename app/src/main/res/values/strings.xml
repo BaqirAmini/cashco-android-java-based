@@ -203,7 +203,7 @@
     <string name="edit_tax_number">Tax Number</string>
     <!--    /.INVOICE -->
 
-<!--    CUSTOMERS & COMPANIES -->
+    <!--    CUSTOMERS & COMPANIES -->
     <string name="bn_required">Business name required.</string>
     <string name="fn_required">First name required.</string>
     <string name="phone_required">Phone required.</string>
@@ -212,7 +212,7 @@
     <string name="state_required">State/Province required.</string>
     <string name="addr1_required">Address 1 required.</string>
     <string name="city_required">City required.</string>
-<!--    /.CUSTOMERS & COMPANIES -->
+    <!--    /.CUSTOMERS & COMPANIES -->
 
     <string-array name="method_amount_due">
         <item>Pay Full</item>

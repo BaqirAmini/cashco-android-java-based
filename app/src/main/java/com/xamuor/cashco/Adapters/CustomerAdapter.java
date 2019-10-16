@@ -2,6 +2,7 @@ package com.xamuor.cashco.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.xamuor.cashco.CustomerDetailActivity;
 import com.xamuor.cashco.Model.CustomerDataModal;
 import com.xamuor.cashco.cashco.R;
 
@@ -31,7 +33,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(final CustomerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomerAdapter.ViewHolder holder, final int position) {
         final CustomerDataModal modal = custList.get(position);
         holder.txtListCustBN.setText(modal.getBusinessName());
         holder.txtListCustID.setText(modal.getCustId());
@@ -54,6 +56,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         } else {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.bg_tabs));
         }
+
+        
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CustomerDetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
   /*      holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
 //        check customer-status
         int custStatus = modal.getCustStatus();
@@ -157,4 +169,5 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
       };
       Volley.newRequestQueue(context).add(statusRequest);
   }*/
+
 }

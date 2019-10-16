@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -52,11 +53,12 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
     private ImageView imgCustPhoto;
     private RadioGroup rdgLimitPurchase, rdgEmployee;
     private RadioButton rdbEmployee, rdbNotEmployee, rdbPurchaseLimited, rdbPurchaseNotLimited;
-    private Button btnSaveNewCustomer;
+    private Button btnSaveNewCustomer, btnEditCompProfile, btnEnableCompProfile;
     private int isPurchaseLimited = 0, isEmployee = 0;
     private String custPriceLevel;
     private Bitmap bitmap;
     private String custPhoto;
+    private LinearLayout layoutNewCustomer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +69,12 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
 //        Define widgets
         newCustSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         btnSaveNewCustomer = getActivity().findViewById(R.id.btn_save_new_customer);
+        btnEditCompProfile = getActivity().findViewById(R.id.btn_edit_comp_profile);
+        btnEnableCompProfile = getActivity().findViewById(R.id.btn_enable_edit_comp_profile);
+        btnEnableCompProfile.setVisibility(View.GONE);
+        btnEditCompProfile.setVisibility(View.GONE);
+        btnSaveNewCustomer.setVisibility(View.VISIBLE);
+
         btnSaveNewCustomer.setOnClickListener(this);
         editBn = view.findViewById(R.id.edit_business);
         editSeller = view.findViewById(R.id.edit_cust_seller);
@@ -91,6 +99,8 @@ public class NewCustomerFragment extends Fragment implements View.OnClickListene
         rdbPurchaseLimited = view.findViewById(R.id.rdb_limit);
         rdbPurchaseNotLimited = view.findViewById(R.id.rdb_not_limit);
         imgCustPhoto = view.findViewById(R.id.img_customer);
+        layoutNewCustomer = view.findViewById(R.id.linear_new_customer);
+        layoutNewCustomer.setVisibility(View.VISIBLE);
 
 // Upload customer photo
         imgCustPhoto.setOnClickListener(new View.OnClickListener() {
