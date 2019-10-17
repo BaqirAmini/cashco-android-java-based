@@ -82,6 +82,7 @@ public class CustomerDetailActivity extends AppCompatActivity implements View.On
                 txtTabTrans.setBackgroundResource(R.color.bg_tabs);
                 txtTabCompProfile.setTextColor(getResources().getColor(R.color.txt_selected_tab));
                 txtTabTrans.setTextColor(getResources().getColor(R.color.text_color));
+                goToCompFrag();
                 break;
             case R.id.txt_tab_transactions:
                 txtTabCompProfile.setBackgroundResource(R.color.bg_tabs);
@@ -89,7 +90,7 @@ public class CustomerDetailActivity extends AppCompatActivity implements View.On
                 txtTabTrans.setTextColor(getResources().getColor(R.color.txt_selected_tab));
                 txtTabCompProfile.setTextColor(getResources().getColor(R.color.text_color));
                 toToTransFrag();
-                break;
+
         }
     }
 
@@ -108,7 +109,8 @@ public class CustomerDetailActivity extends AppCompatActivity implements View.On
         FragmentManager fragmentManager =  getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         TransactionSummaryFragment myfragment = new TransactionSummaryFragment();  //your fragment
-        fragmentTransaction.replace(R.id.cust_trans_flayout, myfragment);
+        fragmentTransaction.replace(R.id.cust_detail_flayout, myfragment);
         fragmentTransaction.commit();
+
     }
 }

@@ -212,6 +212,13 @@
     <string name="state_required">State/Province required.</string>
     <string name="addr1_required">Address 1 required.</string>
     <string name="city_required">City required.</string>
+    <string name="txt_lbl_acct_opened_at">Account Opened At</string>
+    <string name="txt_lbl_account_no">Account Number</string>
+    <string name="txt_lbl_total_sales">Total Sales</string>
+    <string name="txt_lbl_amount_paid">Amount Paid</string>
+    <string name="txt_lbl_amount_due">Amount Due</string>
+    <string name="txt_invoices">Invoices</string>
+    <string name="txt_payments">Payments</string>
     <!--    /.CUSTOMERS & COMPANIES -->
 
     <string-array name="method_amount_due">

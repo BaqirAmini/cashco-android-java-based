@@ -1,11 +1,15 @@
-<TableLayout
-    android:layout_width="450dp"
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="end"
+    android:gravity="end"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="end"
         android:weightSum="2">
         <TextView
             android:id="@+id/txt_lbl_account_opened_at"
@@ -13,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Account Opened At"/>
+            android:text="@string/txt_lbl_acct_opened_at"/>
         <TextView
             android:id="@+id/txt_val_account_opened_at"
             android:layout_width="wrap_content"
@@ -33,9 +37,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Account Number"/>
+            android:text="@string/txt_lbl_account_no"/>
         <TextView
             android:id="@+id/txt_val_account_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="4000"/>
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/txt_lbl_fax_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/edit_fax"/>
+        <TextView
+            android:id="@+id/txt_val_fax_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -53,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Total Sales"/>
+            android:text="@string/txt_lbl_total_sales"/>
         <TextView
             android:id="@+id/txt_val_total_sales"
             android:layout_width="wrap_content"
@@ -73,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Amount Paid"/>
+            android:text="@string/txt_lbl_amount_paid"/>
         <TextView
             android:id="@+id/txt_val_amount_paid"
             android:layout_width="wrap_content"
@@ -93,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Amount Due"/>
+            android:text="@string/txt_lbl_amount_due"/>
         <TextView
             android:id="@+id/txt_val_amount_due"
             android:layout_width="wrap_content"
@@ -103,4 +127,15 @@
             android:gravity="center"
             android:text="1000"/>
     </TableRow>
-</TableLayout>
+    <LinearLayout
+        android:id="@+id/linear_in_summary_frag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/cust_trans_flayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
