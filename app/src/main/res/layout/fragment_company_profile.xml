@@ -18,6 +18,7 @@
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_cust_seller"
             android:inputType="number"
+            android:enabled="false"
             android:maxLines="1"/>
         <EditText
             android:id="@+id/edit_comp_bn"
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:inputType="text"
+            android:enabled="false"
             android:hint="@string/edit_business"
             android:maxLines="1"/>
         <EditText
@@ -33,6 +35,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_user_phone"
+            android:enabled="false"
             android:inputType="phone"
             android:maxLines="1"/>
         <EditText
@@ -40,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
+            android:enabled="false"
             android:hint="@string/edit_user_email"
             android:inputType="textEmailAddress"
             android:maxLines="1"/>
@@ -49,6 +53,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_country"
+            android:enabled="false"
             android:inputType="text"
             android:maxLines="1"/>
         <EditText
@@ -58,6 +63,7 @@
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_province"
             android:inputType="text"
+            android:enabled="false"
             android:maxLines="1"/>
         <EditText
             android:id="@+id/edit_comp_address1"
@@ -66,6 +72,7 @@
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_address1"
             android:inputType="text"
+            android:enabled="false"
             android:maxLines="1"/>
         <EditText
             android:id="@+id/edit__comp_address2"
@@ -73,6 +80,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_address2"
+            android:enabled="false"
             android:inputType="text"
             android:maxLines="1"/>
         <EditText
@@ -81,6 +89,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_city"
+            android:enabled="false"
             android:inputType="text"
             android:maxLines="1"/>
         <EditText
@@ -89,6 +98,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
             android:hint="@string/edit_zip_code"
+            android:enabled="false"
             android:inputType="number"
             android:maxLines="1"/>
         <TextView
@@ -99,22 +109,25 @@
             android:textStyle="bold"
             android:layout_height="wrap_content" />
         <RadioGroup
-            android:id="@+id/rdg_is_employee"
+            android:id="@+id/rdg_comp_is_employee"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:gravity="center"
+            android:enabled="false"
             android:layout_height="wrap_content">
             <RadioButton
-                android:id="@+id/rdb_yes"
+                android:id="@+id/rdb_emplyee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
+                android:enabled="false"
                 android:text="@string/rdb_taxable"/>
             <RadioButton
-                android:id="@+id/rdb_no"
+                android:id="@+id/rdb_not_employee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
+                android:enabled="false"
                 android:checked="true"
                 android:text="@string/rdb_not_taxable"/>
         </RadioGroup>

@@ -1,31 +1,34 @@
 package com.xamuor.cashco.Model;
 
 public class CustomerDataModal {
-    private Double custBalance;
-    private String  custId, custStatus, businessName, custFname, custLname, custPhone, custEmail, cust_state, cust_addr;
+    private String sellerPermit, businessName, custFname, custLname,
+            custPhone, custEmail, country, city, cust_state, zipCode, address1, address2, regDate;
+    private int custId;
 
 
-    public CustomerDataModal(String custId, String custStatus, String businessName, String custFname, String custLname, String custPhone, double custBalance) {
-        this.custId = custId;
-        this.custStatus = custStatus;
+    public CustomerDataModal(int custId, String seller, String businessName, String custFname, String custLname, String custPhone,
+                             String custEmail, String country, String city, String custState, String zipCode, String addr1, String addr2, String regDate) {
+        this.custId =  custId;
+        this.sellerPermit = seller;
         this.businessName = businessName;
         this.custFname = custFname;
         this.custLname = custLname;
         this.custPhone = custPhone;
-        this.custBalance = custBalance;
+        this.regDate = regDate;
         this.custEmail = custEmail;
-        this.cust_state = cust_state;
-        this.cust_addr = cust_addr;
+        this.cust_state = custState;
+        this.zipCode = zipCode;
+        this.country = country;
+        this.city = city;
+        this.address1 = addr1;
+        this.address2 = addr2;
 
     }
 
-    public String getCustId() {
+    public int getCustId() {
         return custId;
     }
 
-    public String getCustStatus() {
-        return custStatus;
-    }
 
     public String getBusinessName() {
         return businessName;
@@ -43,11 +46,35 @@ public class CustomerDataModal {
         return custPhone;
     }
 
-    public Double getCustBalance() {
-        return custBalance;
+    public String getCountry() {
+        return country;
     }
 
-   /* public String getCustEmail() {
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public String getSellerPermit() {
+        return sellerPermit;
+    }
+
+    public String getCustEmail() {
         return custEmail;
     }
 
@@ -55,7 +82,5 @@ public class CustomerDataModal {
         return cust_state;
     }
 
-    public String getCust_addr() {
-        return cust_addr;
-    }*/
+
 }

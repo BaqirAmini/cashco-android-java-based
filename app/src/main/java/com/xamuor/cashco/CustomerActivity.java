@@ -113,25 +113,28 @@ public class CustomerActivity extends AppCompatActivity implements SearchView.On
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int c = 0; c < jsonArray.length(); c++) {
-                        JSONObject jo = jsonArray.getJSONObject(c);
-                        String custId = jo.getString("cust_id");
-                        String businessName = jo.getString("business_name");
-                        String custFname = jo.getString("cust_name");
-                        String custLname = jo.getString("cust_lastname");
-                        String custStatus = jo.getString("cust_status");
-                        String custPhone = jo.getString("cust_phone");
-//                        custBalance = jo.getDouble("AccountBalance");
-                        custBalance = 0.00;
-                    /*    String custEmail = jo.getString("cust_email");
-                        String custState = jo.getString("cust_state");
-                        String custAddress = jo.getString("cust_addr");*/
-                        CustomerDataModal dataModal = new CustomerDataModal(custId, custStatus, businessName, custFname, custLname, custPhone, custBalance);
+                        JSONObject anyItem = jsonArray.getJSONObject(c);
+                        String sellerPermit = anyItem.getString("seller");
+                        int custId = anyItem.getInt("custId");
+                        String businessName = anyItem.getString("bn");
+                        String custFname = anyItem.getString("custName");
+                        String custLname = anyItem.getString("custLastname");
+                        String custPhone = anyItem.getString("phone");
+                        String email = anyItem.getString("email");
+                        String country = anyItem.getString("country");
+                        String state = anyItem.getString("state");
+                        String address1 = anyItem.getString("address1");
+                        String address2 = anyItem.getString("address2");
+                        String city = anyItem.getString("city");
+                        String zipCode = anyItem.getString("zipCode");
+                        String createdAt = anyItem.getString("createdAt");
+                        CustomerDataModal dataModal = new CustomerDataModal(custId, sellerPermit, businessName, custFname, custLname, custPhone, email, country,
+                                state, city, zipCode, address1, address2, createdAt);
                         custList.add(dataModal);
                     }
                     adapter = new CustomerAdapter(getBaseContext(), custList);
                     customerRv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

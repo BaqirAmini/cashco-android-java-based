@@ -151,10 +151,10 @@
     <string name="err_full_amount_between">Amount Received greater than or equal to </string>
     <string name="err_partial_amount_between">Amount Received between zero and </string>
     <string name="err_trans_code_required">Check number required</string>
-    <string name="txt_label_list_cust_bn">Business Name</string>
+    <string name="txt_label_list_cust_bn">Bss. Name</string>
     <string name="txt_lbl_list_cust_id">ID</string>
-    <string name="txt_lbl_list_cust_fn">First Name</string>
-    <string name="txt_lbl_list_cust_ln">Last Name</string>
+    <string name="txt_lbl_list_cust_fn">F. Name</string>
+    <string name="txt_lbl_list_cust_ln">L. Name</string>
     <string name="txt_lbl_list_cust_phone">Phone</string>
     <string name="txt_lbl_list_cust_accb">Acc. Balance</string>
     <string name="txt_lbl_list_cust_status">Status</string>
@@ -201,9 +201,11 @@
     <string name="edit_notes">Notes</string>
     <string name="edit_price_level">Price Level</string>
     <string name="edit_tax_number">Tax Number</string>
+    <string name="zipcode_only">Zip Code can only be 4 digits.</string>
     <!--    /.INVOICE -->
 
     <!--    CUSTOMERS & COMPANIES -->
+    <string name="seller_permit_no_required">Seller Permit Number required</string>
     <string name="bn_required">Business name required.</string>
     <string name="fn_required">First name required.</string>
     <string name="phone_required">Phone required.</string>
@@ -219,6 +221,10 @@
     <string name="txt_lbl_amount_due">Amount Due</string>
     <string name="txt_invoices">Invoices</string>
     <string name="txt_payments">Payments</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_country">Country</string>
+    <string name="txt_state_or_province">State</string>
+    <string name="txt_address1">Address</string>
     <!--    /.CUSTOMERS & COMPANIES -->
 
     <string-array name="method_amount_due">

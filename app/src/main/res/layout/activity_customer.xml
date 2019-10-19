@@ -32,14 +32,14 @@
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"/>
-            <TextView
+            <!--<TextView
                 android:id="@+id/txt_lbl_list_cust_id"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:text="@string/txt_lbl_list_cust_id"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
-                android:layout_weight="1"/>
+                android:layout_weight="1"/>-->
             <TextView
                 android:id="@+id/txt_lbl_list_cust_fn"
                 android:layout_width="0dp"
@@ -65,18 +65,42 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/txt_lbl_list_cust_accb"
+                android:id="@+id/txt_lbl_list_cust_email"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:text="@string/txt_lbl_list_cust_accb"
+                android:text="@string/txt_email"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/txt_lbl_list_cust_status"
+                android:id="@+id/txt_lbl_list_country"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:text="@string/txt_lbl_list_cust_status"
+                android:text="@string/txt_country"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txt_state"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:text="@string/txt_state_or_province"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txt_address1"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:text="@string/txt_address1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txt_date_reg"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:text="@string/txt_balance_date"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"/>

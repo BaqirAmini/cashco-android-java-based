@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.xamuor.cashco.CustomerDetailActivity;
 import com.xamuor.cashco.Model.CustomerDataModal;
 import com.xamuor.cashco.cashco.R;
 
@@ -19,6 +18,7 @@ import java.util.List;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
     private List<CustomerDataModal> custList;
+    private Intent intent;
     private Context context;
     public CustomerAdapter(Context context, List<CustomerDataModal> custList) {
         this.context = context;
@@ -36,12 +36,15 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public void onBindViewHolder(final CustomerAdapter.ViewHolder holder, final int position) {
         final CustomerDataModal modal = custList.get(position);
         holder.txtListCustBN.setText(modal.getBusinessName());
-        holder.txtListCustID.setText(modal.getCustId());
+//        holder.txtListCustID.setText(modal.getCustId() + "");
         holder.txtListCustFN.setText(modal.getCustFname());
-        holder.txtListCustLN.setText(modal.getCustLname());
-        holder.txtListCustPhone.setText(modal.getCustPhone());
-        holder.txtListCustAB.setText(modal.getCustBalance() + "");
-        holder.txtListCustStatus.setText(modal.getCustStatus());
+        holder.txtListCustLN.setText(modal.getCustLname().replace("null", ""));
+        holder.txtListCustPhone.setText(modal.getCustPhone().replace("null", ""));
+        holder.txtListCustEmail.setText(modal.getCustEmail().replace("null", ""));
+        holder.txtListCustCountry.setText(modal.getCountry().replace("null", ""));
+        holder.txtListCustState.setText(modal.getCust_state().replace("null", ""));
+        holder.txtListCustAddr.setText(modal.getAddress1().replace("null", ""));
+        holder.txtListCustRegDate.setText(modal.getRegDate().replace("null", ""));
 
 //        Set background-color for rows
         if (position % 2 == 0) {
@@ -61,9 +64,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CustomerDetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+               /*passIntentValues(modal.getSellerPermit(), modal.getBusinessName(), modal.getCustPhone(), modal.getCustEmail(),
+                       modal.getCountry(), modal.getCust_state(), modal.getAddress1(), modal.getAddress2(), modal.getCity(), modal.getZipCode());*/
+
+//       SET VALUES in class CustomerDetail
+
             }
         });
   /*      holder.txtCustFname.setText(modal.getCustFname().concat(" ").concat(modal.getCustLname().replace("null", "")));
@@ -109,7 +114,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 //        private ImageView imageCustomer;
-        private TextView txtListCustBN, txtListCustID, txtListCustFN, txtListCustLN, txtListCustPhone, txtListCustAB, txtListCustStatus;
+        private TextView txtListCustBN, txtListCustID, txtListCustFN, txtListCustLN, txtListCustPhone, txtListCustEmail, txtListCustCountry,
+                txtListCustState, txtListCustAddr ,txtListCustRegDate;
         private TableRow tblRow2;
       /*  private CardView cardCustomer;
         private TextView txtCustFname;
@@ -118,12 +124,15 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             super(itemView);
 
             txtListCustBN = itemView.findViewById(R.id.txt_list_cust_bn);
-            txtListCustID = itemView.findViewById(R.id.txt_list_cust_id);
+//            txtListCustID = itemView.findViewById(R.id.txt_list_cust_id);
             txtListCustFN = itemView.findViewById(R.id.txt_list_cust_fn);
             txtListCustLN = itemView.findViewById(R.id.txt_list_cust_ln);
             txtListCustPhone = itemView.findViewById(R.id.txt_list_cust_phone);
-            txtListCustAB = itemView.findViewById(R.id.txt_list_cust_accb);
-            txtListCustStatus = itemView.findViewById(R.id.txt_list_cust_status);
+            txtListCustEmail = itemView.findViewById(R.id.txt_list_email);
+            txtListCustAddr = itemView.findViewById(R.id.txt_list_addr1);
+            txtListCustCountry = itemView.findViewById(R.id.txt_list_country);
+            txtListCustState = itemView.findViewById(R.id.txt_list_state);
+            txtListCustRegDate = itemView.findViewById(R.id.txt_list_date);
 
             tblRow2 = itemView.findViewById(R.id.trow_label2);
 //            imageCustomer = itemView.findViewById(R.id.image_customer);
@@ -170,4 +179,25 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
       Volley.newRequestQueue(context).add(statusRequest);
   }*/
 
+//  PASS invent-values
+  /*  private void passIntentValues(@Nullable String sellerPermitNum, String businessName, String phone, String email,
+                                  String country, String state, String addr1, String addr2, String city, String zip) {
+        intent = new Intent(context, CustomerDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (intent != null) {
+            intent.putExtra("seller", sellerPermitNum);
+            intent.putExtra("bn", businessName);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", email);
+            intent.putExtra("country", country);
+            intent.putExtra("state", state);
+            intent.putExtra("addr1", addr1);
+            intent.putExtra("addr2", addr2);
+            intent.putExtra("city", city);
+            intent.putExtra("zip", zip);
+        }
+        context.startActivity(intent);
+
+    }
+*/
 }
