@@ -1,6 +1,10 @@
 package com.xamuor.cashco.Views;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +14,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.xamuor.cashco.CustomerActivity;
+import com.xamuor.cashco.CustomerDetail;
+import com.xamuor.cashco.Utilities.Routes;
 import com.xamuor.cashco.cashco.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +42,7 @@ public class CompanyProfileFragment extends Fragment implements View.OnClickList
             editCompCity, editCompZipcode;
     private RadioGroup rdgCompEmployee;
     private RadioButton rdbCompEmployee, rdbNotEmployee;
+    private SharedPreferences compProfileSp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,12 +68,16 @@ public class CompanyProfileFragment extends Fragment implements View.OnClickList
         rdbCompEmployee = view.findViewById(R.id.rdb_emplyee);
         rdbNotEmployee = view.findViewById(R.id.rdb_not_employee);
 
+        compProfileSp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 
         btnEditCompProfile.setVisibility(View.VISIBLE);
         btnSaveCompProfile.setVisibility(View.VISIBLE);
         btnSaveNewCust.setVisibility(View.GONE);
         btnSaveCompProfile.setOnClickListener(this);
         btnEditCompProfile.setOnClickListener(this);
+
+//  CALL to set values in editTextes
+    setCompanyDetails();
 
         return view;
     }
@@ -134,7 +158,85 @@ public class CompanyProfileFragment extends Fragment implements View.OnClickList
         if (!editCompSeller.getText().toString().isEmpty() && !editCompBn.getText().toString().isEmpty() && !editCompPhone.getText().toString().isEmpty() &&
         editCompPhone.getText().toString().length() >= 10 && !editCompCountry.getText().toString().isEmpty() && !editCompState.getText().toString().isEmpty() 
         && !editCompAddr1.getText().toString().isEmpty() && !editCompCity.getText().toString().isEmpty() && editCompZipcode.getText().toString().length() == 4) {
-            Toast.makeText(getContext(), "Now, everything is OK.", Toast.LENGTH_SHORT).show();
+            onEditCustomer(editCompSeller.getText().toString(), editCompBn.getText().toString(), editCompPhone.getText().toString(), editCompEmail.getText().toString(),
+                    editCompCountry.getText().toString(), editCompState.getText().toString(), editCompAddr1.getText().toString(), editCompAddr2.getText().toString(),
+                    editCompCity.getText().toString(), editCompZipcode.getText().toString());
         }
     }
+
+//    Set company details into editTextes
+    private void setCompanyDetails() {
+        editCompSeller.setText(CustomerDetail.getSellerPermitNumber());
+        editCompBn.setText(CustomerDetail.getBssName());
+        editCompPhone.setText(CustomerDetail.getPhone());
+        editCompEmail.setText(CustomerDetail.getEmail());
+        editCompCountry.setText(CustomerDetail.getCountry());
+        editCompState.setText(CustomerDetail.getState());
+        editCompAddr1.setText(CustomerDetail.getAddr1());
+        editCompAddr2.setText(CustomerDetail.getAddr2());
+        editCompCity.setText(CustomerDetail.getCity());
+        editCompZipcode.setText(CustomerDetail.getZipCode());
+    }
+
+//  Edit Customer using company profile
+    private void onEditCustomer(final String sellerPermitNumber, final String bn, final String phone, final String email, final String country, final String state,
+                                final String addr1, final String addr2, final String city, final String zipCode) {
+
+            StringRequest request = new StringRequest(Request.Method.POST, Routes.setUrl("editCustomer"), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    AlertDialog.Builder d;
+                    try {
+                        JSONObject jo = new JSONObject(response);
+                        if (jo.getString("result").equalsIgnoreCase("fail")) {
+                            String vMessage = jo.getString("message");
+                            d = new AlertDialog.Builder(getContext());
+                            d.setMessage(vMessage);
+                            d.show();
+                        } else if (jo.getString("result").equalsIgnoreCase("success")) {
+                            Intent intent = new Intent(getContext(), CustomerActivity.class);
+                            startActivity(intent);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    AlertDialog.Builder d = new AlertDialog.Builder(getContext());
+                    d.setMessage(error.toString());
+                    d.show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+//             String pImage = getProductImage(bitmap);
+                    Map<String, String> map = new HashMap<>();
+                    map.put("custId", CustomerDetail.getId());
+                    map.put("compId", String.valueOf(compProfileSp.getInt("spCompId", 0)));
+                    map.put("seller_permit_number", String.valueOf(sellerPermitNumber));
+                    map.put("business_name", bn);
+                    map.put("phone", phone);
+                    map.put("email", email);
+                    map.put("country", country);
+                    map.put("state", state);
+                    map.put("addr1", addr1);
+                    map.put("addr2", addr2);
+                    map.put("city", city);
+                    map.put("zipCode", zipCode);
+                    return map;
+                }
+            };
+//        Policy for timeoutError
+            request.setRetryPolicy(new DefaultRetryPolicy(
+                    10000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            Volley.newRequestQueue(getActivity()).add(request);
+        }
+
 }

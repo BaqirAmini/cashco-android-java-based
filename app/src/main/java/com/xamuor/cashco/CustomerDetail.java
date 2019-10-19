@@ -1,7 +1,7 @@
 package com.xamuor.cashco;
 
 public class CustomerDetail {
-    private static String id, sellerPermitNumber, bssNumber, firstName, lastName, phone, email, country, city,
+    private static String id, sellerPermitNumber, bssName, firstName, lastName, phone, email, country, city,
                     state, addr1, addr2, zipCode, createdAt;
 
     public static String getId() {
@@ -20,12 +20,12 @@ public class CustomerDetail {
         CustomerDetail.sellerPermitNumber = sellerPermitNumber;
     }
 
-    public static String getBssNumber() {
-        return bssNumber;
+    public static String getBssName() {
+        return bssName;
     }
 
-    public static void setBssNumber(String bssNumber) {
-        CustomerDetail.bssNumber = bssNumber;
+    public static void setBssName(String bssName) {
+        CustomerDetail.bssName = bssName;
     }
 
     public static String getFirstName() {

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.xamuor.cashco.CustomerDetail;
+import com.xamuor.cashco.CustomerDetailActivity;
 import com.xamuor.cashco.Model.CustomerDataModal;
 import com.xamuor.cashco.cashco.R;
 
@@ -67,7 +69,24 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
                /*passIntentValues(modal.getSellerPermit(), modal.getBusinessName(), modal.getCustPhone(), modal.getCustEmail(),
                        modal.getCountry(), modal.getCust_state(), modal.getAddress1(), modal.getAddress2(), modal.getCity(), modal.getZipCode());*/
 
+               intent = new Intent(context, CustomerDetailActivity.class);
+               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
 //       SET VALUES in class CustomerDetail
+                CustomerDetail.setSellerPermitNumber(modal.getSellerPermit().replace("null", ""));
+                CustomerDetail.setBssName(modal.getBusinessName().replace("null", ""));
+                CustomerDetail.setId(String.valueOf(modal.getCustId()));
+                CustomerDetail.setFirstName(modal.getCustFname().replace("null", ""));
+                CustomerDetail.setLastName(modal.getCustLname().replace("null", ""));
+                CustomerDetail.setPhone(modal.getCustPhone());
+                CustomerDetail.setEmail(modal.getCustEmail().replace("null", ""));
+                CustomerDetail.setAddr1(modal.getAddress1());
+                CustomerDetail.setAddr2(modal.getAddress2().replace("null", ""));
+                CustomerDetail.setCountry(modal.getCountry().replace("null", ""));
+                CustomerDetail.setCity(modal.getCity().replace("null", ""));
+                CustomerDetail.setState(modal.getCust_state().replace("null", ""));
+                CustomerDetail.setZipCode(modal.getZipCode().replace("null", ""));
+                CustomerDetail.setCreatedAt(modal.getRegDate().replace("null", ""));
 
             }
         });
