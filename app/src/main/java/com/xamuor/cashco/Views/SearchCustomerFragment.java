@@ -114,13 +114,13 @@ public class SearchCustomerFragment extends Fragment implements SearchView.OnQue
                         }*/
                         for (int c = 0; c < customers.length(); c++) {
                             JSONObject custObject = customers.getJSONObject(c);
-                            int custID = custObject.getInt("cust_id");
-                            String custPhoto = custObject.getString("cust_photo");
-                            String custBN = custObject.getString("business_name");
-                            String custPhone = custObject.getString("cust_phone");
-                            String custName = custObject.getString("cust_name");
-                            String custLastname = custObject.getString("cust_lastname");
-                            String sellerPermitNumber = custObject.getString("SellerPermitNumber");
+                            int custID = custObject.getInt("custId");
+                            String custPhoto = custObject.getString("custPhoto");
+                            String custBN = custObject.getString("bn");
+                            String custPhone = custObject.getString("phone");
+                            String custName = custObject.getString("custName");
+                            String custLastname = custObject.getString("custLastname");
+                            String sellerPermitNumber = custObject.getString("seller");
 
                             searchCustomerDataModal = new SearchCustomerDataModal(custID, custPhoto, custBN, custPhone, custName, custLastname, sellerPermitNumber);
                             customerList.add(searchCustomerDataModal);
